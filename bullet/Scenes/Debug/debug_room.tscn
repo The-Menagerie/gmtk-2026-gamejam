@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://byinu6316w4fw"]
+
+[node name="DebugRoom" type="Node2D" unique_id=1315177953]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1512646574]
