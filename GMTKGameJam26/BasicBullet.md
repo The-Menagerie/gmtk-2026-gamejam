@@ -1,0 +1,1 @@
+Inherits [[Bullet Component]]
