@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsqqd7jct0e4u"
-path="res://.godot/imported/chamber_sheet.png-019cf431790ec6e4c74ccd865e981938.ctex"
+path="res://.godot/imported/chamber_sheet.png-3c3d13ba10137f16078e2d7506a17084.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/chamber_sheet.png"
-dest_files=["res://.godot/imported/chamber_sheet.png-019cf431790ec6e4c74ccd865e981938.ctex"]
+source_file="res://Assets/Images/chamber_sheet.png"
+dest_files=["res://.godot/imported/chamber_sheet.png-3c3d13ba10137f16078e2d7506a17084.ctex"]
 
 [params]
 

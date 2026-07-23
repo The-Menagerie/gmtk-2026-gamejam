@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://i28d0rfrfnfq" path="res://Assets/Tilesets/desert_tileset.tres" id="1_xcfk0"]
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="2_gw3cr"]
 [ext_resource type="PackedScene" uid="uid://by50mcyw2bh82" path="res://Scenes/Objects/Enemies/outlaw.tscn" id="4_lwjn1"]
+[ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_wnj3v"]
 
 [node name="DebugRoom" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_wnj3v")
@@ -20,9 +21,15 @@ zoom = Vector2(3, 3)
 
 [node name="Player" parent="." unique_id=430874862 instance=ExtResource("2_gw3cr")]
 position = Vector2(65, 10)
+vertical_recoil_scale = 0.45
 
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("4_lwjn1")]
 position = Vector2(-64, 8)
 
 [node name="Enemy2" parent="." unique_id=1850845240 instance=ExtResource("4_lwjn1")]
 position = Vector2(-26, -82)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=668499867]
+
+[node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_wnj3v")]
+bullet_pattern = Array[int]([1, 99, 1, 1, 1, 1])

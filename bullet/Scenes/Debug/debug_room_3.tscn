@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dw8thabw4ialp" path="res://Scripts/Classes/level_root.gd" id="1_s8t64"]
 [ext_resource type="TileSet" uid="uid://i28d0rfrfnfq" path="res://Assets/Tilesets/desert_tileset.tres" id="3_u6cxg"]
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="4_6a0w5"]
+[ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_pjjyr"]
 [ext_resource type="PackedScene" uid="uid://by50mcyw2bh82" path="res://Scenes/Objects/Enemies/outlaw.tscn" id="6_ou8xn"]
 
 [node name="DebugRoom" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
@@ -23,3 +24,7 @@ position = Vector2(-25, 16)
 
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("6_ou8xn")]
 position = Vector2(50, 12)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=977823843]
+
+[node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_pjjyr")]

@@ -60,9 +60,10 @@ func _handle_hit(collider: Object):
 	_play_ricochet()
 
 func _apply_score_damage():
-	var game_manager = get_tree().root.find_child("MainGame", true, false)
-	if game_manager != null and game_manager.has_method("change_score"):
-		game_manager.change_score(-score_damage)
+	ScoreBus.score_update.emit(-score_damage)
+	#var game_manager = get_tree().root.find_child("MainGame", true, false)
+	#if game_manager != null and game_manager.has_method("change_score"):
+		#game_manager.change_score(-score_damage)
 
 func _play_ricochet():
 	var parent = get_parent()
