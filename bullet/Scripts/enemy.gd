@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var patrol_radius : float = 48.0
 @export var idle_duration : float = 1.2
 @export var walk_duration : float = 2.4
+@export var idle_duration_variance : float = 0.3
+@export var walk_duration_variance : float = 0.5
 @export var starting_direction : float = 1.0
 @export var ledge_check_forward_distance : float = 10.0
 @export var ledge_check_depth : float = 24.0
@@ -27,6 +29,7 @@ var home_position : Vector2 = Vector2.ZERO
 var is_in_combat := false
 var fire_timer : float = 0.0
 var has_played_alert := false
+var rng := RandomNumberGenerator.new()
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree["parameters/playback"]
@@ -38,6 +41,7 @@ var has_played_alert := false
 @onready var alert_audio: AudioStreamPlayer = $Alert
 
 func _ready():
+	rng.randomize()
 	if is_instance_valid(animation_tree):
 		animation_tree.active = true
 	home_position = global_position
@@ -165,11 +169,14 @@ func _update_patrol(delta):
 
 func _start_idle_phase():
 	is_patrolling = false
-	phase_timer = idle_duration
+	phase_timer = _get_phase_duration(idle_duration, idle_duration_variance)
 
 func _start_walk_phase():
 	is_patrolling = true
-	phase_timer = walk_duration
+	phase_timer = _get_phase_duration(walk_duration, walk_duration_variance)
+
+func _get_phase_duration(base_duration: float, variance: float) -> float:
+	return max(0.1, base_duration + rng.randf_range(-variance, variance))
 
 func _update_patrol_direction(delta):
 	var distance_from_home = global_position.x - home_position.x
