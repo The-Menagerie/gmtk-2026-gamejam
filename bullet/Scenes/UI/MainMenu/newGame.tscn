@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://s4yejtxjejiq" path="res://Scripts/MainMenu/menu.gd" id="1_82lwv"]
 [ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="2_cyuuh"]
+[ext_resource type="AudioStream" uid="uid://bv3is2xrfaykc" path="res://Assets/SoundEffects/WoodenBlock.wav" id="3_14gu4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4osx"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -14,6 +15,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_82lwv")
+
+[node name="WoodenBlock" type="AudioStreamPlayer" parent="." unique_id=808066810]
+stream = ExtResource("3_14gu4")
+bus = &"sfx"
 
 [node name="Background" type="TextureRect" parent="." unique_id=1049236250]
 layout_mode = 1
