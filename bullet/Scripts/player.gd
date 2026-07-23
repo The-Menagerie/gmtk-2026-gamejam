@@ -29,6 +29,7 @@ func _ready():
 	animation_tree.set("parameters/Idle/blend_position", facing_direction)
 	animation_tree.set("parameters/Walk/blend_position", facing_direction)
 	revolver.position = revolver_rest_position
+	BulletBus.fire_player_bullet.connect(fire_bullet)
 
 func _physics_process(delta):
 	var move_input = Input.get_axis("left", "right")
@@ -47,7 +48,7 @@ func _physics_process(delta):
 	update_animation_parameters()
 	update_revolver_aim()
 	update_revolver_recoil(delta)
-	fire_bullet()
+	#fire_bullet()
 	pick_new_state()
 
 func update_animation_parameters():
@@ -76,17 +77,17 @@ func update_revolver_aim():
 func update_revolver_recoil(delta):
 	recoil_offset = recoil_offset.move_toward(Vector2.ZERO, recoil_return_speed * delta)
 
-func fire_bullet():
-	if Input.is_action_just_pressed("left_click"):
-		var bullet = BULLET_SCENE.instantiate()
-		get_parent().add_child(bullet)
-		bullet.global_position = revolver.global_position
-		bullet.add_collision_exception_with(self)
-		var aim_vector = get_global_mouse_position() - global_position
-		bullet.set_direction(aim_vector)
-		apply_revolver_kickback(aim_vector)
-		apply_player_kickback(aim_vector)
-		gunshot_audio.play()
+func fire_bullet(bullet_scene: PackedScene):
+	#if Input.is_action_just_pressed("left_click"):
+	var bullet = bullet_scene.instantiate()
+	get_parent().add_child(bullet)
+	bullet.global_position = revolver.global_position
+	bullet.add_collision_exception_with(self)
+	var aim_vector = get_global_mouse_position() - global_position
+	bullet.set_direction(aim_vector)
+	apply_revolver_kickback(aim_vector)
+	apply_player_kickback(aim_vector)
+	gunshot_audio.play()
 
 func apply_revolver_kickback(aim_vector: Vector2):
 	if aim_vector == Vector2.ZERO:
