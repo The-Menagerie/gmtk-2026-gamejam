@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgt5m6c8pbwnf"]
 
-[ext_resource type="Script" uid="uid://dqxdqauagmvy" path="res://Scenes/UI/Chamber/bullet_chamber.gd" id="1_cqkxi"]
+[ext_resource type="Script" uid="uid://b481okk6l0ss6" path="res://Scenes/UI/Chamber/bullet_chamber.gd" id="1_cqkxi"]
 [ext_resource type="Texture2D" uid="uid://dsqqd7jct0e4u" path="res://Assets/Images/chamber_sheet.png" id="2_cqkxi"]
 [ext_resource type="Texture2D" uid="uid://23djn2ulf8mo" path="res://Assets/Images/ChamberBullets/regular_bullet.png" id="3_ka4g4"]
 
@@ -126,8 +126,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_cqkxi")
-bullet_pattern = [1, 1, 1, 1, 1, 1]
+bullet_pattern = Array[int]([1, 1, 1, 1, 1, 1])
 bullets = [NodePath("Control/Bullet1"), NodePath("Control/Bullet2"), NodePath("Control/Bullet3"), NodePath("Control/Bullet4"), NodePath("Control/Bullet5"), NodePath("Control/Bullet6")]
 anim_player = NodePath("AnimationPlayer")
 cylinder_rotator = NodePath("Control")
@@ -142,12 +143,14 @@ offset_right = 128.0
 grow_vertical = 0
 scale = Vector2(4, 4)
 pivot_offset_ratio = Vector2(0, 1)
+mouse_filter = 2
 alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=582802623]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 texture = SubResource("AtlasTexture_sh608")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=456355537]
@@ -161,11 +164,13 @@ offset_top = 824.0
 offset_right = 306.00073
 offset_bottom = 864.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 
 [node name="Bullet1" type="Control" parent="Control" unique_id=489449024]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/Bullet1" unique_id=476545073]
 layout_mode = 0
@@ -173,6 +178,7 @@ offset_left = -22.0
 offset_top = -82.0
 offset_bottom = -60.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
 [node name="Bullet2" type="Control" parent="Control" unique_id=695322400]
@@ -180,6 +186,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 5.2359877
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/Bullet2" unique_id=88354555]
 layout_mode = 0
@@ -187,6 +194,7 @@ offset_left = -22.0
 offset_top = -82.0
 offset_bottom = -60.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
 [node name="Bullet3" type="Control" parent="Control" unique_id=1482254428]
@@ -194,6 +202,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 4.1887903
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/Bullet3" unique_id=1562214214]
 layout_mode = 0
@@ -201,6 +210,7 @@ offset_left = -22.0
 offset_top = -82.0
 offset_bottom = -60.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
 [node name="Bullet4" type="Control" parent="Control" unique_id=1693514312]
@@ -208,6 +218,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 3.1415927
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/Bullet4" unique_id=179314295]
 layout_mode = 0
@@ -215,6 +226,7 @@ offset_left = -22.0
 offset_top = -82.0
 offset_bottom = -60.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
 [node name="Bullet5" type="Control" parent="Control" unique_id=1702721078]
@@ -222,6 +234,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 2.0943952
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/Bullet5" unique_id=968059669]
 layout_mode = 0
@@ -229,6 +242,7 @@ offset_left = -22.0
 offset_top = -82.0
 offset_bottom = -60.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
 [node name="Bullet6" type="Control" parent="Control" unique_id=1889825491]
@@ -236,6 +250,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 1.0471976
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/Bullet6" unique_id=1103581667]
 layout_mode = 0
@@ -243,4 +258,5 @@ offset_left = -22.0
 offset_top = -82.0
 offset_bottom = -60.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 texture = ExtResource("3_ka4g4")
