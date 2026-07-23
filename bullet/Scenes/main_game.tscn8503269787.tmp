@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ega4e5xi5xcp" path="res://Scripts/game_manager.gd" id="1_l756w"]
 [ext_resource type="PackedScene" uid="uid://byinu6316w4fw" path="res://Scenes/Debug/debug_room.tscn" id="2_pu3va"]
-[ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="3_8q2ri"]
 [ext_resource type="PackedScene" uid="uid://6d6cx2lf8bsy" path="res://Scenes/UI/PauseMenu/pause_menu.tscn" id="3_0e3vx"]
 [ext_resource type="PackedScene" uid="uid://bfesun4rqhiis" path="res://Scenes/UI/PauseMenu/options_pause_menu.tscn" id="4_6j5ir"]
 
@@ -15,19 +14,8 @@ anim_player = NodePath("AnimationPlayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1763990367]
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1252689155]
-offset_left = 16.0
-offset_top = 12.0
-offset_right = 175.0
-offset_bottom = 52.0
-theme_override_fonts/font = ExtResource("3_8q2ri")
-theme_override_font_sizes/font_size = 26
-text = "Score: 1000"
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1627349778 instance=ExtResource("3_0e3vx")]
 
 [node name="OptionsPauseMenu" parent="CanvasLayer" unique_id=1607701552 instance=ExtResource("4_6j5ir")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2079942157]
-
-[connection signal="hide_options" from="CanvasLayer/PauseMenu" to="CanvasLayer/OptionsPauseMenu" method="hide_options"]
-[connection signal="show_options" from="CanvasLayer/PauseMenu" to="CanvasLayer/OptionsPauseMenu" method="show_options"]
