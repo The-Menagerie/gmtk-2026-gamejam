@@ -59,7 +59,7 @@ theme_override_constants/separation = 30
 
 [node name="Start" type="Button" parent="ButtonContainer" unique_id=1925463769]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 theme_override_colors/font_pressed_color = Color(0.8784314, 0.34901962, 0.23921569, 1)
 theme_override_colors/font_hover_color = Color(0.9098039, 0.4, 0.2901961, 1)
 theme_override_fonts/font = ExtResource("2_fxewk")
