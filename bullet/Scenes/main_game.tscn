@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2vv5n4xe5yrp"]
 
-[ext_resource type="Script" uid="uid://ega4e5xi5xcp" path="res://Scenes/game_manager.gd" id="1_l756w"]
+[ext_resource type="Script" uid="uid://ega4e5xi5xcp" path="res://Scripts/game_manager.gd" id="1_l756w"]
 [ext_resource type="PackedScene" uid="uid://byinu6316w4fw" path="res://Scenes/Debug/debug_room.tscn" id="2_pu3va"]
 
 [node name="MainGame" type="Node2D" unique_id=2137632005 node_paths=PackedStringArray("current_level", "anim_player")]
