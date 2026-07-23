@@ -11,10 +11,13 @@ config_version=5
 [application]
 
 config/name="Bullet"
-run/main_scene="uid://byinu6316w4fw"
 run/main_scene="uid://gprmo5bgyvp6"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://boifccp6cs00d"
 
 [display]
 
