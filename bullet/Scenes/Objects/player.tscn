@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bq1sofkymsr0h"]
+
+[ext_resource type="Script" uid="uid://c6byjaeesjo3q" path="res://Scripts/player.gd" id="1_4qkr3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fb7ps"]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_4qkr3"]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_kvv6r"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_picsy"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dfgsd"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xbekk"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4v5ib"]
+states/End/position = Vector2(747, 178)
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_4qkr3")
+states/Idle/position = Vector2(573, 69)
+states/Start/position = Vector2(371, 69)
+states/Walk/node = SubResource("AnimationNodeBlendSpace1D_kvv6r")
+states/Walk/position = Vector2(573, 178)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_picsy"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_dfgsd"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_xbekk")]
+graph_offset = Vector2(28, 3)
+
+[node name="Player" type="CharacterBody2D" unique_id=430874862]
+script = ExtResource("1_4qkr3")
+move_speed = null
+jump_force = null
+starting_direction = null
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1735660247]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653543074]
+shape = SubResource("RectangleShape2D_fb7ps")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1591878622]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1631257715]
+tree_root = SubResource("AnimationNodeStateMachine_4v5ib")
+parameters/Idle/blend_position = 0.0
+parameters/Walk/blend_position = 0.0
