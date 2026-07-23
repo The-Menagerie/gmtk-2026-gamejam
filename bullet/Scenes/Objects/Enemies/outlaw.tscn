@@ -401,6 +401,9 @@ shape = SubResource("RectangleShape2D_luu1d")
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_ohpq4")
 
+[node name="Alert" parent="." index="4" unique_id=1692236699]
+bus = &"sfx"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=1793785156]
 libraries/ = SubResource("AnimationLibrary_3yeb5")
 
@@ -417,3 +420,4 @@ position = Vector2(1, 4)
 
 [node name="Death" parent="." index="8" unique_id=1885934628]
 stream = ExtResource("3_6agwo")
+bus = &"sfx"
