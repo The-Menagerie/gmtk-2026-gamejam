@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bw83wbblp7r8p"]
+
+[ext_resource type="PackedScene" uid="uid://b1pg1xnockout" path="res://Scenes/Components/Health_Component.tscn" id="1_w403x"]
+[ext_resource type="PackedScene" uid="uid://cnflp8hfx1cp8" path="res://Scenes/Components/Hitbox_Component.tscn" id="2_xh64l"]
+[ext_resource type="Script" uid="uid://dkrldnkfwey8" path="res://Scripts/enemy.gd" id="3_qm2k8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fb7ps"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v5ib"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=733749410]
+script = ExtResource("3_qm2k8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=737616288]
+
+[node name="MovementCollision" type="CollisionShape2D" parent="." unique_id=432735664]
+shape = SubResource("RectangleShape2D_fb7ps")
+
+[node name="HealthComponent" parent="." unique_id=1782276463 instance=ExtResource("1_w403x")]
+
+[node name="HitboxComponent" parent="." unique_id=474203754 node_paths=PackedStringArray("health_component") instance=ExtResource("2_xh64l")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent" unique_id=1667441814]
+shape = SubResource("RectangleShape2D_4v5ib")
+debug_color = Color(0.99999994, 0.0063424297, 0.079185955, 0.41960785)
