@@ -17,6 +17,9 @@ func _physics_process(delta):
 	velocity = direction * speed
 	var collision = move_and_collide(velocity * delta)
 	if collision:
+		if _try_damage_collider(collision.get_collider()):
+			queue_free()
+			return
 		if bounce_count >= max_bounces:
 			queue_free()
 			return
@@ -25,12 +28,28 @@ func _physics_process(delta):
 		rotation = direction.angle()
 
 func _on_area_entered(area: Area2D):
-	if area.is_in_group("hitbox"):
-		var attack = Attack.new()
-		attack.attack_damage = damage
-		area.damage(attack)
+	if _try_damage_hitbox(area):
 		queue_free()
 
 func set_direction(new_direction: Vector2):
 	direction = new_direction.normalized()
 	rotation = direction.angle()
+
+func _try_damage_collider(collider: Node) -> bool:
+	if collider is Area2D:
+		return _try_damage_hitbox(collider)
+
+	for child in collider.get_children():
+		if child is Area2D and _try_damage_hitbox(child):
+			return true
+
+	return false
+
+func _try_damage_hitbox(area: Area2D) -> bool:
+	if not area.is_in_group("hitbox"):
+		return false
+
+	var attack = Attack.new()
+	attack.attack_damage = damage
+	area.damage(attack)
+	return true
