@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cr812kit1c5dp"]
+
+[ext_resource type="Texture2D" uid="uid://chnklo4sb2c18" path="res://Assets/Tilesets/StrangeCowboy/Character/ShotgunSheetAnimated.png" id="1_byq6p"]
+[ext_resource type="Script" uid="uid://bqiy7bden26bh" path="res://Scripts/enemy_shotgun.gd" id="2_3t2qx"]
+[ext_resource type="AudioStream" uid="uid://c6fmgse3sgs0d" path="res://Assets/SoundEffects/Gunshot.wav" id="3_gb53h"]
+
+[sub_resource type="Animation" id="Animation_byq6p"]
+resource_name = "Attack"
+length = 0.33333334
+step = 0.06666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 0]
+}
+
+[sub_resource type="Animation" id="Animation_cq8fc"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uvssb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fqlw1"]
+_data = {
+&"Attack": SubResource("Animation_byq6p"),
+&"Idle": SubResource("Animation_cq8fc"),
+&"RESET": SubResource("Animation_uvssb")
+}
+
+[node name="EnemyShotgun" type="Node2D" unique_id=266090207]
+script = ExtResource("2_3t2qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2105423134]
+position = Vector2(6, -5)
+texture = ExtResource("1_byq6p")
+hframes = 4
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=753339382]
+libraries/ = SubResource("AnimationLibrary_fqlw1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1241135423]
+stream = ExtResource("3_gb53h")

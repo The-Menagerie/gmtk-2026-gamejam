@@ -7,7 +7,7 @@
 
 [node name="DebugRoom" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_wnj3v")
-targets = [NodePath("Enemy")]
+targets = [NodePath("Enemy"), NodePath("Enemy2")]
 next_level_path = "res://Scenes/Debug/debug_room_2.tscn"
 metadata/_custom_type_script = "uid://dw8thabw4ialp"
 
@@ -19,7 +19,10 @@ tile_set = ExtResource("1_xcfk0")
 zoom = Vector2(3, 3)
 
 [node name="Player" parent="." unique_id=430874862 instance=ExtResource("2_gw3cr")]
-position = Vector2(-25, 16)
+position = Vector2(65, 10)
 
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("4_lwjn1")]
-position = Vector2(50, 12)
+position = Vector2(-64, 8)
+
+[node name="Enemy2" parent="." unique_id=1850845240 instance=ExtResource("4_lwjn1")]
+position = Vector2(-26, -82)

@@ -11,5 +11,8 @@ func damage(attack: Attack):
 	health -= attack.attack_damage
 	if health <= 0:
 		var parent = get_parent()
-		parent.target_destroyed.emit(parent)
-		parent.queue_free()
+		if parent.has_method("handle_death"):
+			parent.handle_death()
+		else:
+			parent.target_destroyed.emit(parent)
+			parent.queue_free()
