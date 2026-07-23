@@ -10,7 +10,6 @@ var targets_left
 
 func _ready() -> void:
 	next_level = load(next_level_path)
-	print(next_level)
 	game_manager = get_parent()
 	num_targets = targets.size()
 	if num_targets > 0:
@@ -26,7 +25,6 @@ func target_down(target:Node) -> void:
 	var target_index = targets.find(target)
 	targets.remove_at(target_index)
 	if targets_left <= 0:
-		print(next_level)
 		game_manager.change_level(next_level)
 		
 		
