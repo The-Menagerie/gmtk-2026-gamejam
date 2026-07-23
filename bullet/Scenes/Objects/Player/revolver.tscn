@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d2xn2lqrmwgak"]
+
+[ext_resource type="Texture2D" uid="uid://df05whyqa3ncq" path="res://Assets/Tilesets/StrangeCowboy/Player/RevolverSheetAnimated.png" id="1_yoho7"]
+
+[node name="Revolver" type="Node2D" unique_id=1451355002]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1214700908]
+position = Vector2(3, -6)
+texture = ExtResource("1_yoho7")
+hframes = 4
+vframes = 2
