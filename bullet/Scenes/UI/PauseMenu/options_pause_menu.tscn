@@ -189,3 +189,5 @@ text = "Back"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1232988689]
 libraries/ = SubResource("AnimationLibrary_jaofs")
+
+[connection signal="pressed" from="OptionsContainer/ButtonContainer/Back" to="." method="back_presed"]

@@ -31,3 +31,4 @@ text = "Score: 1000"
 
 [connection signal="hide_options" from="CanvasLayer/PauseMenu" to="CanvasLayer/OptionsPauseMenu" method="hide_options"]
 [connection signal="show_options" from="CanvasLayer/PauseMenu" to="CanvasLayer/OptionsPauseMenu" method="show_options"]
+[connection signal="show_pause" from="CanvasLayer/OptionsPauseMenu" to="CanvasLayer/PauseMenu" method="open_menu"]
