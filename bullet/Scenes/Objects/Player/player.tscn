@@ -301,6 +301,7 @@ graph_offset = Vector2(28, 3)
 
 [node name="Player" type="CharacterBody2D" unique_id=430874862]
 script = ExtResource("1_4qkr3")
+vertical_recoil_scale = 0.3
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1735660247]
 texture = ExtResource("2_kvv6r")

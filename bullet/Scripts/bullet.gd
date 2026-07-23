@@ -8,6 +8,8 @@ var direction : Vector2 = Vector2.RIGHT
 var area_2d: Area2D
 var bounce_count : int = 0
 
+@onready var ricochet_audio: AudioStreamPlayer = $RicochetAudio
+
 func _ready():
 	area_2d = $Area2D
 	area_2d.area_entered.connect(_on_area_entered)
@@ -26,6 +28,7 @@ func _physics_process(delta):
 		bounce_count += 1
 		direction = direction.bounce(collision.get_normal()).normalized()
 		rotation = direction.angle()
+		ricochet_audio.play()
 
 func _on_area_entered(area: Area2D):
 	if _try_damage_hitbox(area):
