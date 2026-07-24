@@ -13,7 +13,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/TextureRect:texture:region")
+tracks/0/path = NodePath("alignment/VBoxContainer/TextureRect:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control:rotation")
+tracks/1/path = NodePath("alignment/BulletHolder:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -36,8 +36,8 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Control:position")
+tracks/2/enabled = false
+tracks/2/path = NodePath("alignment/BulletHolder:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,6 +46,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(256, 824)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_chamber_pos"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_xceaa"]
 resource_name = "revolve"
@@ -53,7 +67,7 @@ length = 0.35
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/TextureRect:texture:region")
+tracks/0/path = NodePath("alignment/VBoxContainer/TextureRect:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -65,7 +79,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = false
-tracks/1/path = NodePath("Control:rotation")
+tracks/1/path = NodePath("alignment/BulletHolder:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -76,15 +90,15 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Control:position")
+tracks/2/enabled = false
+tracks/2/path = NodePath("alignment/BulletHolder:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333, 0.0667, 0.1, 0.1333, 0.1667),
+"times": PackedFloat32Array(0, 0.0333, 0.06666667, 0.1, 0.13333334, 0.16666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(256, 824), Vector2(250, 822.00006), Vector2(254.00003, 820), Vector2(249.99998, 821), Vector2(251.00008, 816), Vector2(256, 824)]
+"values": [Vector2(64, 0), Vector2(62.5, -0.5), Vector2(63, -0.5), Vector2(62.5, -1), Vector2(62.5, -1.75), Vector2(64, 0)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -112,6 +126,32 @@ tracks/3/keys = {
 "method": &"rotate_chamber"
 }]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [-1.5, -0.5],
+"method": &"shift_chamber_pos"
+}, {
+"args": [0.5, 0.0],
+"method": &"shift_chamber_pos"
+}, {
+"args": [-0.5, -0.5],
+"method": &"shift_chamber_pos"
+}, {
+"args": [0.0, -0.75],
+"method": &"shift_chamber_pos"
+}, {
+"args": [],
+"method": &"reset_chamber_pos"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5q38y"]
 _data = {
@@ -129,11 +169,22 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_cqkxi")
 bullet_pattern = Array[int]([1, 1, 1, 1, 1, 1])
-bullets = [NodePath("Control/Bullet1"), NodePath("Control/Bullet2"), NodePath("Control/Bullet3"), NodePath("Control/Bullet4"), NodePath("Control/Bullet5"), NodePath("Control/Bullet6")]
+bullets = [NodePath("alignment/BulletHolder/Bullet1"), NodePath("alignment/BulletHolder/Bullet2"), NodePath("alignment/BulletHolder/Bullet3"), NodePath("alignment/BulletHolder/Bullet4"), NodePath("alignment/BulletHolder/Bullet5"), NodePath("alignment/BulletHolder/Bullet6")]
 anim_player = NodePath("AnimationPlayer")
-cylinder_rotator = NodePath("Control")
+cylinder_rotator = NodePath("alignment/BulletHolder")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=48513386]
+[node name="alignment" type="Control" parent="." unique_id=509524339]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 64.0
+offset_bottom = -192.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="alignment" unique_id=48513386]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -141,37 +192,33 @@ anchor_bottom = 1.0
 offset_top = -128.0
 offset_right = 128.0
 grow_vertical = 0
-scale = Vector2(4, 4)
-pivot_offset_ratio = Vector2(0, 1)
 mouse_filter = 2
 alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=582802623]
+[node name="TextureRect" type="TextureRect" parent="alignment/VBoxContainer" unique_id=582802623]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 texture = SubResource("AtlasTexture_sh608")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=456355537]
-libraries/ = SubResource("AnimationLibrary_5q38y")
-
-[node name="Control" type="Control" parent="." unique_id=1442032783]
-anchors_preset = 0
-offset_left = 256.0
-offset_top = 824.0
-offset_right = 306.00073
-offset_bottom = 864.0
-scale = Vector2(2, 2)
+[node name="BulletHolder" type="Control" parent="alignment" unique_id=1442032783]
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 
-[node name="Bullet1" type="Control" parent="Control" unique_id=489449024]
+[node name="Bullet1" type="Control" parent="alignment/BulletHolder" unique_id=489449024]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/Bullet1" unique_id=476545073]
+[node name="TextureRect" type="TextureRect" parent="alignment/BulletHolder/Bullet1" unique_id=476545073]
 layout_mode = 0
 offset_left = -22.0
 offset_top = -82.0
@@ -180,14 +227,14 @@ scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
-[node name="Bullet2" type="Control" parent="Control" unique_id=695322400]
+[node name="Bullet2" type="Control" parent="alignment/BulletHolder" unique_id=695322400]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 5.2359877
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/Bullet2" unique_id=88354555]
+[node name="TextureRect" type="TextureRect" parent="alignment/BulletHolder/Bullet2" unique_id=88354555]
 layout_mode = 0
 offset_left = -22.0
 offset_top = -82.0
@@ -196,14 +243,14 @@ scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
-[node name="Bullet3" type="Control" parent="Control" unique_id=1482254428]
+[node name="Bullet3" type="Control" parent="alignment/BulletHolder" unique_id=1482254428]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 4.1887903
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/Bullet3" unique_id=1562214214]
+[node name="TextureRect" type="TextureRect" parent="alignment/BulletHolder/Bullet3" unique_id=1562214214]
 layout_mode = 0
 offset_left = -22.0
 offset_top = -82.0
@@ -212,14 +259,14 @@ scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
-[node name="Bullet4" type="Control" parent="Control" unique_id=1693514312]
+[node name="Bullet4" type="Control" parent="alignment/BulletHolder" unique_id=1693514312]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 3.1415927
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/Bullet4" unique_id=179314295]
+[node name="TextureRect" type="TextureRect" parent="alignment/BulletHolder/Bullet4" unique_id=179314295]
 layout_mode = 0
 offset_left = -22.0
 offset_top = -82.0
@@ -228,14 +275,14 @@ scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
-[node name="Bullet5" type="Control" parent="Control" unique_id=1702721078]
+[node name="Bullet5" type="Control" parent="alignment/BulletHolder" unique_id=1702721078]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 2.0943952
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/Bullet5" unique_id=968059669]
+[node name="TextureRect" type="TextureRect" parent="alignment/BulletHolder/Bullet5" unique_id=968059669]
 layout_mode = 0
 offset_left = -22.0
 offset_top = -82.0
@@ -244,14 +291,14 @@ scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("3_ka4g4")
 
-[node name="Bullet6" type="Control" parent="Control" unique_id=1889825491]
+[node name="Bullet6" type="Control" parent="alignment/BulletHolder" unique_id=1889825491]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 rotation = 1.0471976
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/Bullet6" unique_id=1103581667]
+[node name="TextureRect" type="TextureRect" parent="alignment/BulletHolder/Bullet6" unique_id=1103581667]
 layout_mode = 0
 offset_left = -22.0
 offset_top = -82.0
@@ -259,3 +306,6 @@ offset_bottom = -60.0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("3_ka4g4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=456355537]
+libraries/ = SubResource("AnimationLibrary_5q38y")
