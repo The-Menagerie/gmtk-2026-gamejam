@@ -11,7 +11,7 @@ extends CharacterBody2D
 @export var recoil_velocity_decay : float = 700.0
 @export var vertical_recoil_scale : float = 0.45
 
-const BULLET_SCENE = preload("res://Scenes/Objects/Player/bullet.tscn")
+const BULLET_SCENE = preload("res://Scenes/Objects/Bullets/bullet.tscn")
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree["parameters/playback"]
@@ -81,12 +81,16 @@ func fire_bullet(bullet_scene: PackedScene):
 	#if Input.is_action_just_pressed("left_click"):
 	var bullet = bullet_scene.instantiate()
 	get_parent().add_child(bullet)
+	bullet.shooter = self
 	bullet.global_position = revolver.global_position
 	bullet.add_collision_exception_with(self)
 	var aim_vector = get_global_mouse_position() - global_position
 	bullet.set_direction(aim_vector)
 	apply_revolver_kickback(aim_vector)
-	apply_player_kickback(aim_vector)
+	if "recoil_multiplier" in bullet:
+		apply_player_kickback(aim_vector, bullet.recoil_multiplier)
+	else:
+		apply_player_kickback(aim_vector)
 	gunshot_audio.play()
 
 func apply_revolver_kickback(aim_vector: Vector2):
@@ -95,11 +99,11 @@ func apply_revolver_kickback(aim_vector: Vector2):
 
 	recoil_offset = -aim_vector.normalized() * recoil_distance
 
-func apply_player_kickback(aim_vector: Vector2):
+func apply_player_kickback(aim_vector: Vector2, recoil_multiplier: float = 1.0):
 	if aim_vector == Vector2.ZERO:
 		return
 
-	var recoil_impulse = -aim_vector.normalized() * player_recoil_force
+	var recoil_impulse = -aim_vector.normalized() * player_recoil_force * recoil_multiplier
 	recoil_impulse.y *= vertical_recoil_scale
 	recoil_velocity += recoil_impulse
 

@@ -22,7 +22,7 @@ buses/default_bus_layout="uid://boifccp6cs00d"
 [autoload]
 
 BulletBus="*uid://dnaefld106jcv"
-ScoreBus="*uid://bjaemdodr3yde"
+ScoreBus="*uid://d2t6omkkbcpl2"
 
 [display]
 

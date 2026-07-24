@@ -14,6 +14,8 @@ extends CharacterBody2D
 @export var combat_exit_distance : float = 100.0
 @export var alert_time : float = 0.35
 @export var fire_interval : float = 1.0
+@export var knockback_drag: float = 0.2
+@export var knockback_end_velocity: float = 20.0
 
 signal target_destroyed(target)
 
@@ -30,6 +32,8 @@ var is_in_combat := false
 var fire_timer : float = 0.0
 var has_played_alert := false
 var rng := RandomNumberGenerator.new()
+var knockedback: bool = false
+
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree["parameters/playback"]
@@ -55,24 +59,35 @@ func _ready():
 func _physics_process(delta):
 	if is_dying:
 		return
+	if not knockedback:
+		_update_combat_state()
+		if not is_in_combat:
+			_update_patrol(delta)
+		else:
+			_update_combat_fire(delta)
+		
+		if not is_on_floor():
+			velocity.y += gravity * delta
+		else:
+			velocity.y = 0.0
 
-	_update_combat_state()
-	if not is_in_combat:
-		_update_patrol(delta)
-	else:
-		_update_combat_fire(delta)
-
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	else:
-		velocity.y = 0.0
-
-	if is_in_combat:
-		velocity.x = 0.0
-	else:
-		velocity.x = patrol_direction * patrol_speed if is_patrolling else 0.0
-
+		if is_in_combat:
+			velocity.x = 0.0
+		else:
+			velocity.x = patrol_direction * patrol_speed if is_patrolling else 0.0
+	
 	move_and_slide()
+	
+	if knockedback:
+		if not is_on_floor():
+			velocity.y += gravity/5 * delta
+		else:
+			velocity.y = 0.0
+		if velocity.x > 0:
+			velocity.x = velocity.x * (1-knockback_drag)
+		if velocity.length() < 20:
+			knockedback = false
+		
 
 	if not is_in_combat and is_on_wall() and is_patrolling:
 		patrol_direction = -sign(velocity.x) if velocity.x != 0.0 else -patrol_direction

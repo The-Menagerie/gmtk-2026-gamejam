@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bw83wbblp7r8p" path="res://Scenes/Components/Enemy_Component.tscn" id="1_jgnmy"]
 [ext_resource type="Texture2D" uid="uid://8wn8cxdio353" path="res://Assets/Tilesets/StrangeCowboy/Character/Outlaw/OutlawFullSheet.png" id="2_6agwo"]
-[ext_resource type="AudioStream" uid="uid://cq8f0n8kp6x8n" path="res://Assets/SoundEffects/EnemyDeath.wav" id="3_6agwo"]
 [ext_resource type="PackedScene" uid="uid://cr812kit1c5dp" path="res://Scenes/Objects/Enemies/EnemyShotgun.tscn" id="4_ohpq4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luu1d"]
@@ -401,13 +400,10 @@ shape = SubResource("RectangleShape2D_luu1d")
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_ohpq4")
 
-[node name="Alert" parent="." index="4" unique_id=1692236699]
-bus = &"sfx"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=1793785156]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1793785156]
 libraries/ = SubResource("AnimationLibrary_3yeb5")
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="6" unique_id=1920231550]
+[node name="AnimationTree" type="AnimationTree" parent="." index="5" unique_id=1920231550]
 tree_root = SubResource("AnimationNodeStateMachine_fb7ps")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Death/blend_position = 0.0
@@ -415,9 +411,5 @@ parameters/Idle/blend_position = 0.0
 parameters/Jump/blend_position = 0.0
 parameters/Walk/blend_position = 0.0
 
-[node name="EnemyShotgun" parent="." index="7" unique_id=266090207 instance=ExtResource("4_ohpq4")]
+[node name="EnemyShotgun" parent="." index="6" unique_id=266090207 instance=ExtResource("4_ohpq4")]
 position = Vector2(1, 4)
-
-[node name="Death" parent="." index="8" unique_id=1885934628]
-stream = ExtResource("3_6agwo")
-bus = &"sfx"
