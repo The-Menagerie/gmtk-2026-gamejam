@@ -25,6 +25,10 @@ func _physics_process(delta):
 			queue_free()
 			return
 		if bounce_count >= max_bounces:
+			ricochet_audio.play()
+			queue_free()
+			return
+		if not _confirm_bounce(collision):
 			queue_free()
 			return
 		bounce_count += 1
@@ -64,4 +68,31 @@ func _try_damage_hitbox(area: Area2D) -> bool:
 	var attack = Attack.new()
 	attack.attack_damage = damage
 	area.damage(attack)
+	return true
+
+func _confirm_bounce(collision: KinematicCollision2D) -> bool:
+	var collider = collision.get_collider()
+	var collision_pos = collision.get_position()
+	if collider is TileMapLayer:
+		var collision_cell_pos = collider.local_to_map(collision_pos)
+		var data = collider.get_cell_tile_data(collision_cell_pos)
+		if data == null:
+			var near_cells = collider.get_surrounding_cells(collision_cell_pos)
+			var nearby_bounce_count = 0
+			for i in near_cells:
+				data = collider.get_cell_tile_data(i)
+				if data != null:
+					if data.get_custom_data("bullets_bounce"):
+						nearby_bounce_count += 1
+					else:
+						nearby_bounce_count -= 1
+			if nearby_bounce_count < 0:
+				print(nearby_bounce_count)
+				return false
+			else:
+				print(nearby_bounce_count)
+				return true
+		if data != null:
+			if not data.get_custom_data("bullets_bounce"):
+				return false
 	return true
