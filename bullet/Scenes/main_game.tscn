@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ega4e5xi5xcp" path="res://Scripts/game_manager.gd" id="1_l756w"]
 [ext_resource type="PackedScene" uid="uid://byinu6316w4fw" path="res://Scenes/Debug/debug_room.tscn" id="2_pu3va"]
+[ext_resource type="PackedScene" uid="uid://6d6cx2lf8bsy" path="res://Scenes/UI/PauseMenu/pause_menu.tscn" id="3_0e3vx"]
 [ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="3_8q2ri"]
 [ext_resource type="Script" uid="uid://bhfjhwi6okwue" path="res://Scenes/score_label.gd" id="4_6j5ir"]
-[ext_resource type="PackedScene" uid="uid://6d6cx2lf8bsy" path="res://Scenes/UI/PauseMenu/pause_menu.tscn" id="3_0e3vx"]
-[ext_resource type="PackedScene" uid="uid://bfesun4rqhiis" path="res://Scenes/UI/PauseMenu/options_pause_menu.tscn" id="4_6j5ir"]
+[ext_resource type="PackedScene" uid="uid://bfesun4rqhiis" path="res://Scenes/UI/PauseMenu/options_pause_menu.tscn" id="6_bb2iq"]
 
 [node name="MainGame" type="Node2D" unique_id=2137632005 node_paths=PackedStringArray("current_level", "anim_player")]
 script = ExtResource("1_l756w")
@@ -25,9 +25,10 @@ theme_override_fonts/font = ExtResource("3_8q2ri")
 theme_override_font_sizes/font_size = 26
 text = "Score: 1000"
 script = ExtResource("4_6j5ir")
+
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1627349778 instance=ExtResource("3_0e3vx")]
 
-[node name="OptionsPauseMenu" parent="CanvasLayer" unique_id=1607701552 instance=ExtResource("4_6j5ir")]
+[node name="OptionsPauseMenu" parent="CanvasLayer" unique_id=1607701552 instance=ExtResource("6_bb2iq")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2079942157]
 
