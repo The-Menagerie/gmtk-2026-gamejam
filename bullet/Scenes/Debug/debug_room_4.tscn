@@ -4,7 +4,6 @@
 [ext_resource type="TileSet" uid="uid://i28d0rfrfnfq" path="res://Assets/Tilesets/desert_tileset.tres" id="2_fmy0i"]
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="3_jqhll"]
 [ext_resource type="PackedScene" uid="uid://by50mcyw2bh82" path="res://Scenes/Objects/Enemies/outlaw.tscn" id="4_3unqv"]
-[ext_resource type="PackedScene" uid="uid://cxyncv5q6w7w6" path="res://Scenes/Objects/Key.tscn" id="5_rdwp0"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="6_0y7b0"]
 [ext_resource type="PackedScene" uid="uid://cjv7soqfoej7" path="res://Scenes/Objects/Rope.tscn" id="8_2y2i8"]
 [ext_resource type="PackedScene" uid="uid://cji6hd7veljn5" path="res://Scenes/Objects/Breakables/target.tscn" id="8_kdxhy"]
@@ -30,8 +29,6 @@ position = Vector2(-25, 16)
 
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("4_3unqv")]
 position = Vector2(50, 12)
-
-[node name="Key" parent="Enemy" unique_id=1777878280 instance=ExtResource("5_rdwp0")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=977823843]
 
