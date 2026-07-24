@@ -49,8 +49,9 @@ func _ready() -> void:
 	#var screen_dimensions = get_viewport().get_visible_rect()
 	#var screen_x = screen_dimensions.size.x
 	#var screen_y = screen_dimensions.size.y
+	rescale_to(BulletBus.current_chamber_scale)
 	fit_resolution()
-	
+	BulletBus.force_rescale.connect(rescale_to)
 	anim_player.play_section("RESET")
 	for i in range(bullet_pattern.size()):
 		var bullet_values = bullet_dictionary[bullet_pattern[i]]
@@ -97,12 +98,24 @@ func fit_resolution() -> void:
 	if (1920.0 - screen_x) > (1080.0 - screen_y):
 		#var new_size = round(screen_x * (128.0/1920.0))
 		scale_modifier = screen_x/1920.0
-		alignment.scale.x *= scale_modifier
-		alignment.scale.y *= scale_modifier
+		rescale(scale_modifier)
+		#alignment.scale.x *= scale_modifier
+		#alignment.scale.y *= scale_modifier
 	elif (1080.0 - screen_y) >= (1920.0 - screen_x):
 		scale_modifier = screen_y/1080.0
-		alignment.scale.x *= scale_modifier
-		alignment.scale.y *= scale_modifier
+		rescale(scale_modifier)
+		#alignment.scale.x *= scale_modifier
+		#alignment.scale.y *= scale_modifier
 	
-	alignment.position.y += (1 - scale_modifier)*256
+	#alignment.position.y += (1 - scale_modifier)*(64*alignment.scale.x/scale_modifier)
+	#cylinder_start_pos = cylinder_rotator.position
+	
+func rescale(scale_modifier: float) -> void:
+	alignment.position.y += (1-scale_modifier)*(64*alignment.scale.x)
+	alignment.scale.x *= scale_modifier
+	alignment.scale.y *= scale_modifier
 	cylinder_start_pos = cylinder_rotator.position
+
+func rescale_to(new_scale:float) -> void:
+	scale_modifier = new_scale/alignment.scale.x
+	rescale(scale_modifier)

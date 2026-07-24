@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://j1l3yjp2w3gm" path="res://Assets/Shaders/Menu/pause_menu.gdshader" id="2_jaofs"]
 [ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="3_jnjun"]
 [ext_resource type="PackedScene" uid="uid://wxi0vtp7n3m5" path="res://Scenes/UI/MainMenu/Options/volumeSlider.tscn" id="4_11u27"]
+[ext_resource type="Script" uid="uid://b1y7s1vtwwtpp" path="res://Scripts/MainMenu/Options/chamber_scale_option.gd" id="6_jnjun"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t3nwl"]
 shader = ExtResource("2_jaofs")
@@ -112,11 +113,18 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonContainer" type="VBoxContainer" parent="OptionsContainer" unique_id=2104392870]
+[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer" unique_id=619097891]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ButtonContainer" type="VBoxContainer" parent="OptionsContainer/MarginContainer" unique_id=2104392870]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Title" type="Label" parent="OptionsContainer/ButtonContainer" unique_id=249519549]
+[node name="Title" type="Label" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=249519549]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_jnjun")
@@ -125,7 +133,7 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MasterVolumeLabel" type="Label" parent="OptionsContainer/ButtonContainer" unique_id=1733018043]
+[node name="MasterVolumeLabel" type="Label" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=1733018043]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jnjun")
 theme_override_font_sizes/font_size = 30
@@ -133,11 +141,11 @@ text = "Master Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MasterSlider" parent="OptionsContainer/ButtonContainer" unique_id=1203919283 instance=ExtResource("4_11u27")]
+[node name="MasterSlider" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=1203919283 instance=ExtResource("4_11u27")]
 layout_mode = 2
 bus_name = "Master"
 
-[node name="MusicVolumeLabel" type="Label" parent="OptionsContainer/ButtonContainer" unique_id=2099727337]
+[node name="MusicVolumeLabel" type="Label" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=2099727337]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jnjun")
 theme_override_font_sizes/font_size = 30
@@ -145,11 +153,11 @@ text = "Music Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicSlider" parent="OptionsContainer/ButtonContainer" unique_id=1181394895 instance=ExtResource("4_11u27")]
+[node name="MusicSlider" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=1181394895 instance=ExtResource("4_11u27")]
 layout_mode = 2
 bus_name = "music"
 
-[node name="SFXVolumeLabel" type="Label" parent="OptionsContainer/ButtonContainer" unique_id=1139041199]
+[node name="SFXVolumeLabel" type="Label" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=1139041199]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jnjun")
 theme_override_font_sizes/font_size = 30
@@ -157,11 +165,36 @@ text = "SFX Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SFXSlider" parent="OptionsContainer/ButtonContainer" unique_id=2004128258 instance=ExtResource("4_11u27")]
+[node name="SFXSlider" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=2004128258 instance=ExtResource("4_11u27")]
 layout_mode = 2
 bus_name = "sfx"
 
-[node name="Back" type="Button" parent="OptionsContainer/ButtonContainer" unique_id=33279039]
+[node name="ChamberScaleLabel" type="Label" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=1102121990]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jnjun")
+theme_override_font_sizes/font_size = 30
+text = "Chamber Scale"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChamberScale" type="OptionButton" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=1372478112]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jnjun")
+theme_override_font_sizes/font_size = 24
+alignment = 1
+selected = 3
+item_count = 4
+popup/item_0/text = "1x"
+popup/item_0/id = 0
+popup/item_1/text = "2x"
+popup/item_1/id = 1
+popup/item_2/text = "3x"
+popup/item_2/id = 2
+popup/item_3/text = "4x"
+popup/item_3/id = 3
+script = ExtResource("6_jnjun")
+
+[node name="Back" type="Button" parent="OptionsContainer/MarginContainer/ButtonContainer" unique_id=33279039]
 process_mode = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -179,4 +212,5 @@ text = "Back"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1232988689]
 libraries/ = SubResource("AnimationLibrary_jaofs")
 
-[connection signal="pressed" from="OptionsContainer/ButtonContainer/Back" to="." method="back_presed"]
+[connection signal="item_selected" from="OptionsContainer/MarginContainer/ButtonContainer/ChamberScale" to="OptionsContainer/MarginContainer/ButtonContainer/ChamberScale" method="_on_item_selected"]
+[connection signal="pressed" from="OptionsContainer/MarginContainer/ButtonContainer/Back" to="." method="back_presed"]
