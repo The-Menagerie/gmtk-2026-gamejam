@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b03kxi0daulbh"]
+
+[ext_resource type="PackedScene" uid="uid://bpjnih2vfqndv" path="res://Scenes/Objects/Breakables/template_breakable.tscn" id="1_l1h5r"]
+[ext_resource type="Texture2D" uid="uid://dp2vl1ee4va0r" path="res://Assets/Images/Crate.png" id="2_bgs0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgs0j"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xykdq"]
+size = Vector2(32, 32)
+
+[node name="Crate" unique_id=1501267980 instance=ExtResource("1_l1h5r")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=2134221960]
+texture = ExtResource("2_bgs0j")
+
+[node name="CollisionShape2D2" parent="." index="1" unique_id=2102160931]
+shape = SubResource("RectangleShape2D_bgs0j")
+
+[node name="CollisionShape2D" parent="HitboxComponent" parent_id_path=PackedInt32Array(474203754) index="0" unique_id=396389261]
+shape = SubResource("RectangleShape2D_xykdq")

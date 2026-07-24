@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://gs71ss565tgx"]
+
+[ext_resource type="Texture2D" uid="uid://qudt8rc0xyib" path="res://Assets/Images/Locked Cell Block.png" id="1_ntf47"]
+[ext_resource type="Script" uid="uid://dxn0j0dwyhvrt" path="res://Scripts/lock_box.gd" id="2_r11gc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oplb8"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0wvc"]
+size = Vector2(40, 40)
+
+[node name="LockBox" type="Node2D" unique_id=1504117620]
+script = ExtResource("2_r11gc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1603533871]
+texture = ExtResource("1_ntf47")
+
+[node name="WallBody" type="StaticBody2D" parent="." unique_id=1870970775]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBody" unique_id=1606951475]
+visible = false
+shape = SubResource("RectangleShape2D_oplb8")
+debug_color = Color(0.997045, 0, 0.18383858, 0.41960785)
+
+[node name="UnlockArea" type="Area2D" parent="." unique_id=372261367]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnlockArea" unique_id=415124043]
+visible = false
+shape = SubResource("RectangleShape2D_y0wvc")
