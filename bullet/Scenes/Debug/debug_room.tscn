@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="2_gw3cr"]
 [ext_resource type="PackedScene" uid="uid://by50mcyw2bh82" path="res://Scenes/Objects/Enemies/outlaw.tscn" id="4_lwjn1"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_wnj3v"]
+[ext_resource type="PackedScene" uid="uid://cxyncv5q6w7w6" path="res://Scenes/Objects/Key.tscn" id="6_ochrt"]
+[ext_resource type="PackedScene" uid="uid://gs71ss565tgx" path="res://Scenes/Objects/LockBox.tscn" id="7_em55o"]
 
 [node name="DebugRoom" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_wnj3v")
@@ -33,3 +35,9 @@ position = Vector2(-26, -82)
 
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_wnj3v")]
 bullet_pattern = Array[int]([1, 99, 1, 1, 1, 1])
+
+[node name="Key" parent="." unique_id=1777878280 instance=ExtResource("6_ochrt")]
+position = Vector2(2, 16)
+
+[node name="LockBox" parent="." unique_id=1504117620 instance=ExtResource("7_em55o")]
+position = Vector2(6, -80)

@@ -30,20 +30,26 @@ var is_in_combat := false
 var fire_timer : float = 0.0
 var has_played_alert := false
 var rng := RandomNumberGenerator.new()
+var carried_drop: Node2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree["parameters/playback"]
 @onready var movement_collision: CollisionShape2D = $MovementCollision
 @onready var hitbox_component: Area2D = $HitboxComponent
 @onready var hitbox_collision: CollisionShape2D = $HitboxComponent/CollisionShape2D2
+@onready var crush_detector: Area2D = $CrushDetector
 @onready var enemy_shotgun: Node2D = $EnemyShotgun
 @onready var player_target: Node2D = _find_player()
 @onready var alert_audio: AudioStreamPlayer = $Alert
 
 func _ready():
+	add_to_group("enemy")
 	rng.randomize()
 	if is_instance_valid(animation_tree):
 		animation_tree.active = true
+	carried_drop = _find_carried_drop()
+	if is_instance_valid(carried_drop) and carried_drop.has_method("set_carried_state"):
+		carried_drop.set_carried_state(true)
 	home_position = global_position
 	patrol_direction = starting_direction if starting_direction != 0.0 else 1.0
 	facing_direction = patrol_direction
@@ -73,6 +79,7 @@ func _physics_process(delta):
 		velocity.x = patrol_direction * patrol_speed if is_patrolling else 0.0
 
 	move_and_slide()
+	_check_crush_overlaps()
 
 	if not is_in_combat and is_on_wall() and is_patrolling:
 		patrol_direction = -sign(velocity.x) if velocity.x != 0.0 else -patrol_direction
@@ -95,6 +102,7 @@ func handle_death():
 	_play_death_animation()
 	_play_death_sound()
 	_drop_shotgun(death_velocity)
+	_drop_carried_item()
 	await get_tree().create_timer(DEATH_ANIMATION_DURATION).timeout
 	target_destroyed.emit(self)
 	queue_free()
@@ -218,6 +226,22 @@ func _drop_shotgun(initial_velocity: Vector2):
 	if enemy_shotgun.has_method("drop"):
 		enemy_shotgun.drop(Vector2(initial_velocity.x * 0.35, initial_velocity.y))
 
+func _drop_carried_item() -> void:
+	if not is_instance_valid(carried_drop):
+		return
+
+	var parent = get_parent()
+	if parent == null:
+		return
+
+	var drop_global_position = carried_drop.global_position
+	remove_child(carried_drop)
+	parent.add_child(carried_drop)
+	carried_drop.global_position = drop_global_position
+
+	if carried_drop.has_method("drop_from_carrier"):
+		carried_drop.drop_from_carrier()
+
 func _update_combat_state():
 	var was_in_combat = is_in_combat
 
@@ -275,6 +299,15 @@ func _find_player() -> Node2D:
 
 	return null
 
+func _find_carried_drop() -> Node2D:
+	for child in find_children("*", "Node2D", true, false):
+		if child == self:
+			continue
+		if child.has_method("set_carried_state") and child.has_method("drop_from_carrier"):
+			return child
+
+	return null
+
 func _has_line_of_sight_to_player() -> bool:
 	if not is_instance_valid(player_target):
 		return false
@@ -328,3 +361,12 @@ func _update_combat_fire(delta):
 		enemy_shotgun.fire(aim_vector, projectile_parent)
 
 	fire_timer = fire_interval
+
+func _check_crush_overlaps() -> void:
+	if is_dying or not is_instance_valid(crush_detector):
+		return
+
+	for body in crush_detector.get_overlapping_bodies():
+		if body is Node and body.is_in_group("crush_object") and body.has_method("can_crush_enemy") and body.can_crush_enemy():
+			handle_death()
+			return

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cji6hd7veljn5"]
+
+[ext_resource type="PackedScene" uid="uid://bpjnih2vfqndv" path="res://Scenes/Objects/Breakables/template_breakable.tscn" id="1_ulmfv"]
+[ext_resource type="Texture2D" uid="uid://ck7cndyncv08a" path="res://Assets/Tilesets/StrangeCowboy/Items/Target.png" id="2_uko18"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1por"]
+radius = 8.062258
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gauf2"]
+radius = 8.062258
+
+[node name="Target" unique_id=1501267980 instance=ExtResource("1_ulmfv")]
+gravity_scale = 0.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=2134221960]
+texture = ExtResource("2_uko18")
+
+[node name="CollisionShape2D2" parent="." index="1" unique_id=2102160931]
+shape = SubResource("CircleShape2D_f1por")
+
+[node name="CollisionShape2D" parent="HitboxComponent" parent_id_path=PackedInt32Array(474203754) index="0" unique_id=396389261]
+shape = SubResource("CircleShape2D_gauf2")

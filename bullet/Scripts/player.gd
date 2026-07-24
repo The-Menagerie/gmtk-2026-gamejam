@@ -21,6 +21,7 @@ const BULLET_SCENE = preload("res://Scenes/Objects/Player/bullet.tscn")
 var facing_direction : float = 1.0
 var recoil_offset : Vector2 = Vector2.ZERO
 var recoil_velocity : Vector2 = Vector2.ZERO
+var has_key := false
 
 func _ready():
 	add_to_group("player")
@@ -45,6 +46,7 @@ func _physics_process(delta):
 	velocity.y += recoil_velocity.y
 
 	move_and_slide()
+	_push_boulders(jump_pressed)
 	update_animation_parameters()
 	update_revolver_aim()
 	update_revolver_recoil(delta)
@@ -102,6 +104,34 @@ func apply_player_kickback(aim_vector: Vector2):
 	var recoil_impulse = -aim_vector.normalized() * player_recoil_force
 	recoil_impulse.y *= vertical_recoil_scale
 	recoil_velocity += recoil_impulse
+
+func collect_key() -> void:
+	has_key = true
+
+func _push_boulders(jump_pressed: bool) -> void:
+	for collision_index in range(get_slide_collision_count()):
+		var collision = get_slide_collision(collision_index)
+		var collider = collision.get_collider()
+		if collider == null:
+			continue
+		if collision.get_normal().y <= -0.85 and collider.has_method("push_from_below_by_player"):
+			var bottom_push_direction := Vector2(velocity.x, -1.0)
+			if bottom_push_direction.x == 0.0:
+				bottom_push_direction.x = facing_direction
+			collider.push_from_below_by_player(bottom_push_direction, self, jump_pressed)
+			continue
+		if not collider.has_method("push_by_player"):
+			continue
+		if abs(collision.get_normal().x) < 0.85:
+			continue
+
+		var push_direction := Vector2(velocity.x, 0.0)
+		if push_direction == Vector2.ZERO:
+			push_direction = -collision.get_normal()
+			push_direction.y = 0.0
+
+		if push_direction != Vector2.ZERO:
+			collider.push_by_player(push_direction)
 
 func pick_new_state():
 	if not is_on_floor():

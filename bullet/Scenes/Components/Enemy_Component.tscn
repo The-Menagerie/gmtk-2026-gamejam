@@ -9,6 +9,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4v5ib"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crush"]
+size = Vector2(24, 18)
+
 [node name="Enemy" type="CharacterBody2D" unique_id=733749410]
 script = ExtResource("3_qm2k8")
 
@@ -25,6 +28,13 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent" unique_id=1667441814]
 shape = SubResource("RectangleShape2D_4v5ib")
 debug_color = Color(0.99999994, 0.0063424297, 0.079185955, 0.41960785)
+
+[node name="CrushDetector" type="Area2D" parent="." unique_id=200481144]
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrushDetector" unique_id=1645232116]
+shape = SubResource("RectangleShape2D_crush")
+debug_color = Color(0.22527647, 0.9411765, 0.45182517, 0.41960785)
 
 [node name="Alert" type="AudioStreamPlayer" parent="." unique_id=1692236699]
 stream = ExtResource("4_k6m0v")

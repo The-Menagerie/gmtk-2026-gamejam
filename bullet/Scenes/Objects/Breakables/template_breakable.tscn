@@ -1,30 +1,22 @@
 [gd_scene format=3 uid="uid://bpjnih2vfqndv"]
 
-[ext_resource type="Texture2D" uid="uid://ck7cndyncv08a" path="res://Assets/Tilesets/StrangeCowboy/Items/Target.png" id="1_ajrvh"]
 [ext_resource type="Script" uid="uid://c3ve2rbieovco" path="res://Scripts/Classes/breakable.gd" id="1_gauf2"]
 [ext_resource type="PackedScene" uid="uid://cnflp8hfx1cp8" path="res://Scenes/Components/Hitbox_Component.tscn" id="2_f1por"]
 [ext_resource type="PackedScene" uid="uid://b1pg1xnockout" path="res://Scenes/Components/Health_Component.tscn" id="3_gauf2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_40fn5"]
-radius = 7.5
-
 [node name="TemplateBreakable" type="RigidBody2D" unique_id=1501267980]
-gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("1_gauf2")
 metadata/_custom_type_script = "uid://c3ve2rbieovco"
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2102160931]
-shape = SubResource("CircleShape2D_40fn5")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2134221960]
-texture = ExtResource("1_ajrvh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2102160931]
 
 [node name="HitboxComponent" parent="." unique_id=474203754 node_paths=PackedStringArray("health_component") instance=ExtResource("2_f1por")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=396389261]
-shape = SubResource("CircleShape2D_40fn5")
 
 [node name="HealthComponent" parent="." unique_id=1782276463 instance=ExtResource("3_gauf2")]
 

@@ -42,6 +42,9 @@ func _try_damage_collider(collider: Node) -> bool:
 	if collider is Area2D:
 		return _try_damage_hitbox(collider)
 
+	if collider.has_method("apply_bullet_knockback"):
+		collider.apply_bullet_knockback(direction)
+
 	for child in collider.get_children():
 		if child is Area2D and _try_damage_hitbox(child):
 			return true
