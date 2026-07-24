@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cjv7soqfoej7"]
+
+[ext_resource type="Script" uid="uid://btqfexsvtoip2" path="res://Scripts/rope_tilemap.gd" id="1_rope_script"]
+[ext_resource type="TileSet" uid="uid://u8ygmr6mw15k" path="res://Assets/Tilesets/rope_tileset.tres" id="2_rope_tileset"]
+
+[node name="Rope" type="TileMapLayer" unique_id=602890189]
+tile_set = ExtResource("2_rope_tileset")
+script = ExtResource("1_rope_script")

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bjmdveua1c74i"]
+
+[ext_resource type="Texture2D" uid="uid://xrx6t3vmfp16" path="res://Assets/Images/Boulder.png" id="1_ybl2n"]
+[ext_resource type="Script" uid="uid://ue28swfd6j0j" path="res://Scripts/boulder.gd" id="2_ncu1i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1por"]
+radius = 14.852741
+height = 32.50425
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(22, 10)
+
+[node name="Boulder" type="RigidBody2D" unique_id=1972943660]
+can_sleep = false
+script = ExtResource("2_ncu1i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1682418123]
+texture = ExtResource("1_ybl2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=751612200]
+position = Vector2(1, 1)
+rotation = 0.79063416
+shape = SubResource("CapsuleShape2D_f1por")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1292489613]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=467909690]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_attack")

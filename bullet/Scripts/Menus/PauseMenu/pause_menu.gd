@@ -39,7 +39,9 @@ func restart() -> void:
 	visible = false
 	get_tree().paused = false
 	hide()
-	get_tree().reload_current_scene()
+	var game_manager := get_tree().root.find_child("MainGame", true, false)
+	if game_manager != null and game_manager.has_method("reset_current_level"):
+		game_manager.reset_current_level()
 
 func option() -> void:
 	$WoodenBlock.play()

@@ -1,44 +1,54 @@
-class_name breakable extends RigidBody2D
+extends RigidBody2D
 
-@export var fade_duration := 0.2
+@export var attack_damage := 999.0
+@export var attack_height_margin := 6.0
+@export var bullet_knockback := 35.0
 @export var crush_min_downward_speed := 5.0
 @export var player_push_impulse := 4.0
 @export var player_bottom_push_impulse := 3.0
 
-signal target_destroyed(target)
+@onready var attack_area: Area2D = $AttackArea
 
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D2
-@onready var hitbox_component: Area2D = $HitboxComponent
-@onready var hitbox_collision: CollisionShape2D = $HitboxComponent/CollisionShape2D
-
-var is_dying := false
 var scene_reset_queued := false
 
 func _ready() -> void:
-	add_to_group("crush_object")
 	contact_monitor = true
 	max_contacts_reported = 8
+	attack_area.area_entered.connect(_on_attack_area_entered)
 	body_entered.connect(_on_body_entered)
 
-func handle_death() -> void:
-	if is_dying:
+func _physics_process(_delta: float) -> void:
+	_check_fall_attack_overlaps()
+
+func _on_attack_area_entered(area: Area2D) -> void:
+	_try_fall_attack(area)
+
+func _check_fall_attack_overlaps() -> void:
+	for area in attack_area.get_overlapping_areas():
+		_try_fall_attack(area)
+
+func _try_fall_attack(area: Area2D) -> void:
+	if linear_velocity.y <= 0.0:
+		return
+	if not area.is_in_group("hitbox"):
+		return
+	if area.global_position.y <= global_position.y + attack_height_margin:
 		return
 
-	is_dying = true
-	freeze = true
-	_disable_collisions()
-	target_destroyed.emit(self)
+	var attack := Attack.new()
+	attack.attack_damage = attack_damage
+	area.damage(attack)
 
-	var fade_tween = create_tween()
-	fade_tween.tween_property(self, "modulate:a", 0.0, fade_duration)
-	await fade_tween.finished
-	queue_free()
+func apply_bullet_knockback(hit_direction: Vector2) -> void:
+	if hit_direction == Vector2.ZERO:
+		return
 
-func can_crush_enemy() -> bool:
-	return not is_dying and linear_velocity.y > crush_min_downward_speed
+	var knockback_direction := hit_direction.normalized()
+	knockback_direction.y *= 0.2
+	apply_central_impulse(knockback_direction.normalized() * bullet_knockback)
 
 func push_by_player(push_direction: Vector2) -> void:
-	if push_direction == Vector2.ZERO or is_dying:
+	if push_direction == Vector2.ZERO:
 		return
 
 	var shove := push_direction.normalized()
@@ -46,9 +56,6 @@ func push_by_player(push_direction: Vector2) -> void:
 	apply_central_impulse(shove.normalized() * player_push_impulse)
 
 func push_from_below_by_player(push_direction: Vector2) -> void:
-	if is_dying:
-		return
-
 	var shove := push_direction
 	if shove == Vector2.ZERO:
 		shove = Vector2.LEFT
@@ -59,8 +66,6 @@ func push_from_below_by_player(push_direction: Vector2) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if scene_reset_queued:
-		return
-	if is_dying:
 		return
 	if not body.is_in_group("player"):
 		return
@@ -73,14 +78,3 @@ func _on_body_entered(body: Node) -> void:
 	var game_manager := get_tree().root.find_child("MainGame", true, false)
 	if game_manager != null and game_manager.has_method("reset_current_level"):
 		game_manager.reset_current_level()
-
-func _disable_collisions() -> void:
-	if is_instance_valid(collision_shape):
-		collision_shape.set_deferred("disabled", true)
-
-	if is_instance_valid(hitbox_collision):
-		hitbox_collision.set_deferred("disabled", true)
-
-	if is_instance_valid(hitbox_component):
-		hitbox_component.set_deferred("monitoring", false)
-		hitbox_component.set_deferred("monitorable", false)
