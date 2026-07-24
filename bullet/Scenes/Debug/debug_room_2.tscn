@@ -28,7 +28,9 @@ position = Vector2(-25, 16)
 
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("6_kvega")]
 position = Vector2(50, 12)
+patrol_speed = 40.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1131452249]
 
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_gvbkm")]
+bullet_pattern = Array[int]([4, 1, 4, 1, 4, 1])

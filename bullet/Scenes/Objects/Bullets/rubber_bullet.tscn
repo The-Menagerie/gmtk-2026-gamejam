@@ -1,17 +1,20 @@
-[gd_scene format=3 uid="uid://btadkvwru6byt"]
+[gd_scene format=3 uid="uid://dsvtdqdnbasos"]
 
-[ext_resource type="Texture2D" uid="uid://d11nabp33j16k" path="res://Assets/Tilesets/StrangeCowboy/Player/Bullet.png" id="1_ol1of"]
-[ext_resource type="Script" uid="uid://dx7q70gsfxa5w" path="res://Scripts/bullet.gd" id="2_3e8k5"]
-[ext_resource type="AudioStream" uid="uid://gey7ps3en5cw" path="res://Assets/SoundEffects/ricochet.wav" id="3_ylr4g"]
+[ext_resource type="Script" uid="uid://dbqwqv1r80h8o" path="res://Scripts/Bullets/rubber_bullet.gd" id="1_euibr"]
+[ext_resource type="Texture2D" uid="uid://crn642ygjhhr4" path="res://Assets/Images/SceneBullets/rubber_bullet.png" id="2_euibr"]
+[ext_resource type="AudioStream" uid="uid://gey7ps3en5cw" path="res://Assets/SoundEffects/ricochet.wav" id="3_g36af"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fb7ps"]
 size = Vector2(4, 2)
 
 [node name="Bullet" type="CharacterBody2D" unique_id=485634604]
-script = ExtResource("2_3e8k5")
+script = ExtResource("1_euibr")
+damage = 0.0
+max_bounces = 10
+knock_back = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1359081898]
-texture = ExtResource("1_ol1of")
+texture = ExtResource("2_euibr")
 hframes = 2
 
 [node name="MovementCollision" type="CollisionShape2D" parent="." unique_id=420006511]
@@ -23,4 +26,4 @@ shape = SubResource("RectangleShape2D_fb7ps")
 shape = SubResource("RectangleShape2D_fb7ps")
 
 [node name="RicochetAudio" type="AudioStreamPlayer" parent="." unique_id=91885689]
-stream = ExtResource("3_ylr4g")
+stream = ExtResource("3_g36af")

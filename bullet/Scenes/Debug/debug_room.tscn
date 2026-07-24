@@ -25,11 +25,13 @@ vertical_recoil_scale = 0.45
 
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("4_lwjn1")]
 position = Vector2(-64, 8)
+patrol_speed = 40.0
 
 [node name="Enemy2" parent="." unique_id=1850845240 instance=ExtResource("4_lwjn1")]
 position = Vector2(-26, -82)
+patrol_speed = 40.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=668499867]
 
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_wnj3v")]
-bullet_pattern = Array[int]([1, 99, 1, 1, 1, 1])
+bullet_pattern = Array[int]([2, 5, 3, 2, 5, 3])

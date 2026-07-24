@@ -28,3 +28,4 @@ position = Vector2(50, 12)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=977823843]
 
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_pjjyr")]
+bullet_pattern = Array[int]([2, 5, 5, 5, 5, 5])

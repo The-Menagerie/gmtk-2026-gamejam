@@ -155,7 +155,6 @@ texture = SubResource("AtlasTexture_sh608")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=456355537]
 libraries/ = SubResource("AnimationLibrary_5q38y")
-speed_scale = 0.5
 
 [node name="Control" type="Control" parent="." unique_id=1442032783]
 anchors_preset = 0

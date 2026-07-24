@@ -1,15 +1,31 @@
 extends Control
 
-enum BULLET_TYPE {REGULAR = 1, SAD = 99}
+enum BULLET_TYPE {REGULAR = 5, RUBBER = 4, PIERCING = 3, FLY = 2, SWAP = 1, SAD = 99}
 
 var bullet_dictionary = {
-	1:  {
+	5:  {
 		chamber_scene = "res://Assets/Images/ChamberBullets/regular_bullet.png",
-		combat_scene = preload("res://Scenes/Objects/Player/bullet.tscn"),
+		combat_scene = preload("res://Scenes/Objects/Bullets/bullet.tscn"),
 		},
+	4: {
+		chamber_scene = "res://Assets/Images/ChamberBullets/rubber_bullet.png",
+		combat_scene = preload("res://Scenes/Objects/Bullets/rubber_bullet.tscn"),
+	},
+	3: {
+		chamber_scene = "res://Assets/Images/ChamberBullets/piercing_bullet.png",
+		combat_scene = preload("res://Scenes/Objects/Bullets/piercing_bullet.tscn"),
+	},
+	2: {
+		chamber_scene = "res://Assets/Images/ChamberBullets/fly_bullet.png",
+		combat_scene = preload("res://Scenes/Objects/Bullets/fly_bullet.tscn"),
+	},
+	1: {
+		chamber_scene = "res://Assets/Images/ChamberBullets/swap_bullet.png",
+		combat_scene = preload("res://Scenes/Objects/Bullets/swap_bullet.tscn"),
+	},
 	99: {
 		chamber_scene = "res://Assets/Images/ChamberBullets/sad_bullet.png",
-		combat_scene = preload("res://Scenes/Objects/Player/bullet.tscn"),
+		combat_scene = preload("res://Scenes/Objects/Bullets/bullet.tscn"),
 	}
 }
 
