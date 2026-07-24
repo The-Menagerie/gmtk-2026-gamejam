@@ -106,7 +106,7 @@ func _play_death_sound():
 
 	var death_audio := AudioStreamPlayer.new()
 	death_audio.stream = DEATH_SOUND
-	death_audio.bus = "Master"
+	death_audio.bus = "sfx"
 	owner.add_child(death_audio)
 	death_audio.finished.connect(death_audio.queue_free)
 	death_audio.play()
