@@ -46,7 +46,7 @@ func _physics_process(delta):
 	velocity.y += recoil_velocity.y
 
 	move_and_slide()
-	_push_boulders(jump_pressed)
+	_push_boulders()
 	update_animation_parameters()
 	update_revolver_aim()
 	update_revolver_recoil(delta)
@@ -112,7 +112,7 @@ func apply_player_kickback(aim_vector: Vector2, recoil_multiplier: float = 1.0):
 func collect_key() -> void:
 	has_key = true
 
-func _push_boulders(jump_pressed: bool) -> void:
+func _push_boulders() -> void:
 	for collision_index in range(get_slide_collision_count()):
 		var collision = get_slide_collision(collision_index)
 		var collider = collision.get_collider()
@@ -122,7 +122,7 @@ func _push_boulders(jump_pressed: bool) -> void:
 			var bottom_push_direction := Vector2(velocity.x, -1.0)
 			if bottom_push_direction.x == 0.0:
 				bottom_push_direction.x = facing_direction
-			collider.push_from_below_by_player(bottom_push_direction, self, jump_pressed)
+			collider.push_from_below_by_player(bottom_push_direction)
 			continue
 		if not collider.has_method("push_by_player"):
 			continue

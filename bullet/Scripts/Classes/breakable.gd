@@ -4,8 +4,6 @@ class_name breakable extends RigidBody2D
 @export var crush_min_downward_speed := 5.0
 @export var player_push_impulse := 4.0
 @export var player_bottom_push_impulse := 3.0
-@export var player_jump_bottom_push_impulse := 22.0
-@export var player_jump_escape_time := 0.2
 
 signal target_destroyed(target)
 
@@ -17,6 +15,9 @@ var is_dying := false
 
 func _ready() -> void:
 	add_to_group("crush_object")
+	contact_monitor = true
+	max_contacts_reported = 8
+	body_entered.connect(_on_body_entered)
 
 func handle_death() -> void:
 	if is_dying:
@@ -43,7 +44,7 @@ func push_by_player(push_direction: Vector2) -> void:
 	shove.y *= 0.15
 	apply_central_impulse(shove.normalized() * player_push_impulse)
 
-func push_from_below_by_player(push_direction: Vector2, player: PhysicsBody2D = null, jump_boost: bool = false) -> void:
+func push_from_below_by_player(push_direction: Vector2) -> void:
 	if is_dying:
 		return
 
@@ -52,22 +53,20 @@ func push_from_below_by_player(push_direction: Vector2, player: PhysicsBody2D = 
 		shove = Vector2.LEFT
 
 	shove = shove.normalized()
-	if jump_boost:
-		shove.x *= 0.35
-		shove.y = -1.0
-	else:
-		shove.y = min(shove.y, -0.2)
+	shove.y = min(shove.y, -0.2)
+	apply_central_impulse(shove.normalized() * player_bottom_push_impulse)
 
-	var impulse_strength = player_jump_bottom_push_impulse if jump_boost else player_bottom_push_impulse
-	apply_central_impulse(shove.normalized() * impulse_strength)
-	if jump_boost and is_instance_valid(player):
-		add_collision_exception_with(player)
-		_restore_player_collision(player)
+func _on_body_entered(body: Node) -> void:
+	if is_dying:
+		return
+	if not body.is_in_group("player"):
+		return
+	if linear_velocity.y <= crush_min_downward_speed:
+		return
+	if body.global_position.y <= global_position.y:
+		return
 
-func _restore_player_collision(player: PhysicsBody2D) -> void:
-	await get_tree().create_timer(player_jump_escape_time).timeout
-	if is_instance_valid(player):
-		remove_collision_exception_with(player)
+	get_tree().reload_current_scene()
 
 func _disable_collisions() -> void:
 	if is_instance_valid(collision_shape):
