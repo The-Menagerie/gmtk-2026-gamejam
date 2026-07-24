@@ -11,6 +11,8 @@ radius = 8.062258
 
 [node name="Target" unique_id=1501267980 instance=ExtResource("1_ulmfv")]
 gravity_scale = 0.0
+player_push_impulse = 0.0
+player_bottom_push_impulse = 0.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=2134221960]
 texture = ExtResource("2_uko18")
