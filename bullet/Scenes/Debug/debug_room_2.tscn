@@ -33,4 +33,4 @@ patrol_speed = 40.0
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1131452249]
 
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_gvbkm")]
-bullet_pattern = Array[int]([4, 1, 4, 1, 4, 1])
+bullet_pattern = Array[int]([5, 1, 4, 1, 4, 1])

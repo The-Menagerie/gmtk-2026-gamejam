@@ -39,9 +39,19 @@ var chambered_bullet_scenes: Array[PackedScene]
 
 @export var score_cost: int = 100
 
+var cylinder_start_pos
+var scale_modifier
 
+@onready var cylinder_container = $alignment/VBoxContainer
+@onready var alignment = $alignment
 
 func _ready() -> void:
+	#var screen_dimensions = get_viewport().get_visible_rect()
+	#var screen_x = screen_dimensions.size.x
+	#var screen_y = screen_dimensions.size.y
+	rescale_to(BulletBus.current_chamber_scale)
+	fit_resolution()
+	BulletBus.force_rescale.connect(rescale_to)
 	anim_player.play_section("RESET")
 	for i in range(bullet_pattern.size()):
 		var bullet_values = bullet_dictionary[bullet_pattern[i]]
@@ -74,3 +84,38 @@ func _physics_process(delta: float) -> void:
 
 func rotate_chamber(rot_deg: float) -> void:
 	cylinder_rotator.rotation_degrees += rot_deg
+
+func shift_chamber_pos(pos_pix_x: float, pos_pix_y: float) -> void:
+	cylinder_rotator.position.x += pos_pix_x
+	cylinder_rotator.position.y += pos_pix_y
+
+func reset_chamber_pos() -> void:
+	cylinder_rotator.position = cylinder_start_pos
+
+func fit_resolution() -> void:
+	var screen_x = self.size.x
+	var screen_y = self.size.y
+	if (1920.0 - screen_x) > (1080.0 - screen_y):
+		#var new_size = round(screen_x * (128.0/1920.0))
+		scale_modifier = screen_x/1920.0
+		rescale(scale_modifier)
+		#alignment.scale.x *= scale_modifier
+		#alignment.scale.y *= scale_modifier
+	elif (1080.0 - screen_y) >= (1920.0 - screen_x):
+		scale_modifier = screen_y/1080.0
+		rescale(scale_modifier)
+		#alignment.scale.x *= scale_modifier
+		#alignment.scale.y *= scale_modifier
+	
+	#alignment.position.y += (1 - scale_modifier)*(64*alignment.scale.x/scale_modifier)
+	#cylinder_start_pos = cylinder_rotator.position
+	
+func rescale(scale_modifier: float) -> void:
+	alignment.position.y += (1-scale_modifier)*(64*alignment.scale.x)
+	alignment.scale.x *= scale_modifier
+	alignment.scale.y *= scale_modifier
+	cylinder_start_pos = cylinder_rotator.position
+
+func rescale_to(new_scale:float) -> void:
+	scale_modifier = new_scale/alignment.scale.x
+	rescale(scale_modifier)

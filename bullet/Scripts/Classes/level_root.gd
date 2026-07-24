@@ -1,6 +1,6 @@
 class_name LevelRoot extends Node2D
 
-@export var targets: Array[Node]
+@export var targets: Array[Node] = []
 @export var next_level_path: String
 var next_level
 var num_targets
@@ -8,16 +8,18 @@ var game_manager
 var has_targets = false
 var targets_left
 
+
 func _ready() -> void:
 	next_level = load(next_level_path)
 	game_manager = get_parent()
-	num_targets = targets.size()
+	num_targets = self.targets.size()
 	if num_targets > 0:
 		has_targets = true
 		targets_left = num_targets
 		
 		for t in targets:
-			t.target_destroyed.connect(target_down)
+			if t != null:
+				t.target_destroyed.connect(target_down)
 
 
 func target_down(target:Node) -> void:
