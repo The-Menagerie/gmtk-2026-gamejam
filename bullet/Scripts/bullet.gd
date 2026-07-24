@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed : float = 500.0
 @export var damage : float = 10.0
 @export var max_bounces : int = 3
+@export var rope_pass_through_distance : float = 6.0
 
 var direction : Vector2 = Vector2.RIGHT
 var area_2d: Area2D
@@ -17,7 +18,12 @@ func _ready():
 
 func _physics_process(delta):
 	velocity = direction * speed
-	var collision = move_and_collide(velocity * delta)
+	var next_position: Vector2 = global_position + velocity * delta
+	if _try_cut_rope_between(global_position, next_position):
+		global_position = next_position
+		return
+
+	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
 		if _try_damage_collider(collision.get_collider()):
 			queue_free()
@@ -55,7 +61,24 @@ func _try_damage_hitbox(area: Area2D) -> bool:
 	if not area.is_in_group("hitbox"):
 		return false
 
-	var attack = Attack.new()
+	var attack: Attack = Attack.new()
 	attack.attack_damage = damage
 	area.damage(attack)
 	return true
+
+func _try_cut_rope(collision: KinematicCollision2D) -> bool:
+	var collider: Object = collision.get_collider()
+	if collider == null:
+		return false
+	if not collider.has_method("cut_by_bullet"):
+		return false
+
+	return collider.cut_by_bullet(collision.get_position())
+
+func _try_cut_rope_between(segment_start: Vector2, segment_end: Vector2) -> bool:
+	var ropes: Array[Node] = get_tree().get_nodes_in_group("rope")
+	for rope: Node in ropes:
+		if rope.has_method("cut_along_segment") and rope.cut_along_segment(segment_start, segment_end):
+			return true
+
+	return false

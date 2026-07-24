@@ -9,6 +9,8 @@ extends RigidBody2D
 
 @onready var attack_area: Area2D = $AttackArea
 
+var scene_reset_queued := false
+
 func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 8
@@ -63,6 +65,8 @@ func push_from_below_by_player(push_direction: Vector2) -> void:
 	apply_central_impulse(shove.normalized() * player_bottom_push_impulse)
 
 func _on_body_entered(body: Node) -> void:
+	if scene_reset_queued:
+		return
 	if not body.is_in_group("player"):
 		return
 	if linear_velocity.y <= crush_min_downward_speed:
@@ -70,4 +74,7 @@ func _on_body_entered(body: Node) -> void:
 	if body.global_position.y <= global_position.y:
 		return
 
-	get_tree().reload_current_scene()
+	scene_reset_queued = true
+	var game_manager := get_tree().root.find_child("MainGame", true, false)
+	if game_manager != null and game_manager.has_method("reset_current_level"):
+		game_manager.reset_current_level()

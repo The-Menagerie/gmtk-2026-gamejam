@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed : float = 320.0
 @export var lifetime : float = 2.5
 @export var score_damage : int = 100
+@export var rope_pass_through_distance : float = 6.0
 
 const RICOCHET_SOUND = preload("res://Assets/SoundEffects/ricochet.wav")
 
@@ -18,7 +19,13 @@ func _ready():
 
 func _physics_process(delta):
 	velocity = direction * speed
-	var collision = move_and_collide(velocity * delta)
+	var next_position: Vector2 = global_position + velocity * delta
+	if _try_cut_rope_between(global_position, next_position):
+		global_position = next_position
+		rotation = direction.angle()
+		return
+
+	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 
 	if collision:
 		_handle_hit(collision.get_collider())
@@ -43,7 +50,7 @@ func _handle_hit(collider: Object):
 		_play_ricochet()
 		return
 
-	var hit_node := collider as Node
+	var hit_node: Node = collider as Node
 	if hit_node == null:
 		_play_ricochet()
 		return
@@ -52,7 +59,7 @@ func _handle_hit(collider: Object):
 		_apply_score_damage()
 		return
 
-	var parent = hit_node.get_parent()
+	var parent: Node = hit_node.get_parent()
 	if parent != null and parent.is_in_group("player"):
 		_apply_score_damage()
 		return
@@ -66,13 +73,30 @@ func _apply_score_damage():
 		#game_manager.change_score(-score_damage)
 
 func _play_ricochet():
-	var parent = get_parent()
+	var parent: Node = get_parent()
 	if parent == null:
 		return
 
-	var ricochet_audio := AudioStreamPlayer.new()
+	var ricochet_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 	ricochet_audio.stream = RICOCHET_SOUND
 	ricochet_audio.bus = "Master"
 	parent.add_child(ricochet_audio)
 	ricochet_audio.finished.connect(ricochet_audio.queue_free)
 	ricochet_audio.play()
+
+func _try_cut_rope(collision: KinematicCollision2D) -> bool:
+	var collider: Object = collision.get_collider()
+	if collider == null:
+		return false
+	if not collider.has_method("cut_by_bullet"):
+		return false
+
+	return collider.cut_by_bullet(collision.get_position())
+
+func _try_cut_rope_between(segment_start: Vector2, segment_end: Vector2) -> bool:
+	var ropes: Array[Node] = get_tree().get_nodes_in_group("rope")
+	for rope: Node in ropes:
+		if rope.has_method("cut_along_segment") and rope.cut_along_segment(segment_start, segment_end):
+			return true
+
+	return false

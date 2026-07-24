@@ -12,6 +12,7 @@ signal target_destroyed(target)
 @onready var hitbox_collision: CollisionShape2D = $HitboxComponent/CollisionShape2D
 
 var is_dying := false
+var scene_reset_queued := false
 
 func _ready() -> void:
 	add_to_group("crush_object")
@@ -57,6 +58,8 @@ func push_from_below_by_player(push_direction: Vector2) -> void:
 	apply_central_impulse(shove.normalized() * player_bottom_push_impulse)
 
 func _on_body_entered(body: Node) -> void:
+	if scene_reset_queued:
+		return
 	if is_dying:
 		return
 	if not body.is_in_group("player"):
@@ -66,7 +69,10 @@ func _on_body_entered(body: Node) -> void:
 	if body.global_position.y <= global_position.y:
 		return
 
-	get_tree().reload_current_scene()
+	scene_reset_queued = true
+	var game_manager := get_tree().root.find_child("MainGame", true, false)
+	if game_manager != null and game_manager.has_method("reset_current_level"):
+		game_manager.reset_current_level()
 
 func _disable_collisions() -> void:
 	if is_instance_valid(collision_shape):

@@ -5,6 +5,7 @@ extends Node2D
 @export_range(0.05, 1.0, 0.05) var bullet_time_scale: float = 0.35
 
 var is_bullet_time_active := false
+var is_level_reset_queued := false
 #@onready var score_label: Label = $CanvasLayer/ScoreLabel
 
 #func _ready():
@@ -22,6 +23,33 @@ func change_level(level: PackedScene) -> void:
 	current_level.queue_free()
 	current_level = new_level
 	pass
+
+func reset_current_level() -> void:
+	if is_level_reset_queued:
+		return
+	if current_level == null:
+		return
+	if current_level.scene_file_path.is_empty():
+		return
+
+	is_level_reset_queued = true
+	call_deferred("_deferred_reset_current_level")
+
+func _deferred_reset_current_level() -> void:
+	if current_level == null:
+		is_level_reset_queued = false
+		return
+
+	var level_scene := load(current_level.scene_file_path) as PackedScene
+	if level_scene == null:
+		is_level_reset_queued = false
+		return
+
+	var new_level := level_scene.instantiate()
+	add_child(new_level)
+	current_level.queue_free()
+	current_level = new_level
+	is_level_reset_queued = false
 
 
 func _update_bullet_time():
