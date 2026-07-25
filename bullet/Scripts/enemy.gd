@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var starting_direction : float = 1.0
 @export var ledge_check_forward_distance : float = 10.0
 @export var ledge_check_depth : float = 24.0
+@export var hazard_check_height : float = 6.0
 @export var combat_enter_distance : float = 75.0
 @export var combat_exit_distance : float = 100.0
 @export var alert_time : float = 0.35
@@ -100,7 +101,7 @@ func _physics_process(delta):
 	if not is_in_combat and is_on_wall() and is_patrolling:
 		patrol_direction = -sign(velocity.x) if velocity.x != 0.0 else -patrol_direction
 		facing_direction = patrol_direction
-	elif not is_in_combat and is_patrolling and is_on_floor() and not _has_floor_ahead():
+	elif not is_in_combat and is_patrolling and is_on_floor() and (not _has_floor_ahead() or _has_hazard_ahead()):
 		patrol_direction *= -1.0
 		facing_direction = patrol_direction
 
@@ -223,6 +224,27 @@ func _has_floor_ahead() -> bool:
 	query.exclude = [self]
 	var result = get_world_2d().direct_space_state.intersect_ray(query)
 	return not result.is_empty()
+
+func _has_hazard_ahead() -> bool:
+	var start := global_position + Vector2(patrol_direction * ledge_check_forward_distance, -hazard_check_height)
+	var finish := global_position + Vector2(patrol_direction * ledge_check_forward_distance, hazard_check_height)
+	var query := PhysicsRayQueryParameters2D.create(start, finish)
+	query.exclude = [self]
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+	var result := get_world_2d().direct_space_state.intersect_ray(query)
+	if result.is_empty():
+		return false
+
+	var collider := result.collider as Node
+	if collider == null:
+		return false
+
+	if collider.is_in_group("enemy_hazard"):
+		return true
+
+	var parent := collider.get_parent()
+	return parent != null and parent.is_in_group("enemy_hazard")
 
 func _drop_shotgun(initial_velocity: Vector2):
 	if not is_instance_valid(enemy_shotgun):

@@ -1,9 +1,16 @@
-extends Area2D
+extends Node2D
+
+@onready var hazard_area: Area2D = $Area2D
 
 var scene_reset_queued := false
 
+
 func _ready() -> void:
 	add_to_group("enemy_hazard")
+	if is_instance_valid(hazard_area):
+		hazard_area.add_to_group("enemy_hazard")
+		hazard_area.body_entered.connect(_on_body_entered)
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
