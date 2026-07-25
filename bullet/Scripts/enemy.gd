@@ -327,9 +327,10 @@ func _find_carried_drop() -> Node2D:
 func _has_line_of_sight_to_player() -> bool:
 	if not is_instance_valid(player_target):
 		return false
-
+ 
 	var query := PhysicsRayQueryParameters2D.create(global_position, player_target.global_position)
 	query.exclude = _build_line_of_sight_exclusions()
+	query.collision_mask = 1
 	var result = get_world_2d().direct_space_state.intersect_ray(query)
 
 	if result.is_empty():

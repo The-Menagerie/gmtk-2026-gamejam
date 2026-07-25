@@ -96,7 +96,7 @@ func _try_cut_rope(collision: KinematicCollision2D) -> bool:
 func _try_cut_rope_between(segment_start: Vector2, segment_end: Vector2) -> bool:
 	var ropes: Array[Node] = get_tree().get_nodes_in_group("rope")
 	for rope: Node in ropes:
-		if rope.has_method("cut_along_segment") and rope.cut_along_segment(segment_start, segment_end):
+		if rope.has_method("cut_along_segment") and rope.cut_along_segment(segment_start, segment_end, rope_pass_through_distance):
 			return true
 
 	return false

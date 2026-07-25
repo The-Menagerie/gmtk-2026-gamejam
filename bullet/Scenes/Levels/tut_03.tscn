@@ -46,7 +46,6 @@ vertical_recoil_scale = 0.45
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=668499867]
 
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_jg8sc")]
-bullet_pattern = Array[int]([5, 5, 5, 5, 5, 5])
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
 position = Vector2(0, -16)
@@ -76,4 +75,4 @@ position = Vector2(-222, 11)
 [node name="Key" parent="Enemy2" unique_id=1777878280 instance=ExtResource("8_jg8sc")]
 
 [node name="Rope" parent="." unique_id=602890189 instance=ExtResource("9_1n6dr")]
-tile_map_data = PackedByteArray("AADy//7/AAACAAAAAADy//3/AAABAAIAAADy//v/AAABAAMAAAA=")
+tile_map_data = PackedByteArray("AADy//3/AAABAAIAAADy//v/AAABAAMAAADy//7/AAADAAAAAAA=")
