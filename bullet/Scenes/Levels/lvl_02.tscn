@@ -43,6 +43,7 @@ tile_set = ExtResource("3_0hn83")
 
 [node name="Player" parent="." unique_id=430874862 instance=ExtResource("4_jbxq0")]
 position = Vector2(1, -19)
+player_recoil_force = 205.0
 vertical_recoil_scale = 0.45
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=288009827]

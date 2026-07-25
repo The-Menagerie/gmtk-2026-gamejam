@@ -22,6 +22,8 @@ var facing_direction : float = 1.0
 var recoil_offset : Vector2 = Vector2.ZERO
 var recoil_velocity : Vector2 = Vector2.ZERO
 var has_key := false
+var flying := false
+var just_shot := false
 
 func _ready():
 	add_to_group("player")
@@ -40,12 +42,21 @@ func _physics_process(delta):
 		velocity.y = -jump_force
 	elif not is_on_floor():
 		velocity.y += gravity * delta
+	
+	if just_shot:
+		velocity.y += recoil_velocity.y*2
+		just_shot = false
 
 	recoil_velocity = recoil_velocity.move_toward(Vector2.ZERO, recoil_velocity_decay * delta)
 	velocity.x = move_input * move_speed + recoil_velocity.x
-	velocity.y += recoil_velocity.y
+
 
 	move_and_slide()
+	if flying:
+		ram_through(get_slide_collision_count())
+		if is_on_floor():
+			self.modulate = Color(1,1,1,1)
+			flying = false
 	_push_boulders()
 	update_animation_parameters()
 	update_revolver_aim()
@@ -91,6 +102,9 @@ func fire_bullet(bullet_scene: PackedScene):
 	apply_revolver_kickback(aim_vector)
 	if "recoil_multiplier" in bullet:
 		apply_player_kickback(aim_vector, bullet.recoil_multiplier)
+		if bullet.recoil_multiplier >= 1.5:
+			self.flying = true
+			self.modulate = Color(0.5,0.5,1,1)
 	else:
 		apply_player_kickback(aim_vector)
 	gunshot_audio.play()
@@ -108,6 +122,7 @@ func apply_player_kickback(aim_vector: Vector2, recoil_multiplier: float = 1.0):
 	var recoil_impulse = -aim_vector.normalized() * player_recoil_force * recoil_multiplier
 	recoil_impulse.y *= vertical_recoil_scale
 	recoil_velocity += recoil_impulse
+	just_shot = true
 
 func collect_key() -> void:
 	has_key = true
@@ -144,3 +159,16 @@ func pick_new_state():
 		state_machine.travel("Walk")
 	else:
 		state_machine.travel("Idle")
+
+func ram_through(collider_count: int) -> void:
+	for i in collider_count:
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is breakable or collider.is_in_group("enemy"):
+			var collider_children = collider.find_children("*", "Area2D")[0]
+			#if collision.get_parent().is_in_group("enemy"):
+			var attack = Attack.new()
+			attack.attack_damage = 1.0
+			collider_children.damage(attack)
+					
+	

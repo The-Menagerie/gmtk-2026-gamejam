@@ -9,7 +9,6 @@ size = Vector2(4, 2)
 
 [node name="Bullet" type="CharacterBody2D" unique_id=485634604]
 script = ExtResource("1_vw4cr")
-recoil_multiplier = 1.5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1359081898]
 texture = ExtResource("2_vw4cr")
