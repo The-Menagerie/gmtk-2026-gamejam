@@ -46,7 +46,8 @@ func _physics_process(delta):
 
 func _on_area_entered(area: Area2D):
 	if _try_damage_hitbox(area):
-		queue_free()
+		pass
+		#queue_free()
 
 func set_direction(new_direction: Vector2):
 	direction = new_direction.normalized()
