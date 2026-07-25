@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="3_8q2ri"]
 [ext_resource type="Script" uid="uid://bhfjhwi6okwue" path="res://Scenes/score_label.gd" id="4_6j5ir"]
 [ext_resource type="PackedScene" uid="uid://bfesun4rqhiis" path="res://Scenes/UI/PauseMenu/options_pause_menu.tscn" id="6_bb2iq"]
+[ext_resource type="AudioStream" uid="uid://ckagh2jekbnkq" path="res://Assets/Music/CowboyGameSong.mp3" id="7_18r40"]
 
 [node name="MainGame" type="Node2D" unique_id=2137632005 node_paths=PackedStringArray("current_level", "anim_player")]
 script = ExtResource("1_l756w")
@@ -31,6 +32,13 @@ script = ExtResource("4_6j5ir")
 [node name="OptionsPauseMenu" parent="CanvasLayer" unique_id=1607701552 instance=ExtResource("6_bb2iq")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2079942157]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=808247845]
+stream = ExtResource("7_18r40")
+volume_db = -20.0
+autoplay = true
+bus = &"music"
+parameters/looping = true
 
 [connection signal="hide_options" from="CanvasLayer/PauseMenu" to="CanvasLayer/OptionsPauseMenu" method="hide_options"]
 [connection signal="show_options" from="CanvasLayer/PauseMenu" to="CanvasLayer/OptionsPauseMenu" method="show_options"]

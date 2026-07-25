@@ -6,11 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_eyk4y"]
 [ext_resource type="PackedScene" uid="uid://cji6hd7veljn5" path="res://Scenes/Objects/Breakables/target.tscn" id="6_6ul6u"]
 [ext_resource type="PackedScene" uid="uid://cxyncv5q6w7w6" path="res://Scenes/Objects/Key.tscn" id="6_tgbef"]
-[ext_resource type="Script" uid="uid://cijui2jo4xy8a" path="res://Scripts/Environmental/death_zone.gd" id="7_ca13c"]
+[ext_resource type="PackedScene" uid="uid://dwigns85xyesy" path="res://Scenes/Objects/Spikes.tscn" id="8_j7gvy"]
 [ext_resource type="PackedScene" uid="uid://gs71ss565tgx" path="res://Scenes/Objects/LockBox.tscn" id="8_ustea"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_40fn5"]
-size = Vector2(297.5, 35)
 
 [node name="Lvl08" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_i0hrf")
@@ -71,15 +68,9 @@ position = Vector2(-56, -88)
 [node name="Key" parent="." unique_id=1777878280 instance=ExtResource("6_tgbef")]
 position = Vector2(-2, -93)
 
-[node name="Spikes" type="Area2D" parent="." unique_id=1099671354]
-position = Vector2(-60, 133)
-script = ExtResource("7_ca13c")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes" unique_id=392881858]
-position = Vector2(59.25, 14)
-shape = SubResource("RectangleShape2D_40fn5")
-
 [node name="LockBox" parent="." unique_id=1504117620 instance=ExtResource("8_ustea")]
 position = Vector2(192, 16)
 
-[connection signal="body_entered" from="Spikes" to="Spikes" method="_on_body_entered"]
+[node name="Spikes" parent="." unique_id=758327182 instance=ExtResource("8_j7gvy")]
+position = Vector2(0, 120)
+scale = Vector2(10, 1)

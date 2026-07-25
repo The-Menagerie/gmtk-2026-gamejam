@@ -7,6 +7,8 @@ const BOULDER_TILE_COORDS := Vector2i(3, 0)
 const CRATE_SCENE := preload("res://Scenes/Objects/Breakables/crate.tscn")
 const BOULDER_SCENE := preload("res://Scenes/Objects/Boulder.tscn")
 
+@onready var break_audio: AudioStreamPlayer = $Break
+
 func _ready() -> void:
 	add_to_group("rope")
 
@@ -30,6 +32,7 @@ func cut_along_segment(segment_start: Vector2, segment_end: Vector2, cut_toleran
 
 func _break_all_rope() -> void:
 	var parent_node: Node = get_parent()
+	_play_break_sound(parent_node)
 	var cells_to_break: Array[Vector2i] = get_used_cells()
 	for cell: Vector2i in cells_to_break:
 		_spawn_hanging_object_for_cell(parent_node, cell)
@@ -135,3 +138,16 @@ func _get_cell_size_local() -> Vector2:
 	var width: float = absf(right.x - origin.x)
 	var height: float = absf(down.y - origin.y)
 	return Vector2(maxf(width, 1.0), maxf(height, 1.0))
+
+func _play_break_sound(parent_node: Node) -> void:
+	if not is_instance_valid(break_audio) or break_audio.stream == null:
+		return
+	if parent_node == null:
+		return
+
+	var detached_audio := AudioStreamPlayer.new()
+	detached_audio.stream = break_audio.stream
+	detached_audio.bus = break_audio.bus
+	parent_node.add_child(detached_audio)
+	detached_audio.finished.connect(detached_audio.queue_free)
+	detached_audio.play()

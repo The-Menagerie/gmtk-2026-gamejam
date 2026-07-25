@@ -5,11 +5,8 @@
 [ext_resource type="TileSet" uid="uid://i28d0rfrfnfq" path="res://Assets/Tilesets/desert_tileset.tres" id="5_e0u56"]
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="6_7daew"]
 [ext_resource type="PackedScene" uid="uid://cji6hd7veljn5" path="res://Scenes/Objects/Breakables/target.tscn" id="6_k2w3w"]
-[ext_resource type="Script" uid="uid://cijui2jo4xy8a" path="res://Scripts/Environmental/death_zone.gd" id="7_6y3mt"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="7_el44a"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_40fn5"]
-size = Vector2(191, 35)
+[ext_resource type="PackedScene" uid="uid://dwigns85xyesy" path="res://Scenes/Objects/Spikes.tscn" id="7_i0hrf"]
 
 [node name="Lvl07" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_c6t7b")
@@ -60,12 +57,6 @@ position = Vector2(0, -16)
 [node name="Target" parent="." unique_id=1501267980 instance=ExtResource("6_k2w3w")]
 position = Vector2(-133, -3)
 
-[node name="Spikes" type="Area2D" parent="." unique_id=1099671354]
-position = Vector2(-60, 133)
-script = ExtResource("7_6y3mt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes" unique_id=392881858]
-position = Vector2(6, 14)
-shape = SubResource("RectangleShape2D_40fn5")
-
-[connection signal="body_entered" from="Spikes" to="Spikes" method="_on_body_entered"]
+[node name="Spikes" parent="." unique_id=758327182 instance=ExtResource("7_i0hrf")]
+position = Vector2(-67, 116)
+scale = Vector2(10, 1)
