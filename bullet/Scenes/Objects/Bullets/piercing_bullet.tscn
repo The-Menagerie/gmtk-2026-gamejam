@@ -26,3 +26,4 @@ shape = SubResource("RectangleShape2D_fb7ps")
 
 [node name="RicochetAudio" type="AudioStreamPlayer" parent="." unique_id=91885689]
 stream = ExtResource("3_3a744")
+bus = &"sfx"
