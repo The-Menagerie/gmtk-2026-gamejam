@@ -30,7 +30,7 @@ position = Vector2(-118, -28)
 position = Vector2(0, -34)
 zoom = Vector2(5, 5)
 limit_left = -416
-limit_top = -175
+limit_top = -195
 limit_right = 432
 
 [node name="AbyssLayer" type="TileMapLayer" parent="." unique_id=818189208]
