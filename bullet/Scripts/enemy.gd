@@ -23,6 +23,7 @@ const DEATH_SOUND = preload("res://Assets/SoundEffects/EnemyDeath.wav")
 const DEATH_ANIMATION_DURATION := 0.4
 
 var is_dying := false
+var knockedback := false
 var facing_direction : float = 1.0
 var patrol_direction : float = 1.0
 var is_patrolling := false
@@ -33,7 +34,6 @@ var fire_timer : float = 0.0
 var has_played_alert := false
 var rng := RandomNumberGenerator.new()
 var carried_drop: Node2D
-var knockedback := false
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree["parameters/playback"]
@@ -86,7 +86,17 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	_check_crush_overlaps()
-
+	
+	if knockedback:
+		if not is_on_floor():
+			velocity.y += gravity/5 * delta
+		else:
+			velocity.y = 0.0
+		if velocity.x > 0:
+			velocity.x = velocity.x * (1-knockback_drag)
+		if velocity.length() < 20:
+			knockedback = false
+			
 	if not is_in_combat and is_on_wall() and is_patrolling:
 		patrol_direction = -sign(velocity.x) if velocity.x != 0.0 else -patrol_direction
 		facing_direction = patrol_direction
