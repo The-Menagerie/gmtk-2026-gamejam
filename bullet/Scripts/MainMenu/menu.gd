@@ -3,7 +3,7 @@ extends Control
 func start_button_pressed() -> void:
 	$WoodenBlock.play()
 	await $WoodenBlock.finished
-	get_tree().change_scene_to_file("res://Scenes/UI/MainMenu/newGame.tscn")
+	get_tree().change_scene_to_file("res://Scenes/main_game.tscn")
 
 func options_button_pressed() -> void:
 	$WoodenBlock.play()
