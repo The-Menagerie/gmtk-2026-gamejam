@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bjavlvrmxi754" path="res://Scripts/Menus/PauseMenu/pause_menu.gd" id="1_t3nwl"]
 [ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="1_wtndc"]
 [ext_resource type="AudioStream" uid="uid://bv3is2xrfaykc" path="res://Assets/SoundEffects/WoodenBlock.wav" id="2_bkcxk"]
+[ext_resource type="Texture2D" uid="uid://dys12lbnmdiwc" path="res://Assets/Images/UI/PauseMenu.png" id="4_2mkgl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t3nwl"]
 shader = ExtResource("1_2ts85")
@@ -123,9 +124,27 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="NinePatchRect" type="NinePatchRect" parent="PauseContainer" unique_id=423812023]
+layout_mode = 2
+texture = ExtResource("4_2mkgl")
+region_rect = Rect2(0, 0, 100, 100)
+patch_margin_left = 20
+patch_margin_top = 35
+patch_margin_right = 20
+patch_margin_bottom = 35
+
 [node name="ButtonContainer" type="VBoxContainer" parent="PauseContainer" unique_id=467719032]
 layout_mode = 2
-theme_override_constants/separation = 100
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="PauseContainer/ButtonContainer" unique_id=890038342]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_wtndc")
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Resume" type="Button" parent="PauseContainer/ButtonContainer" unique_id=1650983899]
 layout_mode = 2
