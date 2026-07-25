@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var damage : float = 10.0
 @export var max_bounces : int = 3
 @export var recoil_multiplier: float = 1.0
+@export var rope_pass_through_distance : float = 6.0
 
 var direction : Vector2 = Vector2.RIGHT
 var area_2d: Area2D
@@ -19,6 +20,12 @@ func _ready():
 
 func _physics_process(delta):
 	velocity = direction * speed
+	var next_position: Vector2 = global_position + velocity * delta
+	if _try_cut_rope_between(global_position, next_position):
+		global_position = next_position
+		rotation = direction.angle()
+		return
+
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		if _try_damage_collider(collision.get_collider()):
@@ -94,3 +101,11 @@ func _confirm_bounce(collision: KinematicCollision2D) -> bool:
 			if not data.get_custom_data("bullets_bounce"):
 				return false
 	return true
+
+func _try_cut_rope_between(segment_start: Vector2, segment_end: Vector2) -> bool:
+	var ropes: Array[Node] = get_tree().get_nodes_in_group("rope")
+	for rope: Node in ropes:
+		if rope.has_method("cut_along_segment") and rope.cut_along_segment(segment_start, segment_end):
+			return true
+
+	return false

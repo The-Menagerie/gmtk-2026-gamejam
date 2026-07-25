@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bpjnih2vfqndv" path="res://Scenes/Objects/Breakables/template_breakable.tscn" id="3_prx6f"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_x1lrc"]
 [ext_resource type="Texture2D" uid="uid://053bcm4syd57" path="res://Assets/Tilesets/StrangeCowboy/Decorations/DecorationSheet.png" id="6_hlvb5"]
+[ext_resource type="PackedScene" uid="uid://cjv7soqfoej7" path="res://Scenes/Objects/Rope.tscn" id="7_adiug"]
 
 [node name="Tut01" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_rp8l2")
@@ -69,3 +70,6 @@ texture = ExtResource("6_hlvb5")
 hframes = 4
 vframes = 3
 frame = 4
+
+[node name="Rope" parent="." unique_id=602890189 instance=ExtResource("7_adiug")]
+tile_map_data = PackedByteArray("AAAAAP7/AAACAAIAAAAAAP3/AAABAAIAAAAAAPz/AAABAAIAAAAAAPv/AAABAAEAAAABAPv/AAAAAAEAAAACAPv/AAAAAAEAAAADAPv/AAAAAAEAAAAEAPv/AAAAAAEAAAAFAPv/AAAAAAEAAAAGAPv/AAACAAEAAAAGAPz/AAABAAIAAAAGAP3/AAABAAIAAAAGAP7/AAADAAAAAAA=")
