@@ -33,6 +33,7 @@ var fire_timer : float = 0.0
 var has_played_alert := false
 var rng := RandomNumberGenerator.new()
 var carried_drop: Node2D
+var knockedback := false
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree["parameters/playback"]
@@ -43,6 +44,7 @@ var carried_drop: Node2D
 @onready var enemy_shotgun: Node2D = $EnemyShotgun
 @onready var player_target: Node2D = _find_player()
 @onready var alert_audio: AudioStreamPlayer = $Alert
+@onready var hit_timer: Timer = $HitTimer
 
 func _ready():
 	add_to_group("enemy")
@@ -59,6 +61,8 @@ func _ready():
 	_start_idle_phase()
 	_update_animation_parameters()
 	_pick_animation_state()
+	if is_instance_valid(hit_timer):
+		hit_timer.timeout.connect(_on_hit_timer_timeout)
 
 func _physics_process(delta):
 	if is_dying:
@@ -372,3 +376,6 @@ func _check_crush_overlaps() -> void:
 		if body is Node and body.is_in_group("crush_object") and body.has_method("can_crush_enemy") and body.can_crush_enemy():
 			handle_death()
 			return
+
+func _on_hit_timer_timeout() -> void:
+	knockedback = false
