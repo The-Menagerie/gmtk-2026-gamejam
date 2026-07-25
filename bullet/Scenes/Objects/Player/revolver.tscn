@@ -11,6 +11,9 @@ texture = ExtResource("1_yoho7")
 hframes = 4
 vframes = 2
 
+[node name="Muzzle" type="Marker2D" parent="." unique_id=117420901]
+position = Vector2(11, -6)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1239506881]
 stream = ExtResource("2_sx0yf")
 bus = &"sfx"

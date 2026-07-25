@@ -84,3 +84,23 @@ func _disable_collisions() -> void:
 	if is_instance_valid(hitbox_component):
 		hitbox_component.set_deferred("monitoring", false)
 		hitbox_component.set_deferred("monitorable", false)
+
+func stabilize_after_swap(destination: Vector2, rotation_radians: float = 0.0) -> void:
+	freeze = true
+	sleeping = true
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0.0
+	global_position = destination
+	rotation = rotation_radians
+	_finish_swap_stabilization()
+
+func _finish_swap_stabilization() -> void:
+	await get_tree().physics_frame
+	global_position = global_position
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0.0
+	await get_tree().physics_frame
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0.0
+	sleeping = true
+	freeze = false
