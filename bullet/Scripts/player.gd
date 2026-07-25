@@ -16,6 +16,7 @@ const BULLET_SCENE = preload("res://Scenes/Objects/Bullets/bullet.tscn")
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree["parameters/playback"]
 @onready var revolver: Node2D = $Revolver
+@onready var muzzle: Marker2D = $Revolver/Muzzle
 @onready var gunshot_audio: AudioStreamPlayer = $Revolver/AudioStreamPlayer
 
 var facing_direction : float = 1.0
@@ -93,12 +94,21 @@ func update_revolver_recoil(delta):
 func fire_bullet(bullet_scene: PackedScene):
 	#if Input.is_action_just_pressed("left_click"):
 	var bullet = bullet_scene.instantiate()
-	get_parent().add_child(bullet)
 	bullet.shooter = self
-	bullet.global_position = revolver.global_position
-	bullet.add_collision_exception_with(self)
+	if bullet.has_method("capture_swap_origin"):
+		bullet.capture_swap_origin(self)
 	var aim_vector = get_global_mouse_position() - global_position
+	revolver.add_child(bullet)
+	bullet.position = muzzle.position
+	var world_parent := get_parent()
+	if world_parent != null:
+		revolver.remove_child(bullet)
+		world_parent.add_child(bullet)
+		bullet.global_position = muzzle.global_position
+	bullet.add_collision_exception_with(self)
 	bullet.set_direction(aim_vector)
+	if bullet.has_method("arm"):
+		bullet.arm()
 	apply_revolver_kickback(aim_vector)
 	if "recoil_multiplier" in bullet:
 		apply_player_kickback(aim_vector, bullet.recoil_multiplier)
