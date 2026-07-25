@@ -17,12 +17,14 @@ position = Vector2(-109, -98)
 
 [node name="Enemy2" parent="." unique_id=1083072495 instance=ExtResource("2_i50gy")]
 position = Vector2(113, -97)
+starting_direction = -1.0
 
 [node name="Enemy3" parent="." unique_id=1321952798 instance=ExtResource("2_i50gy")]
-position = Vector2(110, -20)
+position = Vector2(94, -20)
+starting_direction = -1.0
 
-[node name="Enemy4" parent="." unique_id=427782974 instance=ExtResource("2_i50gy")]
-position = Vector2(-107, -21)
+[node name="Enemy4" parent="." unique_id=1626152427 instance=ExtResource("2_i50gy")]
+position = Vector2(-118, -28)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=288009827]
 position = Vector2(0, -34)

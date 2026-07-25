@@ -41,7 +41,7 @@ tile_set = ExtResource("3_0hn83")
 
 [node name="Player" parent="." unique_id=430874862 instance=ExtResource("4_jbxq0")]
 position = Vector2(1, -19)
-vertical_recoil_scale = 0.45
+vertical_recoil_scale = 0.75
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=288009827]
 position = Vector2(-1, -15)
@@ -58,7 +58,7 @@ limit_right = 432
 position = Vector2(0, -16)
 
 [node name="Key" parent="." unique_id=1777878280 instance=ExtResource("6_ervr4")]
-position = Vector2(-155, -105)
+position = Vector2(-69, -105)
 
 [node name="LockBox" parent="." unique_id=1504117620 instance=ExtResource("7_0hn83")]
 position = Vector2(136, -16)
