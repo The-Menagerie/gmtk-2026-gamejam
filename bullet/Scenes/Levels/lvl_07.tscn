@@ -10,7 +10,7 @@
 
 [node name="Lvl07" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_c6t7b")
-targets = [NodePath("Enemy3"), NodePath("Enemy4"), NodePath("Target")]
+targets = [NodePath("Enemy3"), NodePath("Enemy4"), NodePath("Target"), NodePath("Target2"), NodePath("Target3"), NodePath("Target5"), NodePath("Target4"), NodePath("Target7"), NodePath("Target6"), NodePath("Target8")]
 next_level_path = "res://Scenes/Levels/lvl_08.tscn"
 metadata/_custom_type_script = "uid://dw8thabw4ialp"
 
@@ -55,8 +55,29 @@ bullet_pattern = Array[int]([2, 2, 2, 2, 2, 2])
 position = Vector2(0, -16)
 
 [node name="Target" parent="." unique_id=1501267980 instance=ExtResource("6_k2w3w")]
-position = Vector2(-133, -3)
+position = Vector2(-133, -4)
 
 [node name="Spikes" parent="." unique_id=758327182 instance=ExtResource("7_i0hrf")]
 position = Vector2(-67, 116)
 scale = Vector2(10, 1)
+
+[node name="Target2" parent="." unique_id=1162422827 instance=ExtResource("6_k2w3w")]
+position = Vector2(87, -59)
+
+[node name="Target3" parent="." unique_id=1376302274 instance=ExtResource("6_k2w3w")]
+position = Vector2(103, -86)
+
+[node name="Target5" parent="." unique_id=1144941288 instance=ExtResource("6_k2w3w")]
+position = Vector2(118, -77)
+
+[node name="Target4" parent="." unique_id=1838499535 instance=ExtResource("6_k2w3w")]
+position = Vector2(103, -68)
+
+[node name="Target7" parent="." unique_id=1432660441 instance=ExtResource("6_k2w3w")]
+position = Vector2(88, -76)
+
+[node name="Target6" parent="." unique_id=393120781 instance=ExtResource("6_k2w3w")]
+position = Vector2(118, -60)
+
+[node name="Target8" parent="." unique_id=1607082432 instance=ExtResource("6_k2w3w")]
+position = Vector2(103, -51)
