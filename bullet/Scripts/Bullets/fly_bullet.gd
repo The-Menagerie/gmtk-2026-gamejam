@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed : float = 500.0
 @export var damage : float = 10.0
 @export var max_bounces : int = 3
-@export var recoil_multiplier: float = 3.0
+@export var recoil_multiplier: float = 2
 @export var rope_pass_through_distance : float = 6.0
 
 var direction : Vector2 = Vector2.RIGHT
