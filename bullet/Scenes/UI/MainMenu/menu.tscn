@@ -103,7 +103,6 @@ text = "Exit"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=16704199]
 stream = ExtResource("4_7udck")
 volume_db = -10.0
-autoplay = true
 bus = &"music"
 
 [connection signal="pressed" from="ButtonContainer/Start" to="." method="start_button_pressed"]
