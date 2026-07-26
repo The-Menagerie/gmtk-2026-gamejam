@@ -10,6 +10,7 @@ signal target_destroyed(target)
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D2
 @onready var hitbox_component: Area2D = $HitboxComponent
 @onready var hitbox_collision: CollisionShape2D = $HitboxComponent/CollisionShape2D
+@onready var break_audio: AudioStreamPlayer = $Break
 
 var is_dying := false
 var scene_reset_queued := false
@@ -27,6 +28,7 @@ func handle_death() -> void:
 	is_dying = true
 	freeze = true
 	_disable_collisions()
+	_play_break_sound()
 	target_destroyed.emit(self)
 
 	var fade_tween = create_tween()
@@ -84,6 +86,21 @@ func _disable_collisions() -> void:
 	if is_instance_valid(hitbox_component):
 		hitbox_component.set_deferred("monitoring", false)
 		hitbox_component.set_deferred("monitorable", false)
+
+func _play_break_sound() -> void:
+	if not is_instance_valid(break_audio) or break_audio.stream == null:
+		return
+
+	var owner := get_parent()
+	if owner == null:
+		return
+
+	var detached_audio := AudioStreamPlayer.new()
+	detached_audio.stream = break_audio.stream
+	detached_audio.bus = break_audio.bus
+	owner.add_child(detached_audio)
+	detached_audio.finished.connect(detached_audio.queue_free)
+	detached_audio.play()
 
 func stabilize_after_swap(destination: Vector2, rotation_radians: float = 0.0) -> void:
 	freeze = true

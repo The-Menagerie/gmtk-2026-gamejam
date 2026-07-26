@@ -6,6 +6,7 @@ extends Node2D
 @onready var unlock_area: Area2D = $UnlockArea
 @onready var unlock_collision: CollisionShape2D = $UnlockArea/CollisionShape2D
 @onready var wall_collision: CollisionShape2D = $WallBody/CollisionShape2D
+@onready var unlock_audio: AudioStreamPlayer = get_node_or_null("Unlock")
 
 var is_unlocked := false
 
@@ -22,6 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 	is_unlocked = true
 	_disable_collisions()
+	_play_unlock_sound()
 	var fade_tween = create_tween()
 	fade_tween.tween_property(self, "modulate:a", 0.0, fade_duration)
 	await fade_tween.finished
@@ -37,3 +39,18 @@ func _disable_collisions() -> void:
 	if is_instance_valid(unlock_area):
 		unlock_area.set_deferred("monitoring", false)
 		unlock_area.set_deferred("monitorable", false)
+
+func _play_unlock_sound() -> void:
+	if not is_instance_valid(unlock_audio) or unlock_audio.stream == null:
+		return
+
+	var parent_node := get_parent()
+	if parent_node == null:
+		return
+
+	var detached_audio := AudioStreamPlayer.new()
+	detached_audio.stream = unlock_audio.stream
+	detached_audio.bus = unlock_audio.bus
+	parent_node.add_child(detached_audio)
+	detached_audio.finished.connect(detached_audio.queue_free)
+	detached_audio.play()

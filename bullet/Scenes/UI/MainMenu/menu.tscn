@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://s4yejtxjejiq" path="res://Scripts/MainMenu/menu.gd" id="1_yv36r"]
 [ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="2_fxewk"]
 [ext_resource type="AudioStream" uid="uid://bv3is2xrfaykc" path="res://Assets/SoundEffects/WoodenBlock.wav" id="3_748jn"]
+[ext_resource type="AudioStream" uid="uid://b3y3f71hn07jt" path="res://Assets/Music/CowboyMenuSong.mp3" id="4_7udck"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4osx"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -98,6 +99,13 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_r4osx")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_r4osx")
 theme_override_styles/focus = SubResource("StyleBoxFlat_r4osx")
 text = "Exit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=16704199]
+stream = ExtResource("4_7udck")
+volume_db = -10.0
+autoplay = true
+bus = &"music"
+parameters/looping = true
 
 [connection signal="pressed" from="ButtonContainer/Start" to="." method="start_button_pressed"]
 [connection signal="pressed" from="ButtonContainer/Options" to="." method="options_button_pressed"]

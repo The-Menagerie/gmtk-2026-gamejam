@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://cxyncv5q6w7w6"]
 
 [ext_resource type="Texture2D" uid="uid://dmoqd3xlabhd8" path="res://Assets/Images/Key.png" id="1_f5qjs"]
-[ext_resource type="Script" path="res://Scripts/key.gd" id="2_f0p0g"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_v3w8b"]
-radius = 10.0
+[ext_resource type="Script" uid="uid://hxsguhcsg4vq" path="res://Scripts/key.gd" id="2_f0p0g"]
+[ext_resource type="AudioStream" uid="uid://cppvur77kbn36" path="res://Assets/SoundEffects/Key Pick Up.wav" id="3_hqtop"]
 
 [sub_resource type="Animation" id="Animation_c40qh"]
 resource_name = "Key"
@@ -45,6 +43,8 @@ _data = {
 &"RESET": SubResource("Animation_hqtop")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3w8b"]
+
 [node name="Key" type="Node2D" unique_id=1777878280]
 script = ExtResource("2_f0p0g")
 
@@ -60,3 +60,8 @@ libraries/ = SubResource("AnimationLibrary_nffe2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=1783227940]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_v3w8b")
+
+[node name="PickUp" type="AudioStreamPlayer" parent="." unique_id=1084724284]
+stream = ExtResource("3_hqtop")
+volume_db = 15.0
+bus = &"sfx"

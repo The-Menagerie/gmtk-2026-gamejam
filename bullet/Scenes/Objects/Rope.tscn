@@ -2,7 +2,13 @@
 
 [ext_resource type="Script" uid="uid://btqfexsvtoip2" path="res://Scripts/rope_tilemap.gd" id="1_rope_script"]
 [ext_resource type="TileSet" uid="uid://u8ygmr6mw15k" path="res://Assets/Tilesets/rope_tileset.tres" id="2_rope_tileset"]
+[ext_resource type="AudioStream" uid="uid://cl0hhsugnvhr0" path="res://Assets/SoundEffects/RopeBreak.wav" id="3_py1n4"]
 
 [node name="Rope" type="TileMapLayer" unique_id=602890189]
 tile_set = ExtResource("2_rope_tileset")
 script = ExtResource("1_rope_script")
+
+[node name="Break" type="AudioStreamPlayer" parent="." unique_id=1524292947]
+stream = ExtResource("3_py1n4")
+volume_db = -5.0
+bus = &"sfx"

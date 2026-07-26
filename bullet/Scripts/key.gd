@@ -6,6 +6,7 @@ signal picked_up(by: Node2D)
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var pickup_area: Area2D = $PickupArea
+@onready var pickup_audio: AudioStreamPlayer = get_node_or_null("PickUp")
 
 var is_collected := false
 var is_carried := false
@@ -27,6 +28,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("collect_key"):
 		body.collect_key()
 	picked_up.emit(body)
+	_play_pickup_sound()
 	queue_free()
 
 func set_carried_state(carried: bool) -> void:
@@ -43,3 +45,18 @@ func _update_pickup_state() -> void:
 	if is_instance_valid(pickup_area):
 		pickup_area.set_deferred("monitoring", not is_carried)
 		pickup_area.set_deferred("monitorable", not is_carried)
+
+func _play_pickup_sound() -> void:
+	if not is_instance_valid(pickup_audio) or pickup_audio.stream == null:
+		return
+
+	var parent_node := get_parent()
+	if parent_node == null:
+		return
+
+	var detached_audio := AudioStreamPlayer.new()
+	detached_audio.stream = pickup_audio.stream
+	detached_audio.bus = pickup_audio.bus
+	parent_node.add_child(detached_audio)
+	detached_audio.finished.connect(detached_audio.queue_free)
+	detached_audio.play()

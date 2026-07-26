@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bpjnih2vfqndv" path="res://Scenes/Objects/Breakables/template_breakable.tscn" id="1_ulmfv"]
 [ext_resource type="Texture2D" uid="uid://ck7cndyncv08a" path="res://Assets/Tilesets/StrangeCowboy/Items/Target.png" id="2_uko18"]
+[ext_resource type="AudioStream" uid="uid://dcd1ahq5sro5l" path="res://Assets/SoundEffects/CeramicBreak.wav" id="3_5adis"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f1por"]
 radius = 8.062258
@@ -22,3 +23,6 @@ shape = SubResource("CircleShape2D_f1por")
 
 [node name="CollisionShape2D" parent="HitboxComponent" parent_id_path=PackedInt32Array(474203754) index="0" unique_id=396389261]
 shape = SubResource("CircleShape2D_gauf2")
+
+[node name="Break" parent="." index="5" unique_id=1851595839]
+stream = ExtResource("3_5adis")
