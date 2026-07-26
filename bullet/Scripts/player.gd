@@ -17,6 +17,7 @@ const BULLET_SCENE = preload("res://Scenes/Objects/Bullets/bullet.tscn")
 @onready var revolver: Node2D = $Revolver
 @onready var muzzle: Marker2D = $Revolver/Muzzle
 @onready var gunshot_audio: AudioStreamPlayer = $Revolver/AudioStreamPlayer
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 var facing_direction : float = 1.0
 var recoil_offset : Vector2 = Vector2.ZERO
@@ -53,10 +54,10 @@ func _physics_process(delta):
 
 	move_and_slide()
 	if flying:
-		ram_through(get_slide_collision_count())
+		ram_through()
 		if is_on_floor():
 			self.modulate = Color(1,1,1,1)
-			flying = false
+			_set_flying_state(false)
 	_push_boulders()
 	update_animation_parameters()
 	update_revolver_aim()
@@ -113,8 +114,7 @@ func fire_bullet(bullet_scene: PackedScene):
 	if "recoil_multiplier" in bullet:
 		apply_player_kickback(aim_vector, bullet.recoil_multiplier)
 		if bullet.recoil_multiplier >= 1.5:
-			self.flying = true
-			self.modulate = Color(0.5,0.5,1,1)
+			_set_flying_state(true)
 	else:
 		apply_player_kickback(aim_vector)
 	gunshot_audio.play()
@@ -170,15 +170,61 @@ func pick_new_state():
 	else:
 		state_machine.travel("Idle")
 
-func ram_through(collider_count: int) -> void:
-	for i in collider_count:
+func _set_flying_state(enabled: bool) -> void:
+	if flying == enabled:
+		return
+
+	flying = enabled
+	modulate = Color(0.5,0.5,1,1) if enabled else Color(1,1,1,1)
+
+	for node in get_tree().get_nodes_in_group("breakable"):
+		if node.has_method("set_player_collision_enabled"):
+			node.set_player_collision_enabled(not enabled, self)
+
+func ram_through() -> void:
+	var hit_areas: Dictionary = {}
+
+	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		if collider is breakable or collider.is_in_group("enemy"):
-			var collider_children = collider.find_children("*", "Area2D")[0]
-			#if collision.get_parent().is_in_group("enemy"):
-			var attack = Attack.new()
-			attack.attack_damage = 1.0
-			collider_children.damage(attack)
-					
-	
+		_register_ram_target(collision.get_collider(), hit_areas)
+
+	for area in _get_fly_overlap_hitboxes():
+		_register_ram_target(area, hit_areas)
+
+	for area in hit_areas.keys():
+		var attack := Attack.new()
+		attack.attack_damage = 1.0
+		area.damage(attack)
+
+func _get_fly_overlap_hitboxes() -> Array[Area2D]:
+	var results: Array[Area2D] = []
+	if not is_instance_valid(collision_shape) or collision_shape.shape == null:
+		return results
+
+	var query := PhysicsShapeQueryParameters2D.new()
+	query.shape = collision_shape.shape
+	query.transform = collision_shape.global_transform
+	query.exclude = [self]
+	query.collide_with_bodies = false
+	query.collide_with_areas = true
+
+	for result in get_world_2d().direct_space_state.intersect_shape(query, 16):
+		var collider = result.get("collider")
+		if collider is Area2D and collider.is_in_group("hitbox"):
+			results.append(collider)
+
+	return results
+
+func _register_ram_target(collider: Variant, hit_areas: Dictionary) -> void:
+	if collider == null:
+		return
+
+	if collider is Area2D and collider.is_in_group("hitbox"):
+		hit_areas[collider] = true
+		return
+
+	if collider is Node and (collider is breakable or collider.is_in_group("enemy")):
+		for child in collider.find_children("*", "Area2D", true, false):
+			if child is Area2D and child.is_in_group("hitbox"):
+				hit_areas[child] = true
+				return

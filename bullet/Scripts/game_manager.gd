@@ -8,6 +8,7 @@ signal level_changed(level_path: String)
 
 var is_bullet_time_active := false
 var is_level_reset_queued := false
+@onready var music_player: AudioStreamPlayer = $AudioStreamPlayer
 #@onready var score_label: Label = $CanvasLayer/ScoreLabel
 
 #func _ready():
@@ -15,6 +16,10 @@ var is_level_reset_queued := false
 
 func _ready():
 	Engine.time_scale = 1.0
+	if is_instance_valid(music_player):
+		music_player.finished.connect(_on_music_finished)
+		if not music_player.playing:
+			music_player.play()
 	_emit_level_changed()
 
 func _process(_delta):
@@ -73,3 +78,7 @@ func _emit_level_changed() -> void:
 		return
 
 	level_changed.emit(current_level.scene_file_path)
+
+func _on_music_finished() -> void:
+	if is_instance_valid(music_player):
+		music_player.play()
