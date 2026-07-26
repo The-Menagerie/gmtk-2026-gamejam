@@ -65,6 +65,12 @@ func _ready():
 	if is_instance_valid(hit_timer):
 		hit_timer.timeout.connect(_on_hit_timer_timeout)
 
+func set_home_position_to_current() -> void:
+	home_position = global_position
+	if patrol_direction == 0.0:
+		patrol_direction = starting_direction if starting_direction != 0.0 else 1.0
+	facing_direction = patrol_direction
+
 func _physics_process(delta):
 	if is_dying:
 		return

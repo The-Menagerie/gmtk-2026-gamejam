@@ -113,15 +113,14 @@ func _try_damage_hitbox(area: Area2D) -> bool:
 	var shooter_node := shooter as Node2D
 	var target_node := swap_target as Node2D
 	var shooter_metrics := _get_swap_metrics(shooter_node)
-	var source_metrics := swap_origin_metrics if has_swap_origin else shooter_metrics
 	var target_metrics := _get_swap_metrics(target_node)
 	var shooter_destination := Vector2(
 		target_metrics.collision_center.x - shooter_metrics.center_offset.x,
 		target_metrics.bottom_y - shooter_metrics.bottom_offset
 	)
 	var target_destination := Vector2(
-		source_metrics.collision_center.x - target_metrics.center_offset.x,
-		source_metrics.bottom_y - target_metrics.bottom_offset
+		shooter_metrics.collision_center.x - target_metrics.center_offset.x,
+		shooter_metrics.bottom_y - target_metrics.bottom_offset
 	)
 	if target_node is RigidBody2D:
 		target_destination = _resolve_non_overlapping_swap_destination(target_node, target_destination, [shooter_node, target_node])
@@ -132,9 +131,6 @@ func _try_damage_hitbox(area: Area2D) -> bool:
 		rigid_target.sleeping = true
 		rigid_target.linear_velocity = Vector2.ZERO
 		rigid_target.angular_velocity = 0.0
-
-	shooter_node.global_position = shooter_destination
-	_reset_swap_motion(shooter_node)
 
 	if target_node is RigidBody2D:
 		var rigid_target := target_node as RigidBody2D
@@ -149,6 +145,13 @@ func _try_damage_hitbox(area: Area2D) -> bool:
 			rigid_target.set_deferred("freeze", false)
 	else:
 		target_node.global_position = target_destination
+		_reset_swap_motion(target_node)
+
+	if target_node.has_method("set_home_position_to_current"):
+		target_node.set_home_position_to_current()
+
+	shooter_node.global_position = shooter_destination
+	_reset_swap_motion(shooter_node)
 	
 	var attack = Attack.new()
 	attack.attack_damage = damage
