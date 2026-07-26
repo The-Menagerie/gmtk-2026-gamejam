@@ -2,11 +2,13 @@ class_name LevelRoot extends Node2D
 
 @export var targets: Array[Node] = []
 @export var next_level_path: String
+@export_range(0.0, 5.0, 0.1) var next_level_delay: float = 0.4
 var next_level
 var num_targets
 var game_manager
 var has_targets = false
 var targets_left
+var is_level_transition_queued := false
 
 
 func _ready() -> void:
@@ -23,10 +25,17 @@ func _ready() -> void:
 
 
 func target_down(target:Node) -> void:
+	if is_level_transition_queued:
+		return
+
 	targets_left -= 1
 	var target_index = targets.find(target)
-	targets.remove_at(target_index)
+	if target_index >= 0:
+		targets.remove_at(target_index)
 	if targets_left <= 0:
+		is_level_transition_queued = true
+		if next_level_delay > 0.0:
+			await get_tree().create_timer(next_level_delay).timeout
 		game_manager.change_level(next_level)
 		
 		

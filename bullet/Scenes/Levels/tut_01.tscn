@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="3_4q6ua"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_x1lrc"]
 [ext_resource type="Texture2D" uid="uid://053bcm4syd57" path="res://Assets/Tilesets/StrangeCowboy/Decorations/DecorationSheet.png" id="6_hlvb5"]
+[ext_resource type="PackedScene" uid="uid://dteab80jwc6fh" path="res://Scenes/UI/Controls/Full Controls.tscn" id="7_adiug"]
 
 [node name="Tut01" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_rp8l2")
@@ -49,6 +50,8 @@ vertical_recoil_scale = 0.45
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=668499867]
 
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_x1lrc")]
+
+[node name="FullControls" parent="CanvasLayer" unique_id=1208426789 instance=ExtResource("7_adiug")]
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
 position = Vector2(0, -16)

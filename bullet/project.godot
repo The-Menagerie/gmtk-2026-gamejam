@@ -8,6 +8,22 @@
 
 config_version=5
 
+[addons]
+
+retrograde_image/configs={
+"res://addons/retrograde_image/retrograde-image.json": {
+"ignore_output_config_path": false,
+"ignore_output_path": false,
+"inputs": Array[String](["Keyboard"]),
+"output_path": "res://Assets",
+"outputs": Array[String](["Normal", "Pressed", "Horizontal Animation", "Vertical Animation", "Animation Frames", "Horizontal Normal Group Sheets", "Horizontal Pressed Group Sheets", "Horizontal Animation Group Sheets", "Vertical Normal Group Sheets", "Vertical Pressed Group Sheets", "Vertical Animation Group Sheets", "Horiztonal Normal Sheet", "Horizontal Pressed Sheet", "Horizontal Animation Sheet", "Vertical Normal Sheet", "Vertical Pressed Sheet", "Vertical Animation Sheet", "Horizontal Animation Frame Sheets", "Vertical Animation Frame Sheets"]),
+"padding": -1.0,
+"theme": "Default"
+}
+}
+retrograde_image/selected_config_path="res://addons/retrograde_image/retrograde-image.json"
+retrograde_image/h_split_offsets=PackedInt32Array()
+
 [application]
 
 config/name="Bullet"
@@ -31,6 +47,10 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/retrograde_image/plugin.cfg")
 
 [input]
 
