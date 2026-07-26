@@ -12,7 +12,7 @@
 script = ExtResource("1_l756w")
 current_level = NodePath("Tut01")
 anim_player = NodePath("AnimationPlayer")
-level_fade_in_duration = 1.5
+level_fade_in_duration = 1.75
 transition_text_start_scale = Vector2(2, 2)
 transition_text_end_scale = Vector2(3, 3)
 
