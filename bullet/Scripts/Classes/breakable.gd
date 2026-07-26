@@ -14,9 +14,12 @@ signal target_destroyed(target)
 
 var is_dying := false
 var scene_reset_queued := false
+var player_collision_enabled := true
+var player_collision_body: PhysicsBody2D
 
 func _ready() -> void:
 	add_to_group("crush_object")
+	add_to_group("breakable")
 	contact_monitor = true
 	max_contacts_reported = 8
 	body_entered.connect(_on_body_entered)
@@ -72,6 +75,7 @@ func _on_body_entered(body: Node) -> void:
 		return
 
 	scene_reset_queued = true
+	ScoreBus.player_died_to_crush()
 	var game_manager := get_tree().root.find_child("MainGame", true, false)
 	if game_manager != null and game_manager.has_method("reset_current_level"):
 		game_manager.reset_current_level()
@@ -86,6 +90,22 @@ func _disable_collisions() -> void:
 	if is_instance_valid(hitbox_component):
 		hitbox_component.set_deferred("monitoring", false)
 		hitbox_component.set_deferred("monitorable", false)
+
+func set_player_collision_enabled(enabled: bool, player_body: PhysicsBody2D = null) -> void:
+	player_collision_enabled = enabled
+	if is_dying:
+		return
+
+	if player_body != null:
+		player_collision_body = player_body
+
+	if not is_instance_valid(player_collision_body):
+		return
+
+	if enabled:
+		remove_collision_exception_with(player_collision_body)
+	else:
+		add_collision_exception_with(player_collision_body)
 
 func _play_break_sound() -> void:
 	if not is_instance_valid(break_audio) or break_audio.stream == null:

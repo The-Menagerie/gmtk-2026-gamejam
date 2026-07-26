@@ -278,13 +278,23 @@ func _drop_carried_item() -> void:
 	if parent == null:
 		return
 
-	var drop_global_position = carried_drop.global_position
-	remove_child(carried_drop)
-	parent.add_child(carried_drop)
-	carried_drop.global_position = drop_global_position
+	var drop_node: Node2D = carried_drop
+	var drop_global_position: Vector2 = carried_drop.global_position
+	call_deferred("_finish_drop_carried_item", drop_node, parent, drop_global_position)
 
-	if carried_drop.has_method("drop_from_carrier"):
-		carried_drop.drop_from_carrier()
+func _finish_drop_carried_item(drop_node: Node2D, parent: Node, drop_global_position: Vector2) -> void:
+	if not is_instance_valid(drop_node):
+		return
+	if parent == null or not is_instance_valid(parent):
+		return
+
+	if drop_node.get_parent() == self:
+		remove_child(drop_node)
+	parent.add_child(drop_node)
+	drop_node.global_position = drop_global_position
+
+	if drop_node.has_method("drop_from_carrier"):
+		drop_node.drop_from_carrier()
 
 func _update_combat_state():
 	var was_in_combat = is_in_combat
