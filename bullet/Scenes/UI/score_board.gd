@@ -33,4 +33,6 @@ func restart_button_pressed() -> void:
 func exit_button_pressed() -> void:
 	$"../../../../WoodenBlock".play()
 	await $WoodenBlock.finished
+	JavaScriptBridge.eval("window.close()")
 	get_tree().quit()
+	

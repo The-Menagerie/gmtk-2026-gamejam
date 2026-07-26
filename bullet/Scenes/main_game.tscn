@@ -22,8 +22,12 @@ transition_text_end_scale = Vector2(3, 3)
 layer = 10
 
 [node name="TransitionOverlay" type="ColorRect" parent="CanvasLayer" unique_id=643156338]
-offset_right = 1920.0
-offset_bottom = 1080.0
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
