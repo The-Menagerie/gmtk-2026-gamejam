@@ -4,7 +4,7 @@ signal score_update(score_change) ##Positive score change value
 signal score_loss_indicator(amount)
 
 var starting_score: int = 77777
-var score_per_shot: int = -500
+var score_per_shot: int = -250
 var score_on_enemy_bullet_hit: int = -100
 var score_on_spike_death: int = -500
 var score_on_crush_death: int = -500

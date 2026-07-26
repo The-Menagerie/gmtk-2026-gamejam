@@ -211,6 +211,7 @@ bullet_pattern = Array[int]([5, 5, 5, 5, 5, 5])
 bullets = [NodePath("alignment/BulletHolder/Bullet1"), NodePath("alignment/BulletHolder/Bullet2"), NodePath("alignment/BulletHolder/Bullet3"), NodePath("alignment/BulletHolder/Bullet4"), NodePath("alignment/BulletHolder/Bullet5"), NodePath("alignment/BulletHolder/Bullet6")]
 anim_player = NodePath("AnimationPlayer")
 cylinder_rotator = NodePath("alignment/BulletHolder")
+score_cost = 0
 
 [node name="alignment" type="Control" parent="." unique_id=509524339]
 layout_mode = 1

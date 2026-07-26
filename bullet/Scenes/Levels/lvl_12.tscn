@@ -140,7 +140,7 @@ position = Vector2(-1608, -4)
 
 [node name="Spikes2" parent="." unique_id=417028355 instance=ExtResource("8_lnpyt")]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(-500, 339)
+position = Vector2(-499, 183)
 scale = Vector2(100, 1)
 
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("10_80vj0")]
