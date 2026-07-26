@@ -26,6 +26,9 @@ func cut_along_segment(segment_start: Vector2, segment_end: Vector2, cut_toleran
 	var cut_cell: Vector2i = _find_cut_cell_along_segment(segment_start, segment_end, cut_tolerance)
 	if get_cell_source_id(cut_cell) == -1:
 		return false
+	
+	if get_cell_atlas_coords(cut_cell) == Vector2i(2,0) or get_cell_atlas_coords(cut_cell) == Vector2i(3,0):
+		return false
 
 	_break_all_rope()
 	return true
