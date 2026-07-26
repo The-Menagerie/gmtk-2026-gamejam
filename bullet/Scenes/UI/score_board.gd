@@ -31,6 +31,6 @@ func restart_button_pressed() -> void:
 		game_manager.change_level(reset_level)
 
 func exit_button_pressed() -> void:
-	$WoodenBlock.play()
+	$"../../../../WoodenBlock".play()
 	await $WoodenBlock.finished
 	get_tree().quit()
