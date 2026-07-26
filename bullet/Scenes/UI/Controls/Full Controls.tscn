@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c81gae00aibtk" path="res://Scenes/UI/Controls/RightClick.tscn" id="5_dte07"]
 [ext_resource type="PackedScene" uid="uid://bgt3mhqrf24b1" path="res://Scenes/UI/Controls/Space.tscn" id="6_sn7tf"]
 [ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="7_ie1kc"]
+[ext_resource type="PackedScene" uid="uid://smkvi17rdgy2" path="res://Scenes/UI/Controls/E.tscn" id="8_rnbr0"]
 
 [node name="FullControls" type="Control" unique_id=1208426789]
 layout_mode = 3
@@ -46,9 +47,9 @@ offset_bottom = 1021.0
 
 [node name="Right Click" parent="." unique_id=248789459 instance=ExtResource("5_dte07")]
 layout_mode = 0
-offset_left = 1771.0
+offset_left = 1732.0
 offset_top = 1021.0
-offset_right = 1771.0
+offset_right = 1732.0
 offset_bottom = 1021.0
 
 [node name="Space" parent="." unique_id=2047244580 instance=ExtResource("6_sn7tf")]
@@ -130,3 +131,10 @@ theme_override_font_sizes/font_size = 60
 text = "Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" parent="." unique_id=871972327 instance=ExtResource("8_rnbr0")]
+layout_mode = 0
+offset_left = 1823.0
+offset_top = 1021.0
+offset_right = 1823.0
+offset_bottom = 1021.0
