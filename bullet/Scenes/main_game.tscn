@@ -12,11 +12,42 @@
 script = ExtResource("1_l756w")
 current_level = NodePath("Tut01")
 anim_player = NodePath("AnimationPlayer")
+level_fade_in_duration = 1.5
+transition_text_start_scale = Vector2(2, 2)
+transition_text_end_scale = Vector2(3, 3)
 
 [node name="Tut01" parent="." unique_id=718201387 instance=ExtResource("2_bb2iq")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1763990367]
 layer = 10
+
+[node name="TransitionOverlay" type="ColorRect" parent="CanvasLayer" unique_id=643156338]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TransitionText" type="Label" parent="CanvasLayer/TransitionOverlay" unique_id=350482786]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.0
+offset_top = -52.0
+offset_right = 286.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.97, 0.9, 0.78, 1)
+theme_override_fonts/font = ExtResource("3_8q2ri")
+theme_override_font_sizes/font_size = 40
+text = "12 Minutes til Showdown"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1252689155]
 offset_left = 16.0
@@ -26,6 +57,8 @@ offset_bottom = 52.0
 theme_override_fonts/font = ExtResource("3_8q2ri")
 theme_override_font_sizes/font_size = 26
 text = "Score: 1000"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("4_6j5ir")
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1627349778 instance=ExtResource("3_0e3vx")]
