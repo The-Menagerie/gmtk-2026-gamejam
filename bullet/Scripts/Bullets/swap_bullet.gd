@@ -5,12 +5,14 @@ extends CharacterBody2D
 @export var max_bounces : int = 3
 @export var recoil_multiplier: float = 1.0
 @export var rope_pass_through_distance : float = 6.0
+@export var post_hit_cleanup_delay : float = 0.05
 
 var direction : Vector2 = Vector2.RIGHT
 var area_2d: Area2D
 var bounce_count : int = 0
 var shooter: Node
 var is_armed := false
+var has_registered_hit := false
 var swap_origin_metrics: Dictionary = {}
 var has_swap_origin := false
 
@@ -27,7 +29,7 @@ func _ready():
 		movement_collision.disabled = true
 
 func _physics_process(delta):
-	if not is_armed:
+	if not is_armed or has_registered_hit:
 		return
 
 	velocity = direction * speed
@@ -56,6 +58,9 @@ func _physics_process(delta):
 
 
 func _on_area_entered(area: Area2D):
+	if has_registered_hit:
+		return
+
 	if _try_damage_hitbox(area):
 		_finish_after_successful_hit()
 
@@ -86,6 +91,9 @@ func _finish_arming() -> void:
 	is_armed = true
 
 func _try_damage_collider(collider: Node) -> bool:
+	if has_registered_hit:
+		return false
+
 	if collider is Area2D:
 		return _try_damage_hitbox(collider)
 
@@ -96,6 +104,9 @@ func _try_damage_collider(collider: Node) -> bool:
 	return false
 
 func _try_damage_hitbox(area: Area2D) -> bool:
+	if has_registered_hit:
+		return false
+
 	if not area.is_in_group("hitbox"):
 		return false
 	
@@ -263,7 +274,20 @@ func _is_swap_destination_clear(
 	return results.is_empty()
 
 func _finish_after_successful_hit() -> void:
-	queue_free()
+	if has_registered_hit:
+		return
+
+	has_registered_hit = true
+	is_armed = false
+	velocity = Vector2.ZERO
+	if is_instance_valid(movement_collision):
+		movement_collision.set_deferred("disabled", true)
+	if is_instance_valid(area_2d):
+		area_2d.set_deferred("monitoring", false)
+		area_2d.set_deferred("monitorable", false)
+
+	var timer := get_tree().create_timer(post_hit_cleanup_delay)
+	timer.timeout.connect(queue_free)
 
 
 func _confirm_bounce(collision: KinematicCollision2D) -> bool:

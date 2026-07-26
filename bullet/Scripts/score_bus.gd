@@ -2,7 +2,7 @@ extends Node
 
 signal score_update(score_change) ##Positive score change value
 
-var starting_score: int = 777777
+var starting_score: int = 77777
 var score_per_shot: int = -500
 var score_on_enemy_bullet_hit: int = -100
 var score_on_spike_death: int = -500

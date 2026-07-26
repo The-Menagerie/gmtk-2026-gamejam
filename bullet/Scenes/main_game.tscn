@@ -39,7 +39,6 @@ stream = ExtResource("7_18r40")
 volume_db = -20.0
 autoplay = true
 bus = &"music"
-parameters/looping = true
 
 [connection signal="hide_options" from="CanvasLayer/PauseMenu" to="CanvasLayer/OptionsPauseMenu" method="hide_options"]
 [connection signal="show_options" from="CanvasLayer/PauseMenu" to="CanvasLayer/OptionsPauseMenu" method="show_options"]

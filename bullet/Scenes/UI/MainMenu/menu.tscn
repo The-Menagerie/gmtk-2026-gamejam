@@ -105,7 +105,6 @@ stream = ExtResource("4_7udck")
 volume_db = -10.0
 autoplay = true
 bus = &"music"
-parameters/looping = true
 
 [connection signal="pressed" from="ButtonContainer/Start" to="." method="start_button_pressed"]
 [connection signal="pressed" from="ButtonContainer/Options" to="." method="options_button_pressed"]
