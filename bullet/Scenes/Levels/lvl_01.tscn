@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dw8thabw4ialp" path="res://Scripts/Classes/level_root.gd" id="1_lxh78"]
 [ext_resource type="PackedScene" uid="uid://by50mcyw2bh82" path="res://Scenes/Objects/Enemies/outlaw.tscn" id="2_ervr4"]
+[ext_resource type="Texture2D" uid="uid://bioqnfnqkjpmo" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_0.png" id="2_sav4y"]
 [ext_resource type="TileSet" uid="uid://i28d0rfrfnfq" path="res://Assets/Tilesets/desert_tileset.tres" id="3_0hn83"]
+[ext_resource type="Texture2D" uid="uid://briqjcg1lmprf" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_4.png" id="3_7re2w"]
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="4_jbxq0"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_si253"]
 [ext_resource type="PackedScene" uid="uid://cxyncv5q6w7w6" path="res://Scenes/Objects/Key.tscn" id="6_ervr4"]
@@ -13,6 +15,18 @@ script = ExtResource("1_lxh78")
 targets = [NodePath("Enemy"), NodePath("Enemy2"), NodePath("Enemy3")]
 next_level_path = "res://Scenes/Levels/lvl_02.tscn"
 metadata/_custom_type_script = "uid://dw8thabw4ialp"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=543111892]
+z_index = -30
+position = Vector2(22.00003, -33)
+scale = Vector2(1.9266667, 1.9266666)
+texture = ExtResource("2_sav4y")
+
+[node name="BackgroundParallaxLayer4" type="Sprite2D" parent="." unique_id=875271675]
+z_index = -30
+position = Vector2(18.999998, -110.99999)
+scale = Vector2(1.66, 1.66)
+texture = ExtResource("3_7re2w")
 
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("2_ervr4")]
 position = Vector2(-275, -98)

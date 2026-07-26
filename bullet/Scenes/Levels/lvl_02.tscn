@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://dw8thabw4ialp" path="res://Scripts/Classes/level_root.gd" id="1_lxh78"]
 [ext_resource type="PackedScene" uid="uid://by50mcyw2bh82" path="res://Scenes/Objects/Enemies/outlaw.tscn" id="2_ervr4"]
 [ext_resource type="PackedScene" uid="uid://cjv7soqfoej7" path="res://Scenes/Objects/Rope.tscn" id="2_jbxq0"]
+[ext_resource type="Texture2D" uid="uid://bioqnfnqkjpmo" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_0.png" id="2_rqa41"]
 [ext_resource type="TileSet" uid="uid://i28d0rfrfnfq" path="res://Assets/Tilesets/desert_tileset.tres" id="3_0hn83"]
+[ext_resource type="Texture2D" uid="uid://bqbk3h51ae71" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_2.png" id="3_7sn0k"]
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="4_jbxq0"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_si253"]
 [ext_resource type="PackedScene" uid="uid://cxyncv5q6w7w6" path="res://Scenes/Objects/Key.tscn" id="6_ervr4"]
@@ -14,6 +16,18 @@ script = ExtResource("1_lxh78")
 targets = [NodePath("Enemy"), NodePath("Enemy2"), NodePath("Enemy3")]
 next_level_path = "res://Scenes/Levels/lvl_03.tscn"
 metadata/_custom_type_script = "uid://dw8thabw4ialp"
+
+[node name="BackgroundParallaxLayer0" type="Sprite2D" parent="." unique_id=1102731299]
+z_index = -30
+position = Vector2(44, -126)
+scale = Vector2(3.1133335, 3.1133332)
+texture = ExtResource("2_rqa41")
+
+[node name="BackgroundParallaxLayer2" type="Sprite2D" parent="." unique_id=1090045573]
+z_index = -30
+position = Vector2(-41, -63)
+scale = Vector2(2.46, 2.46)
+texture = ExtResource("3_7sn0k")
 
 [node name="Rope" parent="." unique_id=602890189 instance=ExtResource("2_jbxq0")]
 tile_map_data = PackedByteArray("AADy//H/AAABAAMAAADy//T/AAADAAAAAADy//L/AAABAAIAAAA=")
