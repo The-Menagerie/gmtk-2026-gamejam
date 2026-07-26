@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://bl2dp66vlhsay"]
+[gd_scene format=4 uid="uid://c0bkxdl5m5eo4"]
 
 [ext_resource type="Script" uid="uid://dw8thabw4ialp" path="res://Scripts/Classes/level_root.gd" id="1_flvps"]
 [ext_resource type="PackedScene" uid="uid://by50mcyw2bh82" path="res://Scenes/Objects/Enemies/outlaw.tscn" id="2_i50gy"]
