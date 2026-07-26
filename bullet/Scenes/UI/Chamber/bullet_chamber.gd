@@ -4,32 +4,39 @@ enum BULLET_TYPE {REGULAR = 5, RUBBER = 4, PIERCING = 3, FLY = 2, SWAP = 1, SAD 
 
 var bullet_dictionary = {
 	5:  {
+		bullet_name = "Regular Bullet",
 		chamber_scene = "res://Assets/Images/ChamberBullets/regular_bullet.png",
 		combat_scene = preload("res://Scenes/Objects/Bullets/bullet.tscn"),
 		},
 	4: {
+		bullet_name = "Rubber Bullet",
 		chamber_scene = "res://Assets/Images/ChamberBullets/rubber_bullet.png",
 		combat_scene = preload("res://Scenes/Objects/Bullets/rubber_bullet.tscn"),
 	},
 	3: {
+		bullet_name = "Piercing Bullet",
 		chamber_scene = "res://Assets/Images/ChamberBullets/piercing_bullet.png",
 		combat_scene = preload("res://Scenes/Objects/Bullets/piercing_bullet.tscn"),
 	},
 	2: {
+		bullet_name = "Fly Bullet",
 		chamber_scene = "res://Assets/Images/ChamberBullets/fly_bullet.png",
 		combat_scene = preload("res://Scenes/Objects/Bullets/fly_bullet.tscn"),
 	},
 	1: {
+		bullet_name = "Swap Bullet",
 		chamber_scene = "res://Assets/Images/ChamberBullets/swap_bullet.png",
 		combat_scene = preload("res://Scenes/Objects/Bullets/swap_bullet.tscn"),
 	},
 	99: {
+		bullet_name = "Sad Bullet",
 		chamber_scene = "res://Assets/Images/ChamberBullets/sad_bullet.png",
 		combat_scene = preload("res://Scenes/Objects/Bullets/bullet.tscn"),
 	}
 }
 
 var chambered_bullet_scenes: Array[PackedScene]
+var chambered_bullet_names: Array[String]
 
 @export var bullet_pattern: Array[BULLET_TYPE]
 @export var bullets: Array[Node]
@@ -42,6 +49,7 @@ var chambered_bullet_scenes: Array[PackedScene]
 var cylinder_start_pos
 var scale_modifier
 
+@onready var bullet_name_text = $alignment/TextHolder/VBoxContainer/BulletName
 @onready var cylinder_container = $alignment/VBoxContainer
 @onready var alignment = $alignment
 
@@ -58,13 +66,15 @@ func _ready() -> void:
 		var chambered_bullet_node = bullets[i]
 		var bullet_image_node = chambered_bullet_node.get_child(0)
 		bullet_image_node.texture = load(bullet_values.chamber_scene)
-		
+		var chambered_bullet_name = bullet_values.bullet_name
 		var chambered_bullet_scene = bullet_values.combat_scene
+		chambered_bullet_names.append(chambered_bullet_name)
 		chambered_bullet_scenes.append(chambered_bullet_scene)
 		
 		if i == 5:
 			break
-		pass
+		
+	change_bullet_name()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
@@ -74,6 +84,7 @@ func _physics_process(delta: float) -> void:
 			bullets[0].queue_free()
 			if anim_player.is_playing():
 				anim_player.stop()
+				chambered_bullet_names.remove_at(0)
 				var distance_partial_rotated = fmod(cylinder_rotator.rotation_degrees,60.0)
 				rotate_chamber(60 - distance_partial_rotated)
 			anim_player.play_section("revolve")
@@ -119,3 +130,10 @@ func rescale(scale_modifier: float) -> void:
 func rescale_to(new_scale:float) -> void:
 	scale_modifier = new_scale/alignment.scale.x
 	rescale(scale_modifier)
+
+func change_bullet_name() -> void:
+	if not chambered_bullet_names.is_empty():
+		bullet_name_text.text = chambered_bullet_names[0]
+		chambered_bullet_names.remove_at(0)
+	else:
+		bullet_name_text.text = ""
