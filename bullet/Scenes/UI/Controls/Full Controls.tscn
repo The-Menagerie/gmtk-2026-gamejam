@@ -32,10 +32,10 @@ offset_bottom = 1021.0
 
 [node name="Escape" parent="." unique_id=101214939 instance=ExtResource("3_rnbr0")]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 159.99998
-offset_right = 60.0
-offset_bottom = 159.99998
+offset_left = 63.0
+offset_top = 62.999992
+offset_right = 63.0
+offset_bottom = 62.999992
 
 [node name="Left Click" parent="." unique_id=376884533 instance=ExtResource("4_20mvd")]
 layout_mode = 0
@@ -121,10 +121,10 @@ vertical_alignment = 1
 
 [node name="Label6" type="Label" parent="." unique_id=1148230974]
 layout_mode = 0
-offset_left = 129.0
-offset_top = 123.0
-offset_right = 316.0
-offset_bottom = 207.0
+offset_left = 132.0
+offset_top = 26.0
+offset_right = 319.0
+offset_bottom = 110.0
 theme_override_fonts/font = ExtResource("7_ie1kc")
 theme_override_font_sizes/font_size = 60
 text = "Pause"
