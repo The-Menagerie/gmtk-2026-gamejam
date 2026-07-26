@@ -75,6 +75,7 @@ func _on_body_entered(body: Node) -> void:
 		return
 
 	scene_reset_queued = true
+	ScoreBus.player_died_to_crush()
 	var game_manager := get_tree().root.find_child("MainGame", true, false)
 	if game_manager != null and game_manager.has_method("reset_current_level"):
 		game_manager.reset_current_level()

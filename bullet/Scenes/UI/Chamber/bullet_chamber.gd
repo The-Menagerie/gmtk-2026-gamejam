@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		if chambered_bullet_scenes.size() > 0:
 			BulletBus.fire_player_bullet.emit(chambered_bullet_scenes[0])
-			ScoreBus.score_update.emit(-score_cost)
+			ScoreBus.spend_score(score_cost)
 			bullets[0].queue_free()
 			if anim_player.is_playing():
 				anim_player.stop()
