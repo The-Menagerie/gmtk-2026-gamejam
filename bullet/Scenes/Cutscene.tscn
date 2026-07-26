@@ -13,7 +13,7 @@ step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("ScreenAdjuster/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +28,7 @@ length = 2.4333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("ScreenAdjuster/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,30 +49,33 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_yakg8")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=957833532]
-layout_mode = 0
-offset_right = 1924.0
-offset_bottom = 1087.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=458658889]
+[node name="ScreenAdjuster" type="Node2D" parent="." unique_id=1716393245]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ScreenAdjuster" unique_id=458658889]
+root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_qcpka")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=898228809]
+[node name="Sprite2D" type="Sprite2D" parent="ScreenAdjuster" unique_id=898228809]
 position = Vector2(997.61847, 539.6551)
 scale = Vector2(5.2151575, 5.2151575)
 texture = ExtResource("1_1srds")
 hframes = 3
 vframes = 2
 
-[node name="Button" type="Button" parent="." unique_id=640047794]
-layout_mode = 0
+[node name="Button" type="Button" parent="ScreenAdjuster" unique_id=640047794]
 offset_left = 1053.0
 offset_top = 925.0
 offset_right = 1217.6667
@@ -81,7 +84,8 @@ theme_override_fonts/font = ExtResource("3_qcpka")
 theme_override_font_sizes/font_size = 26
 text = "Continue ->"
 
-[node name="RevealMasks" type="Control" parent="." unique_id=1106578006]
+[node name="RevealMasks" type="Control" parent="ScreenAdjuster" unique_id=1106578006]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 943.61847
 offset_top = 443.65506
@@ -90,7 +94,7 @@ offset_bottom = 635.65515
 scale = Vector2(5.2151575, 5.2151575)
 mouse_filter = 2
 
-[node name="1" type="Polygon2D" parent="RevealMasks" unique_id=104213901]
+[node name="1" type="Polygon2D" parent="ScreenAdjuster/RevealMasks" unique_id=104213901]
 position = Vector2(-172.85185, 2.7285676)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(135, -32, 205, -5, 192, 57, 134, 72)
@@ -98,7 +102,7 @@ script = ExtResource("3_hq0lw")
 reveal_delay = 1.0
 reveal_fade_duration = 0.5
 
-[node name="2" type="Polygon2D" parent="RevealMasks" unique_id=523620592]
+[node name="2" type="Polygon2D" parent="ScreenAdjuster/RevealMasks" unique_id=523620592]
 position = Vector2(4.675125, -2.8100996)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(25, 1, 53, 11, 53, 46, 14.764664, 58.483376)
@@ -106,7 +110,7 @@ script = ExtResource("3_hq0lw")
 reveal_delay = 2.5
 reveal_fade_duration = 0.5
 
-[node name="3" type="Polygon2D" parent="RevealMasks" unique_id=610075120]
+[node name="3" type="Polygon2D" parent="ScreenAdjuster/RevealMasks" unique_id=610075120]
 position = Vector2(-46.330048, 50.11256)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(8, 24, 51, 9, 69, 59, 7, 59)
@@ -114,7 +118,7 @@ script = ExtResource("3_hq0lw")
 reveal_delay = 4.0
 reveal_fade_duration = 0.5
 
-[node name="4" type="Polygon2D" parent="RevealMasks" unique_id=1097673765]
+[node name="4" type="Polygon2D" parent="ScreenAdjuster/RevealMasks" unique_id=1097673765]
 position = Vector2(64.148155, 63.72857)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-59, -4, -6, -20, -5, 28, -51, 22)
@@ -122,7 +126,7 @@ script = ExtResource("3_hq0lw")
 reveal_delay = 5.5
 reveal_fade_duration = 0.5
 
-[node name="5" type="Polygon2D" parent="RevealMasks" unique_id=1000001560]
+[node name="5" type="Polygon2D" parent="ScreenAdjuster/RevealMasks" unique_id=1000001560]
 position = Vector2(86.148155, 123.72857)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-74, -39, -23, -33, -24, -10, -64, -11)
