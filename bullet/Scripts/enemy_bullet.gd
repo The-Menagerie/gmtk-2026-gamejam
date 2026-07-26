@@ -78,7 +78,7 @@ func _play_ricochet():
 
 	var ricochet_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 	ricochet_audio.stream = RICOCHET_SOUND
-	ricochet_audio.bus = "Master"
+	ricochet_audio.bus = "sfx"
 	parent.add_child(ricochet_audio)
 	ricochet_audio.finished.connect(ricochet_audio.queue_free)
 	ricochet_audio.play()
