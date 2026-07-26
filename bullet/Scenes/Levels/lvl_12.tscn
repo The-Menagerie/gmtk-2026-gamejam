@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://by50mcyw2bh82" path="res://Scenes/Objects/Enemies/outlaw.tscn" id="10_80vj0"]
 [ext_resource type="PackedScene" uid="uid://b03kxi0daulbh" path="res://Scenes/Objects/Breakables/crate.tscn" id="10_w2u5i"]
 [ext_resource type="Script" uid="uid://cx2niijh1soug" path="res://Scripts/Environmental/camera_expander.gd" id="11_w2u5i"]
+[ext_resource type="Texture2D" uid="uid://bioqnfnqkjpmo" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_0.png" id="12_pvl3i"]
+[ext_resource type="Texture2D" uid="uid://briqjcg1lmprf" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_4.png" id="13_lnpyt"]
+[ext_resource type="Texture2D" uid="uid://cmptnlgfim1x5" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_1.png" id="14_kf13l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40fn5"]
 size = Vector2(380, 314)
@@ -187,5 +190,23 @@ shape = SubResource("RectangleShape2D_40fn5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera_Expander" unique_id=1189388554]
 libraries/ = SubResource("AnimationLibrary_jkjsh")
+
+[node name="BackgroundParallaxLayer0" type="Sprite2D" parent="." unique_id=503752645]
+z_index = -30
+position = Vector2(-670.00006, -55.999996)
+scale = Vector2(6.4999976, 6.499998)
+texture = ExtResource("12_pvl3i")
+
+[node name="BackgroundParallaxLayer4" type="Sprite2D" parent="." unique_id=459394908]
+z_index = -30
+position = Vector2(-821, -32)
+scale = Vector2(6.366667, 6.366667)
+texture = ExtResource("13_lnpyt")
+
+[node name="BackgroundParallaxLayer1" type="Sprite2D" parent="." unique_id=1229516325]
+z_index = -30
+position = Vector2(-739.00006, -8.000004)
+scale = Vector2(5.34, 5.34)
+texture = ExtResource("14_kf13l")
 
 [connection signal="body_entered" from="Camera_Expander" to="Camera_Expander" method="_on_body_entered"]

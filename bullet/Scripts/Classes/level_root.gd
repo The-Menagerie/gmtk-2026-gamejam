@@ -34,6 +34,9 @@ func target_down(target:Node) -> void:
 		targets.remove_at(target_index)
 	if targets_left <= 0:
 		is_level_transition_queued = true
+		if game_manager != null and game_manager.has_method("transition_to_level"):
+			game_manager.transition_to_level(next_level, next_level_delay)
+			return
 		if next_level_delay > 0.0:
 			await get_tree().create_timer(next_level_delay).timeout
 		game_manager.change_level(next_level)
