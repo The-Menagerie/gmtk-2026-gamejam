@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_si253"]
 [ext_resource type="PackedScene" uid="uid://cxyncv5q6w7w6" path="res://Scenes/Objects/Key.tscn" id="6_ervr4"]
 [ext_resource type="PackedScene" uid="uid://gs71ss565tgx" path="res://Scenes/Objects/LockBox.tscn" id="7_0hn83"]
+[ext_resource type="Texture2D" uid="uid://053bcm4syd57" path="res://Assets/Tilesets/StrangeCowboy/Decorations/DecorationSheet.png" id="9_7sn0k"]
 
 [node name="Lvl02" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_lxh78")
@@ -74,8 +75,29 @@ limit_right = 432
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
 position = Vector2(0, -16)
 
+[node name="Sprite2D" type="Sprite2D" parent="Decorations" unique_id=704602951]
+position = Vector2(71, 0)
+texture = ExtResource("9_7sn0k")
+hframes = 4
+vframes = 3
+frame = 9
+
+[node name="Sprite2D2" type="Sprite2D" parent="Decorations" unique_id=338512125]
+position = Vector2(176, -64)
+texture = ExtResource("9_7sn0k")
+hframes = 4
+vframes = 3
+frame = 2
+
+[node name="Sprite2D3" type="Sprite2D" parent="Decorations" unique_id=1743173540]
+position = Vector2(-12, 0)
+texture = ExtResource("9_7sn0k")
+hframes = 4
+vframes = 3
+frame = 3
+
 [node name="Key" parent="." unique_id=1777878280 instance=ExtResource("6_ervr4")]
 position = Vector2(189, -17)
 
 [node name="LockBox" parent="." unique_id=1504117620 instance=ExtResource("7_0hn83")]
-position = Vector2(-169, -16)
+position = Vector2(-164, -16)

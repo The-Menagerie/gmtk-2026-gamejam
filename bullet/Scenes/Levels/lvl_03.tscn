@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cjv7soqfoej7" path="res://Scenes/Objects/Rope.tscn" id="2_vsvk0"]
 [ext_resource type="PackedScene" uid="uid://gs71ss565tgx" path="res://Scenes/Objects/LockBox.tscn" id="3_8j675"]
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="4_8j675"]
+[ext_resource type="Texture2D" uid="uid://053bcm4syd57" path="res://Assets/Tilesets/StrangeCowboy/Decorations/DecorationSheet.png" id="5_vg21u"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_y06kk"]
 [ext_resource type="PackedScene" uid="uid://cji6hd7veljn5" path="res://Scenes/Objects/Breakables/target.tscn" id="8_vg21u"]
 [ext_resource type="PackedScene" uid="uid://cxyncv5q6w7w6" path="res://Scenes/Objects/Key.tscn" id="8_y06kk"]
@@ -43,6 +44,27 @@ vertical_recoil_scale = 0.45
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
 position = Vector2(0, -16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Decorations" unique_id=1852506690]
+position = Vector2(233, -148)
+texture = ExtResource("5_vg21u")
+hframes = 4
+vframes = 3
+frame = 4
+
+[node name="Sprite2D3" type="Sprite2D" parent="Decorations" unique_id=686223871]
+position = Vector2(281, -84)
+texture = ExtResource("5_vg21u")
+hframes = 4
+vframes = 3
+frame = 6
+
+[node name="Sprite2D4" type="Sprite2D" parent="Decorations" unique_id=702506894]
+position = Vector2(-218, -148)
+texture = ExtResource("5_vg21u")
+hframes = 4
+vframes = 3
+frame = 5
 
 [node name="Rope" parent="." unique_id=602890189 instance=ExtResource("2_vsvk0")]
 position = Vector2(-103, 0)

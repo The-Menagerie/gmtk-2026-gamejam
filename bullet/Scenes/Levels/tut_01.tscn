@@ -57,8 +57,7 @@ vertical_recoil_scale = 0.45
 position = Vector2(0, -16)
 
 [node name="Sprite2D" type="Sprite2D" parent="Decorations" unique_id=1012383127]
-position = Vector2(-107, -50)
-rotation = 3.1415927
+position = Vector2(-139, 32)
 texture = ExtResource("6_hlvb5")
 hframes = 4
 vframes = 3

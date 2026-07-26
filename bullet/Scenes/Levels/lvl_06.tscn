@@ -7,12 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="6_7daew"]
 [ext_resource type="Texture2D" uid="uid://6d20e1f5dvq" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_3.png" id="7_c6t7b"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="7_el44a"]
+[ext_resource type="Texture2D" uid="uid://053bcm4syd57" path="res://Assets/Tilesets/StrangeCowboy/Decorations/DecorationSheet.png" id="7_llj62"]
 
 [node name="Lvl06" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_c6t7b")
 targets = [NodePath("Enemy"), NodePath("Enemy2"), NodePath("Enemy3"), NodePath("Enemy4"), NodePath("Enemy5"), NodePath("Enemy6"), NodePath("Enemy9"), NodePath("Enemy10"), NodePath("Enemy7"), NodePath("Enemy8"), NodePath("Enemy11"), NodePath("Enemy12")]
 next_level_path = "res://Scenes/Levels/lvl_07.tscn"
 metadata/_custom_type_script = "uid://dw8thabw4ialp"
+
+[node name="BackgroundParallaxLayer3" type="Sprite2D" parent="." unique_id=309395312]
+z_index = -30
+position = Vector2(6, -96)
+scale = Vector2(1.7033333, 1.7033333)
+texture = ExtResource("7_c6t7b")
 
 [node name="BackgroundParallaxLayer0" type="Sprite2D" parent="." unique_id=1923555673]
 z_index = -30
@@ -55,6 +62,27 @@ bullet_pattern = Array[int]([3, 3, 3, 3, 3, 3])
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
 position = Vector2(1, -18)
 
+[node name="Sprite2D8" type="Sprite2D" parent="Decorations" unique_id=1260766844]
+position = Vector2(42, 2)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 10
+
+[node name="Sprite2D8" type="Sprite2D" parent="Decorations/Sprite2D8" unique_id=929458125]
+position = Vector2(11, 0)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 10
+
+[node name="Sprite2D8" type="Sprite2D" parent="Decorations/Sprite2D8/Sprite2D8" unique_id=1018502514]
+position = Vector2(11, 0)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 10
+
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("4_kfg8x")]
 position = Vector2(-136, -114)
 
@@ -91,8 +119,23 @@ position = Vector2(139, -70)
 [node name="Enemy12" parent="." unique_id=1561509688 instance=ExtResource("4_kfg8x")]
 position = Vector2(173, -68)
 
-[node name="BackgroundParallaxLayer3" type="Sprite2D" parent="." unique_id=309395312]
-z_index = -30
-position = Vector2(6, -96)
-scale = Vector2(1.7033333, 1.7033333)
-texture = ExtResource("7_c6t7b")
+[node name="Sprite2D8" type="Sprite2D" parent="." unique_id=280933730]
+position = Vector2(50, -26)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 10
+
+[node name="Sprite2D8" type="Sprite2D" parent="Sprite2D8" unique_id=757273561]
+position = Vector2(11, 0)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 10
+
+[node name="Sprite2D9" type="Sprite2D" parent="." unique_id=820271350]
+position = Vector2(-35, -16)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 11
