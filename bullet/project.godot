@@ -38,14 +38,13 @@ buses/default_bus_layout="uid://boifccp6cs00d"
 [autoload]
 
 BulletBus="*res://Scripts/bullet_bus.gd"
-MusicManager="*res://Scripts/music_manager.gd"
 ScoreBus="*res://Scripts/score_bus.gd"
+MusicManager="*res://Scripts/music_manager.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

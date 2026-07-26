@@ -22,7 +22,6 @@ transition_text_end_scale = Vector2(3, 3)
 layer = 10
 
 [node name="TransitionOverlay" type="ColorRect" parent="CanvasLayer" unique_id=643156338]
-visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
@@ -64,6 +63,15 @@ script = ExtResource("4_6j5ir")
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1627349778 instance=ExtResource("3_0e3vx")]
 
 [node name="OptionsPauseMenu" parent="CanvasLayer" unique_id=1607701552 instance=ExtResource("6_bb2iq")]
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=185333735]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2079942157]
 
