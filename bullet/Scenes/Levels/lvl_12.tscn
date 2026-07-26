@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bioqnfnqkjpmo" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_0.png" id="12_pvl3i"]
 [ext_resource type="Texture2D" uid="uid://briqjcg1lmprf" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_4.png" id="13_lnpyt"]
 [ext_resource type="Texture2D" uid="uid://cmptnlgfim1x5" path="res://Assets/Tilesets/StrangeCowboy/Backgrounds/Background_ParallaxLayer_1.png" id="14_kf13l"]
+[ext_resource type="Texture2D" uid="uid://dh0d1gxt5n1cl" path="res://Assets/Images/salun.png" id="15_lnpyt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40fn5"]
 size = Vector2(380, 314)
@@ -208,5 +209,9 @@ z_index = -30
 position = Vector2(-739.00006, -8.000004)
 scale = Vector2(5.34, 5.34)
 texture = ExtResource("14_kf13l")
+
+[node name="Salun" type="Sprite2D" parent="." unique_id=1374504362]
+position = Vector2(-204, -63)
+texture = ExtResource("15_lnpyt")
 
 [connection signal="body_entered" from="Camera_Expander" to="Camera_Expander" method="_on_body_entered"]
