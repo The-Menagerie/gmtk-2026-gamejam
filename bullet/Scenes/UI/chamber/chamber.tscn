@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b481okk6l0ss6" path="res://Scenes/UI/Chamber/bullet_chamber.gd" id="1_cqkxi"]
 [ext_resource type="Texture2D" uid="uid://dsqqd7jct0e4u" path="res://Assets/Images/chamber_sheet.png" id="2_cqkxi"]
 [ext_resource type="Texture2D" uid="uid://23djn2ulf8mo" path="res://Assets/Images/ChamberBullets/regular_bullet.png" id="3_ka4g4"]
+[ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="4_bh58u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sh608"]
 atlas = ExtResource("2_cqkxi")
@@ -59,6 +60,18 @@ tracks/3/keys = {
 "args": [],
 "method": &"reset_chamber_pos"
 }]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("alignment/TextHolder/VBoxContainer/BulletName:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_xceaa"]
@@ -150,6 +163,32 @@ tracks/4/keys = {
 }, {
 "args": [],
 "method": &"reset_chamber_pos"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("alignment/TextHolder/VBoxContainer/BulletName:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.49803922), Color(1, 1, 1, 0.039215688), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.33333334), Color(1, 1, 1, 0.49803922), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_bullet_name"
 }]
 }
 
@@ -306,6 +345,81 @@ offset_bottom = -60.0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("3_ka4g4")
+
+[node name="TextHolder" type="Control" parent="alignment" unique_id=738260933]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="alignment/TextHolder" unique_id=663071892]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -75.0
+offset_right = 100.0
+offset_bottom = -35.0
+mouse_filter = 2
+
+[node name="BulletName" type="Label" parent="alignment/TextHolder/VBoxContainer" unique_id=508208996]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bh58u")
+theme_override_font_sizes/font_size = 14
+text = "Regular Bullet"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="alignment/TextHolder" unique_id=880265045]
+visible = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = -59.25
+offset_right = 39.0
+offset_bottom = -19.25
+scale = Vector2(0.05334854, 0.3202947)
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="alignment/TextHolder" unique_id=1147854246]
+visible = false
+layout_mode = 0
+offset_left = 1.0
+offset_top = -47.75
+offset_right = 41.0
+offset_bottom = -7.75
+scale = Vector2(0.35982212, 0.045308962)
+mouse_filter = 2
+
+[node name="ColorRect3" type="ColorRect" parent="alignment/TextHolder" unique_id=1765009696]
+visible = false
+layout_mode = 0
+offset_left = 15.5
+offset_top = -48.0
+offset_right = 55.5
+offset_bottom = -8.0
+rotation = 1.5707964
+scale = Vector2(0.35982212, 0.045308962)
+mouse_filter = 2
+
+[node name="ColorRect4" type="ColorRect" parent="alignment/TextHolder" unique_id=437059476]
+visible = false
+layout_mode = 0
+offset_left = -15.5
+offset_top = -48.0
+offset_right = 24.5
+offset_bottom = -8.0
+scale = Vector2(0.35982212, 0.045308962)
+mouse_filter = 2
+
+[node name="ColorRect5" type="ColorRect" parent="alignment/TextHolder" unique_id=444614445]
+visible = false
+layout_mode = 0
+offset_left = -14.75
+offset_top = -33.75
+offset_right = 25.25
+offset_bottom = 6.25
+rotation = -1.5707964
+scale = Vector2(0.34957296, 0.043478563)
+mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=456355537]
 libraries/ = SubResource("AnimationLibrary_5q38y")
