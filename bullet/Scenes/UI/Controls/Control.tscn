@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b3wausjj6n1mb"]
+
+[sub_resource type="Animation" id="Animation_xbuoo"]
+resource_name = "Press"
+length = 1.75
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_bdh0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_frh6k"]
+_data = {
+&"Press": SubResource("Animation_xbuoo"),
+&"RESET": SubResource("Animation_bdh0i")
+}
+
+[node name="Control" type="Control" unique_id=871972327]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=692627604]
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1190402093]
+autoplay = "Press"
+libraries/ = SubResource("AnimationLibrary_frh6k")

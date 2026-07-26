@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="4_1n6dr"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_jg8sc"]
 [ext_resource type="Texture2D" uid="uid://053bcm4syd57" path="res://Assets/Tilesets/StrangeCowboy/Decorations/DecorationSheet.png" id="6_4sdw7"]
+[ext_resource type="PackedScene" uid="uid://dteab80jwc6fh" path="res://Scenes/UI/Controls/Full Controls.tscn" id="6_jg8sc"]
 [ext_resource type="PackedScene" uid="uid://by50mcyw2bh82" path="res://Scenes/Objects/Enemies/outlaw.tscn" id="7_1n6dr"]
 [ext_resource type="PackedScene" uid="uid://cxyncv5q6w7w6" path="res://Scenes/Objects/Key.tscn" id="8_jg8sc"]
 [ext_resource type="PackedScene" uid="uid://cjv7soqfoej7" path="res://Scenes/Objects/Rope.tscn" id="9_1n6dr"]
@@ -46,6 +47,8 @@ vertical_recoil_scale = 0.45
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=668499867]
 
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_jg8sc")]
+
+[node name="FullControls" parent="CanvasLayer" unique_id=1208426789 instance=ExtResource("6_jg8sc")]
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
 position = Vector2(0, -16)

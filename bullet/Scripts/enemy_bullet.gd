@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @export var speed : float = 320.0
 @export var lifetime : float = 2.5
-@export var score_damage : int = 100
 @export var rope_pass_through_distance : float = 6.0
 
 const RICOCHET_SOUND = preload("res://Assets/SoundEffects/ricochet.wav")
@@ -67,10 +66,10 @@ func _handle_hit(collider: Object):
 	_play_ricochet()
 
 func _apply_score_damage():
-	ScoreBus.score_update.emit(-score_damage)
+	ScoreBus.player_hit_by_enemy_bullet()
 	#var game_manager = get_tree().root.find_child("MainGame", true, false)
 	#if game_manager != null and game_manager.has_method("change_score"):
-		#game_manager.change_score(-score_damage)
+		#game_manager.change_score(-ScoreBus.score_on_enemy_bullet_hit)
 
 func _play_ricochet():
 	var parent: Node = get_parent()

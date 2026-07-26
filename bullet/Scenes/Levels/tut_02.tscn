@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dw8thabw4ialp" path="res://Scripts/Classes/level_root.gd" id="1_axfoi"]
 [ext_resource type="TileSet" uid="uid://i28d0rfrfnfq" path="res://Assets/Tilesets/desert_tileset.tres" id="2_j1r43"]
 [ext_resource type="PackedScene" uid="uid://bq1sofkymsr0h" path="res://Scenes/Objects/Player/player.tscn" id="4_1xx7c"]
+[ext_resource type="PackedScene" uid="uid://dteab80jwc6fh" path="res://Scenes/UI/Controls/Full Controls.tscn" id="4_j1r43"]
 [ext_resource type="PackedScene" uid="uid://bgt5m6c8pbwnf" path="res://Scenes/UI/Chamber/chamber.tscn" id="5_p0jvp"]
 [ext_resource type="PackedScene" uid="uid://cji6hd7veljn5" path="res://Scenes/Objects/Breakables/target.tscn" id="6_axfoi"]
 [ext_resource type="Texture2D" uid="uid://053bcm4syd57" path="res://Assets/Tilesets/StrangeCowboy/Decorations/DecorationSheet.png" id="6_sh5xe"]
@@ -39,8 +40,9 @@ vertical_recoil_scale = 0.45
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=668499867]
 
+[node name="FullControls" parent="CanvasLayer" unique_id=1208426789 instance=ExtResource("4_j1r43")]
+
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("5_p0jvp")]
-bullet_pattern = Array[int]([5, 5, 5, 5, 5, 5])
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
 position = Vector2(0, -16)
@@ -65,7 +67,7 @@ frame = 4
 position = Vector2(-274, 31)
 
 [node name="Target2" parent="." unique_id=1605927649 instance=ExtResource("6_axfoi")]
-position = Vector2(-8, 120)
+position = Vector2(-8, 110)
 
 [node name="Target3" parent="." unique_id=1521909660 instance=ExtResource("6_axfoi")]
 position = Vector2(157, 19)

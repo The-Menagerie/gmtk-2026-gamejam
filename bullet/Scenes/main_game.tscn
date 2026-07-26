@@ -16,6 +16,7 @@ anim_player = NodePath("AnimationPlayer")
 [node name="Tut01" parent="." unique_id=718201387 instance=ExtResource("2_bb2iq")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1763990367]
+layer = 10
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1252689155]
 offset_left = 16.0

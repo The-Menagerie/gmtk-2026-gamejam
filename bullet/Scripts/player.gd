@@ -10,7 +10,6 @@ extends CharacterBody2D
 @export var player_recoil_force : float = 260.0
 @export var recoil_velocity_decay : float = 700.0
 @export var vertical_recoil_scale : float = 0.45
-
 const BULLET_SCENE = preload("res://Scenes/Objects/Bullets/bullet.tscn")
 
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -95,6 +94,7 @@ func fire_bullet(bullet_scene: PackedScene):
 	#if Input.is_action_just_pressed("left_click"):
 	var bullet = bullet_scene.instantiate()
 	bullet.shooter = self
+	ScoreBus.player_fired_shot()
 	if bullet.has_method("capture_swap_origin"):
 		bullet.capture_swap_origin(self)
 	var aim_vector = get_global_mouse_position() - global_position
