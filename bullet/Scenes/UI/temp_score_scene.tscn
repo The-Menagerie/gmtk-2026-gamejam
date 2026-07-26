@@ -73,13 +73,14 @@ horizontal_alignment = 1
 [node name="Label" type="Label" parent="CanvasLayer/Panel/Container" unique_id=802530807]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_48pco")
 text = "You beat the gang and kept"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/Container" unique_id=1703278290]
 layout_mode = 2
 
-[node name="Score" type="Label" parent="CanvasLayer/Panel/Container" unique_id=845003210]
+[node name="Score" type="Label" parent="CanvasLayer/Panel/Container" unique_id=845003210 node_paths=PackedStringArray("sayin_label")]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_48pco")
@@ -88,6 +89,17 @@ text = "0 Reputation"
 horizontal_alignment = 1
 script = ExtResource("2_0euh8")
 reset_level = ExtResource("5_6jp05")
+sayin_label = NodePath("../SayinLabel")
+
+[node name="SayinLabel" type="Label" parent="CanvasLayer/Panel/Container" unique_id=241886752]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_48pco")
+theme_override_font_sizes/font_size = 32
+text = "AAAAAAAAAAAAA"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/Panel/Container" unique_id=219417227]
+layout_mode = 2
 
 [node name="Start" type="Button" parent="CanvasLayer/Panel/Container" unique_id=233324368]
 layout_mode = 2
@@ -103,6 +115,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_0euh8")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_0euh8")
 theme_override_styles/focus = SubResource("StyleBoxFlat_0euh8")
 text = "Wanna Try Again?"
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Panel/Container" unique_id=480466390]
+layout_mode = 2
 
 [node name="Quit" type="Button" parent="CanvasLayer/Panel/Container" unique_id=143842641]
 layout_mode = 2
