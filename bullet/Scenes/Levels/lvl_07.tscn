@@ -33,6 +33,22 @@ position = Vector2(11.000004, -113.00001)
 scale = Vector2(1.9633332, 1.9633332)
 texture = ExtResource("8_7sage")
 
+[node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
+position = Vector2(0, -16)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Decorations" unique_id=2125209653]
+position = Vector2(-77, 1)
+texture = ExtResource("9_ustea")
+hframes = 4
+vframes = 3
+frame = 3
+
+[node name="Sprite2D8" type="Sprite2D" parent="Decorations" unique_id=801291018]
+position = Vector2(127, 0)
+texture = ExtResource("9_ustea")
+hframes = 4
+vframes = 3
+
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("4_kfg8x")]
 position = Vector2(-109, -98)
 
@@ -76,19 +92,3 @@ vertical_recoil_scale = 0.45
 
 [node name="Chamber" parent="CanvasLayer" unique_id=1884226542 instance=ExtResource("7_el44a")]
 bullet_pattern = Array[int]([5, 4, 3, 5, 5, 5])
-
-[node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
-position = Vector2(0, -16)
-
-[node name="Sprite2D9" type="Sprite2D" parent="Decorations" unique_id=2125209653]
-position = Vector2(-77, 1)
-texture = ExtResource("9_ustea")
-hframes = 4
-vframes = 3
-frame = 3
-
-[node name="Sprite2D8" type="Sprite2D" parent="Decorations" unique_id=801291018]
-position = Vector2(127, 0)
-texture = ExtResource("9_ustea")
-hframes = 4
-vframes = 3

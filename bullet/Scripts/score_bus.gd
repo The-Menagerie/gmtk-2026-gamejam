@@ -11,12 +11,23 @@ var score_on_crush_death: int = -500
 var passive_score_loss_per_second: int = 1
 
 var _passive_score_timer: float = 0.0
+var _last_passive_score_tick_msec: int = 0
+
+func _ready() -> void:
+	_last_passive_score_tick_msec = Time.get_ticks_msec()
 
 func _process(delta: float) -> void:
 	if passive_score_loss_per_second <= 0:
+		_last_passive_score_tick_msec = Time.get_ticks_msec()
 		return
 
-	_passive_score_timer += delta
+	var now_msec := Time.get_ticks_msec()
+	if _last_passive_score_tick_msec == 0:
+		_last_passive_score_tick_msec = now_msec
+		return
+
+	_passive_score_timer += float(now_msec - _last_passive_score_tick_msec) / 1000.0
+	_last_passive_score_tick_msec = now_msec
 
 	while _passive_score_timer >= 1.0:
 		_passive_score_timer -= 1.0

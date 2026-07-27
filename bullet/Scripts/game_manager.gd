@@ -32,6 +32,15 @@ func _ready():
 func _process(_delta):
 	_update_bullet_time()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if get_tree().paused:
+		return
+	if is_level_transition_active or is_level_reset_queued:
+		return
+	if event.is_action_pressed("restart") and not event.is_echo():
+		reset_current_level()
+		get_viewport().set_input_as_handled()
+
 func change_level(level: PackedScene) -> void:
 	var new_level = level.instantiate()
 	call_deferred("add_child",new_level)

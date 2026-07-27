@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bgt3mhqrf24b1" path="res://Scenes/UI/Controls/Space.tscn" id="6_sn7tf"]
 [ext_resource type="FontFile" uid="uid://fw83hosruxpq" path="res://Assets/Fonts/Rye-Regular.ttf" id="7_ie1kc"]
 [ext_resource type="PackedScene" uid="uid://smkvi17rdgy2" path="res://Scenes/UI/Controls/E.tscn" id="8_rnbr0"]
+[ext_resource type="PackedScene" uid="uid://5nqw2v1dr8b2" path="res://Scenes/UI/Controls/R.tscn" id="9_20mvd"]
 
 [node name="FullControls" type="Control" unique_id=1208426789]
 layout_mode = 3
@@ -109,14 +110,15 @@ vertical_alignment = 1
 
 [node name="Label5" type="Label" parent="." unique_id=2081310159]
 layout_mode = 0
-offset_left = 1677.0
-offset_top = 825.0
-offset_right = 1867.0
-offset_bottom = 980.0
+offset_left = 1679.0
+offset_top = 730.0
+offset_right = 1878.0
+offset_bottom = 964.0
 theme_override_fonts/font = ExtResource("7_ie1kc")
 theme_override_font_sizes/font_size = 60
 text = "Bullet
-Time"
+Time
+(Hold)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -132,9 +134,28 @@ text = "Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label7" type="Label" parent="." unique_id=1659356455]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 112.0
+offset_right = 373.0
+offset_bottom = 196.0
+theme_override_fonts/font = ExtResource("7_ie1kc")
+theme_override_font_sizes/font_size = 60
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Control" parent="." unique_id=871972327 instance=ExtResource("8_rnbr0")]
 layout_mode = 0
 offset_left = 1823.0
 offset_top = 1021.0
 offset_right = 1823.0
 offset_bottom = 1021.0
+
+[node name="R" parent="." unique_id=2015351186 instance=ExtResource("9_20mvd")]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 160.0
+offset_right = 63.0
+offset_bottom = 160.0

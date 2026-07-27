@@ -10,3 +10,4 @@ texture = ExtResource("2_kh5bp")
 
 [node name="AnimationPlayer" parent="." index="1" unique_id=1190402093]
 autoplay = &"Press"
+speed_scale = 0.25

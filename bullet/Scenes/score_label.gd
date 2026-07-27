@@ -3,6 +3,7 @@ extends Label
 var score: int = 0
 var score_enabled := false
 var popup_parent: Node
+var has_initialized_run_score := false
 
 const LOSS_POPUP_RISE_DISTANCE: float = 28.0
 const LOSS_POPUP_DURATION: float = 0.7
@@ -59,7 +60,9 @@ func _on_level_changed(level_path: String) -> void:
 	var level_name := level_path.get_file()
 
 	if level_name == "lvl_01.tscn":
-		score = ScoreBus.starting_score
+		if not has_initialized_run_score:
+			score = ScoreBus.starting_score
+			has_initialized_run_score = true
 		score_enabled = true
 		show()
 		text = "Score: %d" % score

@@ -7,3 +7,7 @@
 
 [node name="Sprite2D" parent="." index="0" unique_id=692627604]
 texture = ExtResource("2_f665q")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1190402093]
+autoplay = &"Press"
+speed_scale = 0.25
