@@ -17,7 +17,7 @@ func _ready() -> void:
 	elif score >= 60000:
 		sayin_label.text ="Well you surely ain't lackin'"
 	elif score >= 40000:
-		sayin_label.text ="Missed it by a hare"
+		sayin_label.text ="Missed it by a hair"
 	elif score >= 20000:
 		sayin_label.text ="Well bless your heart"
 	elif score >= 0:
