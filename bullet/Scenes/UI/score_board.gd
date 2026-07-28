@@ -3,10 +3,7 @@ extends Label
 @export var reset_level: PackedScene
 @export var tutorial_level: PackedScene
 @export var sayin_label: Label
-@export var shots_label: Label
-@export var resets_label: Label
-@export var deaths_label: Label
-@export var time_label: Label
+@export var stats_label: Label
 
 var score_label: Node
 
@@ -16,10 +13,12 @@ func _ready() -> void:
 	score_label = Canvas.find_child("ScoreLabel",true, false)
 	var score = score_label.score
 	self.text = str(score) + " Reputation"
-	shots_label.text = "Shots Taken: %d" % ScoreBus.shots_taken
-	resets_label.text = "Resets: %d" % ScoreBus.reset_count
-	deaths_label.text = "Deaths: %d" % ScoreBus.death_count
-	time_label.text = "Time: %s" % ScoreBus.get_elapsed_run_time_text()
+	stats_label.text = "Shots: %d | Resets: %d | Deaths: %d | Time: %s" % [
+		ScoreBus.shots_taken,
+		ScoreBus.reset_count,
+		ScoreBus.death_count,
+		ScoreBus.get_elapsed_run_time_text()
+	]
 	
 	if score >= 70000:
 		sayin_label.text = "I tip my hat to you"

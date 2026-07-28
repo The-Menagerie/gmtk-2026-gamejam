@@ -81,7 +81,7 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/Container" unique_id=1703278290]
 layout_mode = 2
 
-[node name="Score" type="Label" parent="CanvasLayer/Panel/Container" unique_id=845003210 node_paths=PackedStringArray("sayin_label", "shots_label", "resets_label", "deaths_label", "time_label")]
+[node name="Score" type="Label" parent="CanvasLayer/Panel/Container" unique_id=845003210 node_paths=PackedStringArray("sayin_label", "stats_label")]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_48pco")
@@ -92,41 +92,14 @@ script = ExtResource("2_0euh8")
 reset_level = ExtResource("5_6jp05")
 tutorial_level = ExtResource("3_tut01")
 sayin_label = NodePath("../SayinLabel")
-shots_label = NodePath("../Stats/ShotsLabel")
-resets_label = NodePath("../Stats/ResetsLabel")
-deaths_label = NodePath("../Stats/DeathsLabel")
-time_label = NodePath("../Stats/TimeLabel")
+stats_label = NodePath("../StatsLabel")
 
-[node name="Stats" type="VBoxContainer" parent="CanvasLayer/Panel/Container" unique_id=284110003]
+[node name="StatsLabel" type="Label" parent="CanvasLayer/Panel/Container" unique_id=284110003]
 layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="ShotsLabel" type="Label" parent="CanvasLayer/Panel/Container/Stats" unique_id=121100001]
-layout_mode = 2
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1_48pco")
 theme_override_font_sizes/font_size = 24
-text = "Shots Taken: 0"
-horizontal_alignment = 1
-
-[node name="ResetsLabel" type="Label" parent="CanvasLayer/Panel/Container/Stats" unique_id=121100002]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_48pco")
-theme_override_font_sizes/font_size = 24
-text = "Resets: 0"
-horizontal_alignment = 1
-
-[node name="DeathsLabel" type="Label" parent="CanvasLayer/Panel/Container/Stats" unique_id=121100003]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_48pco")
-theme_override_font_sizes/font_size = 24
-text = "Deaths: 0"
-horizontal_alignment = 1
-
-[node name="TimeLabel" type="Label" parent="CanvasLayer/Panel/Container/Stats" unique_id=121100004]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_48pco")
-theme_override_font_sizes/font_size = 24
-text = "Time: 00:00"
+text = "Shots: 0 | Resets: 0 | Deaths: 0 | Time: 00:00"
 horizontal_alignment = 1
 
 [node name="SayinLabel" type="Label" parent="CanvasLayer/Panel/Container" unique_id=241886752]
