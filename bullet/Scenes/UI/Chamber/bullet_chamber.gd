@@ -75,6 +75,7 @@ func _ready() -> void:
 			break
 		
 	change_bullet_name()
+	_emit_out_of_ammo_state()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
@@ -90,8 +91,10 @@ func _physics_process(delta: float) -> void:
 			anim_player.play_section("revolve")
 			chambered_bullet_scenes.remove_at(0)
 			bullets.remove_at(0)
+			_emit_out_of_ammo_state()
 		else:
 			print('Oops, looks like yer outta ammo')
+			_emit_out_of_ammo_state()
 
 func rotate_chamber(rot_deg: float) -> void:
 	cylinder_rotator.rotation_degrees += rot_deg
@@ -137,3 +140,6 @@ func change_bullet_name() -> void:
 		chambered_bullet_names.remove_at(0)
 	else:
 		bullet_name_text.text = ""
+
+func _emit_out_of_ammo_state() -> void:
+	BulletBus.out_of_ammo_changed.emit(chambered_bullet_scenes.is_empty())

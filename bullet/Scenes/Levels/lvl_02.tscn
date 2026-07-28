@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cxyncv5q6w7w6" path="res://Scenes/Objects/Key.tscn" id="6_ervr4"]
 [ext_resource type="PackedScene" uid="uid://gs71ss565tgx" path="res://Scenes/Objects/LockBox.tscn" id="7_0hn83"]
 [ext_resource type="Texture2D" uid="uid://053bcm4syd57" path="res://Assets/Tilesets/StrangeCowboy/Decorations/DecorationSheet.png" id="9_7sn0k"]
+[ext_resource type="PackedScene" uid="uid://dknq7nnlqexvf" path="res://Scenes/Objects/EnemyBlocker.tscn" id="12_6qgyk"]
 
 [node name="Lvl02" type="Node2D" unique_id=718201387 node_paths=PackedStringArray("targets")]
 script = ExtResource("1_lxh78")
@@ -57,6 +58,7 @@ tile_map_data = PackedByteArray("AAD1//v/BAACAAEAAAD1//z/BAACAAEAAAD1//3/BAACAAE
 tile_set = ExtResource("3_0hn83")
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
+z_index = -1
 position = Vector2(0, -16)
 
 [node name="Sprite2D" type="Sprite2D" parent="Decorations" unique_id=704602951]
@@ -101,3 +103,9 @@ position = Vector2(189, -17)
 
 [node name="LockBox" parent="." unique_id=1504117620 instance=ExtResource("7_0hn83")]
 position = Vector2(-164, -16)
+
+[node name="EnemyBlocker" parent="." unique_id=191764089 instance=ExtResource("12_6qgyk")]
+position = Vector2(-171, -16)
+
+[node name="EnemyBlocker2" parent="." unique_id=993695297 instance=ExtResource("12_6qgyk")]
+position = Vector2(-251, -16)

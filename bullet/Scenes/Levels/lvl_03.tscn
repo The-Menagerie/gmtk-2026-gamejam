@@ -35,6 +35,7 @@ tile_map_data = PackedByteArray("AADm/+7/AgACAAIAAADm/+//AgACAAIAAADm//D/AgACAAI
 tile_set = ExtResource("2_mnh7n")
 
 [node name="Decorations" type="Node2D" parent="." unique_id=441538813]
+z_index = -1
 
 [node name="DecorationSheet" type="Sprite2D" parent="Decorations" unique_id=1763883058]
 position = Vector2(-218, -164)

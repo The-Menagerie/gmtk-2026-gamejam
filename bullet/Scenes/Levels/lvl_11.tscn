@@ -58,6 +58,7 @@ z_index = -20
 tile_set = ExtResource("2_iv6jo")
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
+z_index = -1
 position = Vector2(0, -16)
 
 [node name="Sprite2D11" type="Sprite2D" parent="Decorations" unique_id=1152511261]

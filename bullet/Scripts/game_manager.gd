@@ -4,6 +4,8 @@ signal level_changed(level_path: String)
 
 @export var current_level: Node
 @export var anim_player: Node
+@export var tutorial_level_scene: PackedScene
+@export var first_level_scene: PackedScene
 @export_range(0.05, 1.0, 0.05) var bullet_time_scale: float = 0.35
 @export_range(0.0, 3.0, 0.05) var level_fade_in_duration: float = 0.45
 @export var transition_text_start_scale: Vector2 = Vector2(1.0, 1.0)
@@ -22,6 +24,7 @@ var is_level_transition_active := false
 
 func _ready():
 	Engine.time_scale = 1.0
+	_apply_initial_level_selection()
 	if is_instance_valid(music_player):
 		music_player.finished.connect(_on_music_finished)
 		if not music_player.playing:
@@ -31,6 +34,17 @@ func _ready():
 
 func _process(_delta):
 	_update_bullet_time()
+
+func _apply_initial_level_selection() -> void:
+	if current_level == null:
+		return
+
+	if SettingsManager.skip_tutorial:
+		if first_level_scene != null and current_level.scene_file_path.get_file() != first_level_scene.resource_path.get_file():
+			change_level(first_level_scene)
+			return
+	elif tutorial_level_scene != null and current_level.scene_file_path.get_file() != tutorial_level_scene.resource_path.get_file():
+		change_level(tutorial_level_scene)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if get_tree().paused:
@@ -63,6 +77,7 @@ func reset_current_level() -> void:
 	if current_level.scene_file_path.is_empty():
 		return
 
+	ScoreBus.register_level_reset()
 	is_level_reset_queued = true
 	call_deferred("_deferred_reset_current_level")
 

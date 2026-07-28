@@ -52,6 +52,7 @@ tile_map_data = PackedByteArray("AAD2//T/BAACAAEAAAD2//X/BAACAAEAAAD2//b/BAACAAE
 tile_set = ExtResource("2_evok3")
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
+z_index = -1
 position = Vector2(0, -16)
 
 [node name="Sprite2D11" type="Sprite2D" parent="Decorations" unique_id=238418500]
