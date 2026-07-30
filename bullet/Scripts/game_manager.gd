@@ -8,16 +8,13 @@ signal level_changed(level_path: String)
 @export var first_level_scene: PackedScene
 @export_range(0.05, 1.0, 0.05) var bullet_time_scale: float = 0.35
 @export_range(0.05, 1.0, 0.05) var bullet_time_music_scale: float = 0.75
-@export_range(0.05, 1.0, 0.05) var bullet_time_sfx_scale: float = 0.6
-@export_range(0.0, 1.0, 0.05) var bullet_time_overlay_intensity: float = 0.8
-@export_range(0.0, 1.0, 0.01) var bullet_time_overlay_border_size: float = 0.12
-@export_range(0.0, 0.2, 0.005) var bullet_time_overlay_feather: float = 0.05
+@export_range(0.05, 1.0, 0.05) var bullet_time_sfx_scale: float = 0.35
+@export_range(0.0, 1.0, 0.05) var bullet_time_overlay_intensity: float = 0.7
+@export_range(0.5, 1.5, 0.05) var bullet_time_overlay_contrast: float = 1.0
 @export_range(0.0, 1.0, 0.05) var bullet_time_overlay_fade_duration: float = 0.18
-@export var bullet_time_overlay_inner_color: Color = Color(0.80, 0.82, 0.86, 0.0)
-@export var bullet_time_overlay_outer_color: Color = Color(0.95, 0.96, 1.0, 0.7)
-@export_range(0.0, 3.0, 0.05) var level_fade_in_duration: float = 0.45
-@export var transition_text_start_scale: Vector2 = Vector2(1.0, 1.0)
-@export var transition_text_end_scale: Vector2 = Vector2(1.2, 1.2)
+@export_range(0.0, 3.0, 0.05) var level_fade_in_duration: float = 1.75
+@export var transition_text_start_scale: Vector2 = Vector2(2.0, 2.0)
+@export var transition_text_end_scale: Vector2 = Vector2(3.0, 3.0)
 
 var is_bullet_time_active := false
 var is_level_reset_queued := false
@@ -170,10 +167,7 @@ func _configure_bullet_time_overlay() -> void:
 	if overlay_material == null:
 		return
 
-	overlay_material.set_shader_parameter("inner_color", bullet_time_overlay_inner_color)
-	overlay_material.set_shader_parameter("outer_color", bullet_time_overlay_outer_color)
-	overlay_material.set_shader_parameter("border_size", bullet_time_overlay_border_size)
-	overlay_material.set_shader_parameter("feather", bullet_time_overlay_feather)
+	overlay_material.set_shader_parameter("contrast", bullet_time_overlay_contrast)
 	overlay_material.set_shader_parameter("intensity", 0.0)
 
 func _update_bullet_time_overlay() -> void:

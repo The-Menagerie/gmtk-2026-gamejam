@@ -9,11 +9,15 @@
 [ext_resource type="Script" uid="uid://dc361j5m1c0ti" path="res://Scripts/restart_hint.gd" id="5_hint"]
 [ext_resource type="PackedScene" uid="uid://bfesun4rqhiis" path="res://Scenes/UI/PauseMenu/options_pause_menu.tscn" id="6_bb2iq"]
 [ext_resource type="AudioStream" uid="uid://ckagh2jekbnkq" path="res://Assets/Music/CowboyGameSong.mp3" id="7_18r40"]
-[ext_resource type="Shader" path="res://Assets/Shaders/bullet_time_border.gdshader" id="8_btfx"]
+[ext_resource type="Shader" uid="uid://d1x73avjrfi0i" path="res://Assets/Shaders/bullet_time_border.gdshader" id="8_btfx"]
 [ext_resource type="PackedScene" uid="uid://5nqw2v1dr8b2" path="res://Scenes/UI/Controls/R.tscn" id="9_r0mdn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_btfx"]
 shader = ExtResource("8_btfx")
+shader_parameter/inner_color = Color(0.78, 0.8, 0.84, 0)
+shader_parameter/outer_color = Color(0.92, 0.94, 0.98, 0.7)
+shader_parameter/border_size = 0.12
+shader_parameter/feather = 0.04
 shader_parameter/intensity = 0.0
 
 [node name="MainGame" type="Node2D" unique_id=2137632005 node_paths=PackedStringArray("current_level", "anim_player")]
@@ -22,11 +26,6 @@ current_level = NodePath("Tut01")
 anim_player = NodePath("AnimationPlayer")
 tutorial_level_scene = ExtResource("2_bb2iq")
 first_level_scene = ExtResource("2_g4i5f")
-bullet_time_music_scale = 0.75
-bullet_time_sfx_scale = 0.35
-level_fade_in_duration = 1.75
-transition_text_start_scale = Vector2(2, 2)
-transition_text_end_scale = Vector2(3, 3)
 
 [node name="Tut01" parent="." unique_id=718201387 instance=ExtResource("2_bb2iq")]
 
@@ -41,7 +40,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 1, 1, 1)
 
 [node name="TransitionOverlay" type="ColorRect" parent="CanvasLayer" unique_id=643156338]
 visible = false

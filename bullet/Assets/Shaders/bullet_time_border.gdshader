@@ -1,17 +1,18 @@
 shader_type canvas_item;
 
-uniform vec4 inner_color : source_color = vec4(0.78, 0.80, 0.84, 0.0);
-uniform vec4 outer_color : source_color = vec4(0.92, 0.94, 0.98, 0.7);
-uniform float border_size : hint_range(0.02, 0.4) = 0.12;
-uniform float feather : hint_range(0.001, 0.2) = 0.04;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 uniform float intensity : hint_range(0.0, 1.0) = 0.0;
+uniform float contrast : hint_range(0.5, 1.5) = 1.0;
+uniform vec3 sepia_bias = vec3(1.06, 1.0, 0.82);
 
 void fragment() {
-	vec2 centered_uv = abs(UV - vec2(0.5)) * 2.0;
-	float edge_distance = max(centered_uv.x, centered_uv.y);
-	float border_mask = smoothstep(1.0 - border_size - feather, 1.0 - border_size, edge_distance);
-	float outer_falloff = smoothstep(1.0 - feather, 1.0, edge_distance);
-	vec4 gradient = mix(inner_color, outer_color, outer_falloff);
-	gradient.a *= border_mask * intensity;
-	COLOR = gradient;
+	vec4 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec3 sepia = vec3(
+		dot(screen_color.rgb, vec3(0.393, 0.769, 0.189)),
+		dot(screen_color.rgb, vec3(0.349, 0.686, 0.168)),
+		dot(screen_color.rgb, vec3(0.272, 0.534, 0.131))
+	);
+	sepia *= sepia_bias;
+	sepia = clamp((sepia - 0.5) * contrast + 0.5, 0.0, 1.0);
+	COLOR = vec4(mix(screen_color.rgb, sepia, intensity), screen_color.a);
 }
