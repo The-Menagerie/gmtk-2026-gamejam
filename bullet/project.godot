@@ -27,6 +27,7 @@ retrograde_image/h_split_offsets=PackedInt32Array()
 [application]
 
 config/name="Bullet"
+config/version="1.0.1"
 run/main_scene="uid://gprmo5bgyvp6"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
