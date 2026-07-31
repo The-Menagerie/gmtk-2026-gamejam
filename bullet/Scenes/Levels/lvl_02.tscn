@@ -35,7 +35,7 @@ texture = ExtResource("3_7sn0k")
 tile_map_data = PackedByteArray("AADy//H/AAABAAMAAADy//T/AAADAAAAAADy//L/AAABAAIAAAA=")
 
 [node name="Enemy" parent="." unique_id=733749410 instance=ExtResource("2_ervr4")]
-position = Vector2(-209, -20)
+position = Vector2(-216, -20)
 
 [node name="Enemy2" parent="." unique_id=1083072495 instance=ExtResource("2_ervr4")]
 position = Vector2(97, -20)
@@ -105,7 +105,7 @@ position = Vector2(189, -17)
 position = Vector2(-164, -16)
 
 [node name="EnemyBlocker" parent="." unique_id=191764089 instance=ExtResource("12_6qgyk")]
-position = Vector2(-171, -16)
+position = Vector2(-187, -16)
 
 [node name="EnemyBlocker2" parent="." unique_id=993695297 instance=ExtResource("12_6qgyk")]
-position = Vector2(-251, -16)
+position = Vector2(-252, -16)

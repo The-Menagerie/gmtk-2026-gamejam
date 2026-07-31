@@ -110,7 +110,7 @@ func _deferred_reset_current_level() -> void:
 
 
 func _update_bullet_time():
-	var should_enable_bullet_time = Input.is_action_pressed("right_click") or Input.is_action_pressed("bullet_time")
+	var should_enable_bullet_time = Input.is_action_pressed("bullet_time")
 	if should_enable_bullet_time == is_bullet_time_active:
 		return
 
