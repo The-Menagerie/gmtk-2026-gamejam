@@ -110,7 +110,8 @@ func _physics_process(delta: float) -> void:
 			bullets[0].queue_free()
 			if anim_player.is_playing():
 				anim_player.stop()
-				chambered_bullet_names.remove_at(0)
+				if not chambered_bullet_names.is_empty():
+					chambered_bullet_names.remove_at(0)
 				var distance_partial_rotated = fmod(cylinder_rotator.rotation_degrees,60.0)
 				rotate_chamber(60 - distance_partial_rotated)
 			anim_player.play_section("revolve")
