@@ -42,25 +42,46 @@ tile_map_data = PackedByteArray("AAD8//7/BAAGAAEAAAD8////BAAGAAEAAAD9//7/BAAGAAE
 tile_set = ExtResource("5_e0u56")
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1476831950]
-z_index = -1
+z_index = -2
 position = Vector2(1, -18)
+
+[node name="Sprite2D13" type="Sprite2D" parent="Decorations" unique_id=757273561]
+position = Vector2(60, -8)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 10
+
+[node name="Sprite2D11" type="Sprite2D" parent="Decorations" unique_id=280933730]
+position = Vector2(49, -8)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 10
+
+[node name="Sprite2D12" type="Sprite2D" parent="Decorations" unique_id=820271350]
+position = Vector2(-36, 2)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 11
+
+[node name="Sprite2D10" type="Sprite2D" parent="Decorations" unique_id=1018502514]
+position = Vector2(64, 2)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 10
+
+[node name="Sprite2D9" type="Sprite2D" parent="Decorations" unique_id=929458125]
+position = Vector2(53, 2)
+texture = ExtResource("7_llj62")
+hframes = 4
+vframes = 3
+frame = 10
 
 [node name="Sprite2D8" type="Sprite2D" parent="Decorations" unique_id=1260766844]
 position = Vector2(42, 2)
-texture = ExtResource("7_llj62")
-hframes = 4
-vframes = 3
-frame = 10
-
-[node name="Sprite2D8" type="Sprite2D" parent="Decorations/Sprite2D8" unique_id=929458125]
-position = Vector2(11, 0)
-texture = ExtResource("7_llj62")
-hframes = 4
-vframes = 3
-frame = 10
-
-[node name="Sprite2D8" type="Sprite2D" parent="Decorations/Sprite2D8/Sprite2D8" unique_id=1018502514]
-position = Vector2(11, 0)
 texture = ExtResource("7_llj62")
 hframes = 4
 vframes = 3
@@ -119,24 +140,3 @@ position = Vector2(139, -70)
 
 [node name="Enemy12" parent="." unique_id=1561509688 instance=ExtResource("4_kfg8x")]
 position = Vector2(173, -68)
-
-[node name="Sprite2D8" type="Sprite2D" parent="." unique_id=280933730]
-position = Vector2(50, -26)
-texture = ExtResource("7_llj62")
-hframes = 4
-vframes = 3
-frame = 10
-
-[node name="Sprite2D8" type="Sprite2D" parent="Sprite2D8" unique_id=757273561]
-position = Vector2(11, 0)
-texture = ExtResource("7_llj62")
-hframes = 4
-vframes = 3
-frame = 10
-
-[node name="Sprite2D9" type="Sprite2D" parent="." unique_id=820271350]
-position = Vector2(-35, -16)
-texture = ExtResource("7_llj62")
-hframes = 4
-vframes = 3
-frame = 11
